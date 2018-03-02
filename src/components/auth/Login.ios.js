@@ -2,17 +2,16 @@ import React, { Component } from 'react';
 import { KeyboardAvoidingView, Image, View, Text, StyleSheet } from 'react-native';
 import LoginForm from '../LoginForm';
 
+
 export default class Login extends Component {
+
     render() {
         return (
-            <KeyboardAvoidingView behavior="padding" style={styles.container}>
-
-                <View style={styles.logoContainer}>
+            <KeyboardAvoidingView behavior='padding' style={styles.container}>
+                <View style={styles.loginContainer}>
                     <Image resizeMode="contain" style={styles.logo} source={require('../../../Images/gigfindersplash.png')} />
                 </View>
-                <View>
-                    <LoginForm />
-                </View>
+                <LoginForm />
             </KeyboardAvoidingView>
         );
     }
@@ -25,12 +24,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#2c3e50',
     },
-    logoContainer: {
+    loginContainer: {
         alignItems: 'center',
-        flex: 1,
+        flexGrow: 1,
         justifyContent: 'center'
     },
     logo: {
-        flex: 1
+        position: 'absolute',
+        width: 400,
+        height: 400
     },
 });

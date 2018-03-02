@@ -26,12 +26,12 @@ export default class LoginForm extends Component {
     }
 
     login(e) {
-
         userService.login(this.state.email, this.state.password)
             .then(() => {
                 console.log('logged in');
             }).catch((err) => {
                 console.log(err);
+                console.log('login error');
             });
     }
 
