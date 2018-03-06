@@ -8,6 +8,11 @@ export default class HomeScreen extends Component {
         super(props);
     }
 
+    skip() {
+        console.log('skip here');
+        return this.props.navigation.navigate('Search');
+    }
+
     signup() {
         console.log('sign up here');
         return this.props.navigation.navigate('SignUp');
@@ -19,6 +24,11 @@ export default class HomeScreen extends Component {
                 <View style={styles.loginContainer}>
                     <Image resizeMode="contain" style={styles.logo} source={require('../../Images/gigfindersplash.png')} />
                 </View>
+                <TouchableOpacity style={styles.buttonContainer}
+                    onPress={() => this.skip()}
+                >
+                    <Text style={styles.buttonText}>SKIP TO SEARCH</Text>
+                </TouchableOpacity >
                 <LoginForm />
                 <TouchableOpacity style={styles.buttonContainer}
                     onPress={() => this.signup()}

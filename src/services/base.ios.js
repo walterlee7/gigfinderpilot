@@ -66,6 +66,11 @@ async function get(url) {
     return json(url);
 }
 
+async function getMore(url, payload) {
+    console.log('base.ios.js:' + payload);
+    return json(url, payload);
+}
+
 async function post(url, payload) {
     return json(url, 'POST', payload);
 }
@@ -83,6 +88,7 @@ export {
     getAuthToken,
     clearAuthToken,
     get,
+    getMore,
     post,
     put,
     destroy,
