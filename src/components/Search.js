@@ -81,34 +81,19 @@ export default class Search extends Component {
             searchResultsService.getArtist(selectedLocation, selectedInstrument)
                 .then((results) => {
                     console.log('searchResults:' + results);
-                    Alert.alert('Location and Instrument Search Results');
+                    // Alert.alert('Location and Instrument Search Results');
                     this.props.navigation.navigate('SearchResult', { results });
                 }).catch((err) => {
                     console.log(err);
                     alert("No Search Results!!!!");
                 })
-
-            // searchResultsService.getArtistLocation(selectedLocation)
-            //     .then((results) => {
-            //         console.log(results);
-            //         let selectedInstrument = this.state.instruments[instrumentIndex].instrument_name;
-            //         console.log('SI:' + selectedInstrument);
-            //         searchResultsService.getArtistInstrument(selectedInstrument)
-            //             .then((results) => {
-            //                 console.log(results);
-            //                 this.props.navigation.navigate('SearchResult', { results });
-            //             })
-            //     }).catch((err) => {
-            //         console.log(err);
-            //         alert("No Search Results!!!!");
-            //     })
         } else if (locationIndex !== '') {
 
             let selectedLocation = this.state.locations[locationIndex].location_name;
 
             searchResultsService.getArtistLocation(selectedLocation)
                 .then((results) => {
-                    Alert.alert('Location Search Results');
+                    // Alert.alert('Location Search Results');
                     this.props.navigation.navigate('SearchResult', { results });
                 }).catch((err) => {
                     console.log(err);
@@ -120,7 +105,7 @@ export default class Search extends Component {
 
             searchResultsService.getArtistInstrument(selectedInstrument)
                 .then((results) => {
-                    Alert.alert('Instrument Search');
+                    // Alert.alert('Instrument Search');
                     this.props.navigation.navigate('SearchResult', { results });
                 }).catch((err) => {
                     console.log(err);

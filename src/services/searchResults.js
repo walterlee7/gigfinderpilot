@@ -14,9 +14,7 @@ async function getArtistInstrument(instrument) {
 async function getArtist(location, instrument) {
     console.log(location);
     console.log(instrument);
-    return
-    baseService.getMore(`/api/artist/both/`, { location: location, instrument: instrument });
-    // baseService.get(`/api/artist/instrument/` + instrument);
+    return baseService.get(`/api/artist/both/` + location + "/" + instrument);
 }
 
 export { getArtistLocation, getArtistInstrument, getArtist };

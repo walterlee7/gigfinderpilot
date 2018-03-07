@@ -8,4 +8,8 @@ async function allInstruments() {
     return baseService.get('/api/instrument');
 }
 
-export { allLocations, allInstruments };
+async function allGenres() {
+    return baseService.get('/api/genre');
+}
+
+export { allLocations, allInstruments, allGenres };

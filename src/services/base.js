@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native';
 const AUTH_TOKEN_KEY = 'authtoken';
-const BASE_URL = 'https://eawrszekcg.localtunnel.me';
+const BASE_URL = 'https://texyjcjwri.localtunnel.me';
 
 async function setAuthToken(token) {
     return await AsyncStorage.setItem(AUTH_TOKEN_KEY, `Bearer ${token}`);
@@ -66,10 +66,6 @@ async function get(url) {
     return json(url);
 }
 
-// async function getMore(url, payload) {
-//     return json(url, 'GET', payload);
-// }
-
 async function post(url, payload) {
     return json(url, 'POST', payload);
 }
@@ -87,7 +83,6 @@ export {
     getAuthToken,
     clearAuthToken,
     get,
-    // getMore,
     post,
     put,
     destroy,
