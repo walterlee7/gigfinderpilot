@@ -8,8 +8,10 @@ export default class SignUp extends Component {
         this.state = {
             name: '',
             email: '',
+            location: '',
             password: '',
-            // isLong: false,
+            confirmPassword: '',
+
         };
     }
 
@@ -22,64 +24,105 @@ export default class SignUp extends Component {
 
     }
 
+    handleLocation(location) {
+        this.setState({ location });
+    }
+
     handlePassword(password) {
-        let isLong = password.length > 5;
-        this.setState({ password, isLong });
+        this.setState({ password });
+    }
+
+    handleConfirmPassword(confirmPassword) {
+        this.setState({ confirmPassword });
     }
 
     handleSubmit(e) {
         const TextInputName = this.state.name;
         const TextInputEmail = this.state.email;
+        const TextInputLocation = this.state.location;
         const TextInputPassword = this.state.password;
+        const TextInputConfirmPassword = this.state.confirmPassword;
 
-        if (TextInputName == '' || TextInputEmail == '' || TextInputPassword == '') {
+        if (TextInputName == '' || TextInputEmail == '' || TextInputLocation == '' || TextInputPassword == '' || TextInputConfirmPassword == '') {
             Alert.alert("Please Enter All the Values.");
-        }
-        else {
-            signupService.insert(this.state)
-                .then(() => {
-                    Alert.alert('Registered!!!!');
-                    this.props.navigation.navigate('Home');
-                }).catch((err) => {
-                    console.log(err);
-                    alert("Not Registered!!!!");
-                })
+        } else if (TextInputConfirmPassword !== TextInputPassword) {
+            Alert.alert("Confirm Password does not match");
+        } else {
+            delete this.state.confirmPassword;
+            console.log(this.state);
+            // signupService.insert(this.state)
+            //     .then(() => {
+            //         Alert.alert('Registered!!!!');
+            //         this.props.navigation.navigate('Home');
+            //     }).catch((err) => {
+            //         console.log(err);
+            //         alert("Not Registered!!!!");
+            //     })
         }
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <TextInput style={styles.input}
-                    autoCapitalize="none"
-                    onChangeText={(text) => this.handleName(text)}
-                    autoCorrect={false}
-                    keyboardType='default'
-                    returnKeyType="next"
-                    placeholder='Full Name'
-                    placeholderTextColor='rgba(225,225,225,0.7)' />
+                <View>
+                    <Text>Registration Page 1 of 3</Text>
+                </View>
 
-                <TextInput style={styles.input}
-                    autoCapitalize="none"
-                    onChangeText={(text) => this.handleEmail(text)}
-                    autoCorrect={false}
-                    keyboardType='email-address'
-                    returnKeyType="next"
-                    placeholder='Email Address'
-                    placeholderTextColor='rgba(225,225,225,0.7)' />
 
-                <TextInput style={styles.input}
-                    returnKeyType="go"
-                    onChangeText={(text) => this.handlePassword(text)}
-                    placeholder='Password'
-                    placeholderTextColor='rgba(225,225,225,0.7)'
-                    secureTextEntry />
+                <View style={styles.form}>
 
-                <TouchableOpacity style={styles.buttonContainer}
-                    onPress={(e) => this.handleSubmit(e)}
-                >
-                    <Text style={styles.buttonText}>SIGN UP</Text>
-                </TouchableOpacity >
+                    <TextInput style={styles.input}
+                        autoCapitalize="none"
+                        onChangeText={(text) => this.handleName(text)}
+                        autoCorrect={false}
+                        maxLength={30}
+                        keyboardType='default'
+                        returnKeyType="next"
+                        placeholder='Full Name'
+                        placeholderTextColor='rgba(225,225,225,0.7)' />
+
+                    <TextInput style={styles.input}
+                        autoCapitalize="none"
+                        onChangeText={(text) => this.handleEmail(text)}
+                        autoCorrect={false}
+                        maxLength={30}
+                        keyboardType='email-address'
+                        returnKeyType="next"
+                        placeholder='Email Address'
+                        placeholderTextColor='rgba(225,225,225,0.7)' />
+
+                    <TextInput style={styles.input}
+                        autoCapitalize="none"
+                        onChangeText={(text) => this.handleLocation(text)}
+                        autoCorrect={false}
+                        maxLength={30}
+                        keyboardType='default'
+                        returnKeyType="next"
+                        placeholder='Location'
+                        placeholderTextColor='rgba(225,225,225,0.7)' />
+
+                    <TextInput style={styles.input}
+                        returnKeyType="next"
+                        onChangeText={(text) => this.handlePassword(text)}
+                        placeholder='Password'
+                        maxLength={30}
+                        placeholderTextColor='rgba(225,225,225,0.7)'
+                        secureTextEntry />
+
+                    <TextInput style={styles.input}
+                        returnKeyType="go"
+                        onChangeText={(text) => this.handleConfirmPassword(text)}
+                        placeholder='Confirm Password'
+                        maxLength={30}
+                        placeholderTextColor='rgba(225,225,225,0.7)'
+                        secureTextEntry />
+
+                    <TouchableOpacity style={styles.buttonContainer}
+                        onPress={(e) => this.handleSubmit(e)}
+                    >
+                        <Text style={styles.buttonText}>SIGN UP/NEXT PAGE</Text>
+                    </TouchableOpacity >
+                </View>
             </View >
         );
     }
@@ -88,12 +131,23 @@ export default class SignUp extends Component {
 const styles = StyleSheet.create({
     container: {
         padding: 20,
+        backgroundColor: 'lightblue',
+        flex: 1
+    },
+    form: {
         backgroundColor: 'green',
+        margin: 10,
+        marginTop: 100,
+        marginBottom: 100,
+        borderWidth: 1,
+        borderColor: 'black'
     },
     input: {
         height: 40,
         width: 300,
         backgroundColor: 'rgba(225,225,225,0.2)',
+        margin: 7,
+        marginTop: 10,
         marginBottom: 10,
         padding: 10,
         color: '#fff'

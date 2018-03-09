@@ -12,6 +12,9 @@ import SearchResult from './SearchResult';
 import Camera from './Camera';
 import iCamera from './iCamera';
 import Test from './Test';
+import Test2 from './Test2';
+import SearchCard from './SearchCard';
+import ViewArtist from './ViewArtist';
 
 const generateDrawerHamburger = (currentNav) => {
     const onPress = () => currentNav.navigation.navigate('DrawerOpen');
@@ -67,7 +70,6 @@ const SignUpStack = StackNavigator({
         navigationOptions: getStackNavOption
     },
 
-
 });
 const SearchStack = StackNavigator({
     Search: {
@@ -78,10 +80,14 @@ const SearchStack = StackNavigator({
         screen: SearchResult,
         navigationOptions: getStackNavOption
     },
-    // ViewArtist: {
-    //     screen: ViewArtist,
-    //     navigationOptions: getStackNavOption
-    // }
+    SearchCard: {
+        screen: SearchCard,
+        navigationOptions: getStackNavOption
+    },
+    ViewArtist: {
+        screen: ViewArtist,
+        navigationOptions: getStackNavOption
+    }
 });
 const CameraStack = StackNavigator({
     SearchResult: {
@@ -98,6 +104,12 @@ const iCameraStack = StackNavigator({
 const TestStack = StackNavigator({
     Test: {
         screen: Test,
+        navigationOptions: getStackNavOption
+    },
+});
+const TestStack2 = StackNavigator({
+    Test2: {
+        screen: Test2,
         navigationOptions: getStackNavOption
     },
 });
@@ -123,6 +135,9 @@ export default DrawerNavigator({
     },
     Test: {
         screen: TestStack
+    },
+    Test2: {
+        screen: TestStack2
     }
 }, {
         contentComponent: SideMenu,

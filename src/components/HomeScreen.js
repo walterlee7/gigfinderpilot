@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { KeyboardAvoidingView, TouchableOpacity, Image, View, Text, StyleSheet } from 'react-native';
+import Video from "react-native-video";
+import VideoGround from '../../Videos/CIRCULAR_INTERFACE_HUD.mp4';
 import LoginForm from './LoginForm';
-
-
 
 
 export default class HomeScreen extends Component {
@@ -23,6 +23,12 @@ export default class HomeScreen extends Component {
     render() {
         return (
             <KeyboardAvoidingView behavior='padding' style={styles.container}>
+                {/* <Video
+                    repeat
+                    source={VideoGround}
+                    resizeMode="cover"
+                    style={StyleSheet.absoluteFill}
+                /> */}
                 <View style={styles.loginContainer}>
                     <Image resizeMode="contain" style={styles.logo} source={require('../../Images/gigfindersplash.png')} />
                 </View>

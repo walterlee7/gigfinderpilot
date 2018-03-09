@@ -46,7 +46,10 @@ class SideMenu extends Component {
                                 iOS Camera
                             </Text>
                             <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Test')}>
-                                Testing Compo
+                                Testing Genre Insert
+                            </Text>
+                            <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Test2')}>
+                                Testing Instrument Insert
                             </Text>
                         </View>
                     </View>
