@@ -50,14 +50,14 @@ export default class SignUp extends Component {
         } else {
             delete this.state.confirmPassword;
             console.log(this.state);
-            // signupService.insert(this.state)
-            //     .then(() => {
-            //         Alert.alert('Registered!!!!');
-            //         this.props.navigation.navigate('Home');
-            //     }).catch((err) => {
-            //         console.log(err);
-            //         alert("Not Registered!!!!");
-            //     })
+            signupService.insert(this.state)
+                .then(() => {
+                    Alert.alert('Registered!!!!');
+                    this.props.navigation.navigate('Home');
+                }).catch((err) => {
+                    console.log(err);
+                    alert("Not Registered!!!!");
+                })
         }
     }
 
@@ -65,7 +65,7 @@ export default class SignUp extends Component {
         return (
             <View style={styles.container}>
                 <View>
-                    <Text>Registration Page 1 of 3</Text>
+                    <Text>Registration</Text>
                 </View>
 
 
@@ -120,7 +120,7 @@ export default class SignUp extends Component {
                     <TouchableOpacity style={styles.buttonContainer}
                         onPress={(e) => this.handleSubmit(e)}
                     >
-                        <Text style={styles.buttonText}>SIGN UP/NEXT PAGE</Text>
+                        <Text style={styles.buttonText}>SIGN UP</Text>
                     </TouchableOpacity >
                 </View>
             </View >

@@ -7,13 +7,14 @@ import SideMenu from './SideMenu';
 import HomeScreen from './HomeScreen';
 import SignUp from './SignUp';
 import Login from './auth/Login';
+import LoginForm from './LoginForm';
 import Search from './Search';
 import SearchResult from './SearchResult';
 import Camera from './Camera';
 import iCamera from './iCamera';
 import Test from './Test';
 import Test2 from './Test2';
-import SearchCard from './SearchCard';
+import UserProfile from './UserProfile';
 import ViewArtist from './ViewArtist';
 
 const generateDrawerHamburger = (currentNav) => {
@@ -48,11 +49,23 @@ const HomeStack = StackNavigator({
     HomeScreen: {
         screen: HomeScreen,
         navigationOptions: { header: null }
+    },
+    LoginForm: {
+        screen: LoginForm,
+        navigationOptions: getStackNavOption
+    },
+    UserProfile: {
+        screen: UserProfile,
+        navigationOptions: getStackNavOption
     }
 });
 const LoginStack = StackNavigator({
     Login: {
         screen: Login,
+        navigationOptions: getStackNavOption
+    },
+    UserProfile: {
+        screen: UserProfile,
         navigationOptions: getStackNavOption
     }
 });
@@ -78,10 +91,6 @@ const SearchStack = StackNavigator({
     },
     SearchResult: {
         screen: SearchResult,
-        navigationOptions: getStackNavOption
-    },
-    SearchCard: {
-        screen: SearchCard,
         navigationOptions: getStackNavOption
     },
     ViewArtist: {
@@ -113,6 +122,12 @@ const TestStack2 = StackNavigator({
         navigationOptions: getStackNavOption
     },
 });
+const UserProfileStack = StackNavigator({
+    UserProfile: {
+        screen: UserProfile,
+        navigationOptions: getStackNavOption
+    },
+});
 
 export default DrawerNavigator({
     Home: {
@@ -138,6 +153,9 @@ export default DrawerNavigator({
     },
     Test2: {
         screen: TestStack2
+    },
+    UserProfile: {
+        screen: UserProfileStack
     }
 }, {
         contentComponent: SideMenu,

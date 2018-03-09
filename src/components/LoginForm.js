@@ -29,6 +29,7 @@ export default class LoginForm extends Component {
         userService.login(this.state.email, this.state.password)
             .then(() => {
                 console.log('logged in');
+                this.props.navigation.navigate('UserProfile');
             }).catch((err) => {
                 console.log(err);
                 console.log('login error');

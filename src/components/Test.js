@@ -97,7 +97,7 @@ export default class Test extends Component {
             <View style={styles.container}>
 
                 <View>
-                    <Text>Registration Page 2 of 3</Text>
+                    <Text>Please choose up to 3 of your favorite genres</Text>
                 </View>
 
                 <SelectMultiple
@@ -108,7 +108,7 @@ export default class Test extends Component {
                 <TouchableOpacity style={styles.buttonContainer}
                     onPress={(e) => this.handleSubmit(e)}
                 >
-                    <Text style={styles.buttonText}>SUBMIT GENRES/NEXT PAGE</Text>
+                    <Text style={styles.buttonText}>SUBMIT GENRES</Text>
                 </TouchableOpacity >
 
             </View>

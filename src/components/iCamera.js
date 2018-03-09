@@ -56,22 +56,22 @@ class iCamera extends React.Component {
         this.setState({ modalVisible: !this.state.modalVisible });
     }
 
-    share = () => {
-        // const image = this.state.photos[this.state.index].node.image.uri
-        // RNFetchBlob.fs.readFile(image, 'base64')
-        //     .then((data) => {
-        //         let shareOptions = {
-        //             title: "React Native Share Example",
-        //             message: "Check out this photo!",
-        //             url: `data:image/jpg;base64,${data}`,
-        //             subject: "Check out this photo!"
-        //         }
+    // share = () => {
+    //     const image = this.state.photos[this.state.index].node.image.uri
+    //     RNFetchBlob.fs.readFile(image, 'base64')
+    //         .then((data) => {
+    //             let shareOptions = {
+    //                 title: "React Native Share Example",
+    //                 message: "Check out this photo!",
+    //                 url: `data:image/jpg;base64,${data}`,
+    //                 subject: "Check out this photo!"
+    //             }
 
-        //         Share.open(shareOptions)
-        //             .then((res) => console.log('res:', res))
-        //             .catch(err => console.log('err', err))
-        //     })
-    }
+    //             Share.open(shareOptions)
+    //                 .then((res) => console.log('res:', res))
+    //                 .catch(err => console.log('err', err))
+    //         })
+    // }
 
     render() {
         // console.log('state :', this.state)
@@ -118,7 +118,7 @@ class iCamera extends React.Component {
                                 })
                             }
                         </ScrollView>
-                        {
+                        {/* {
                             this.state.index !== null && (
                                 <View style={styles.shareButton}>
                                     <Button
@@ -127,7 +127,7 @@ class iCamera extends React.Component {
                                     />
                                 </View>
                             )
-                        }
+                        } */}
                     </View>
                 </Modal>
             </View>

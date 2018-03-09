@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Image, ScrollView, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Image, ScrollView, View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ImageBackground } from 'react-native';
 // import ArtistCard from './artistCard';
 
 export default class ViewArtist extends Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     msgArtist() {
         console.log('Message');
@@ -13,12 +13,27 @@ export default class ViewArtist extends Component {
     }
 
     render() {
+        console.log('VIEW ARTIST: ' + this.props.navigation.state.params.array.name);
         return (
             <View style={styles.container}>
                 <ScrollView style={styles.container}>
-                    {/* <View>
-                        <ArtistCard />
-                    </View> */}
+                    <TouchableHighlight style={styles.container}>
+                        <ImageBackground style={styles.image}
+                            source={require('/Users/walterlee/Documents/Test/GigPilot/gigfinderpilot/Images/gigfindersplash.png')}>
+                            <View style={{ flexDirection: 'row', flex: 1 }}>
+                                <Text style={styles.paragraph}>
+                                    <Text style={{ fontSize: 20 }}>
+                                        Victor Arvidsson
+              </Text>
+                                    {"\n"}
+                                    <Text style={{ fontSize: 12 }}>
+                                        Nashville, TN
+              </Text>
+                                </Text>
+                            </View>
+                        </ImageBackground>
+                    </TouchableHighlight>
+
 
                     <View>
                         <Text>Name </Text>
@@ -49,7 +64,9 @@ export default class ViewArtist extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#605b4f'
+        backgroundColor: '#605b4f',
+        flex: 1,
+        // alignItems: 'stretch',
     },
     header: {
         fontSize: 20,
@@ -84,5 +101,18 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0,
         borderRightWidth: 0,
 
+    },
+    image: {
+        flexDirection: 'row',
+        alignContent: 'flex-end',
+        height: 300,
+        width: '100%'
+    },
+    paragraph: {
+        alignSelf: 'flex-end',
+        margin: 5
+    },
+    paragraph2: {
+        color: 'blue'
     }
 });

@@ -51,6 +51,9 @@ class SideMenu extends Component {
                             <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Test2')}>
                                 Testing Instrument Insert
                             </Text>
+                            <Text style={styles.navItemStyle} onPress={this.navigateToScreen('UserProfile')}>
+                                UserProfile
+                            </Text>
                         </View>
                     </View>
                 </ScrollView>

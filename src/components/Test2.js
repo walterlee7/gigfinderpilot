@@ -78,7 +78,7 @@ export default class Test extends Component {
             <View style={styles.container}>
 
                 <View>
-                    <Text>Registration Page 3 of 3</Text>
+                    <Text>Please choose up to 3 of your favorite instruments</Text>
                 </View>
 
                 <SelectMultiple
@@ -89,7 +89,7 @@ export default class Test extends Component {
                 <TouchableOpacity style={styles.buttonContainer}
                     onPress={(e) => this.handleSubmit(e)}
                 >
-                    <Text style={styles.buttonText}>SUBMIT INSTRUMENTS/COMPLETE REGISTRATION</Text>
+                    <Text style={styles.buttonText}>SUBMIT INSTRUMENTS</Text>
                 </TouchableOpacity >
 
             </View>
