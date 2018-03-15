@@ -147,6 +147,12 @@ export default class EditProfile extends Component {
             });
     }
 
+    editPhoto(e) {
+        console.log('edit photo');
+        console.log(this.state.userInfo);
+        return this.props.navigation.navigate('EditPhoto', { userid: this.state.userInfo.id });
+    }
+
     editInfo(e) {
         console.log('edit info');
         console.log(this.state.userInfo);
@@ -182,6 +188,10 @@ export default class EditProfile extends Component {
                 >
                     <Text style={styles.buttonText}>LOGOUT</Text>
                 </TouchableOpacity >
+                <Image
+                    style={{ width: 350, height: 350, margin: 12, }}
+                    source={{ uri: this.state.userInfo.uri }}
+                />
 
                 <View style={styles.infoContainer}>
                     <TouchableHighlight style={styles.container}>
@@ -201,7 +211,7 @@ export default class EditProfile extends Component {
                         </ImageBackground>
                     </TouchableHighlight>
                     <TouchableOpacity style={styles.buttonContainer}
-                    // onPress={() => this.editProfile()}
+                        onPress={() => this.editPhoto()}
                     >
                         <Text style={styles.buttonText}>Upload Images</Text>
                     </TouchableOpacity >

@@ -4,75 +4,75 @@ import { Platform, StyleSheet, View, Text, Alert, TouchableOpacity } from 'react
 import SelectMultiple from 'react-native-select-multiple';
 
 import * as searchService from '../services/search';
-import * as test2Service from '../services/test2';
+import * as testService from '../services/test';
 
-export default class EditInstrument extends Component {
+export default class SearchGenre extends Component {
 
     static navigationOptions = {
-
-        title: 'Instruments'
+        title: 'Genres'
     }
 
     constructor(props) {
         super(props);
 
         this.state = {
-            instruments: [
+            genres: [
                 { label: '', value: '' },
             ],
-            selectedInstruments: [],
-            chosenInstruments: []
+            selectedGenres: [],
+            chosenGenres: [],
+
         };
     }
 
     componentDidMount() {
-        this.getInstruments();
+        this.getGenres();
     }
 
-    getInstruments() {
-        searchService.getAllInstruments()
+    getGenres() {
+        searchService.allGenres()
             .then((results) => {
                 results.sort(function (a, b) {
                     var textA = a.label.toUpperCase();
                     var textB = b.label.toUpperCase();
                     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
                 });
-                this.setState({ instruments: results });
+                this.setState({ genres: results });
             }).catch((err) => {
                 console.log(err);
             });
     }
 
-    onSelectionsChange = (selectedInstruments) => {
-        this.setState({ selectedInstruments });
+    onSelectionsChange = (selectedGenres) => {
+        this.setState({ selectedGenres });
     }
 
     handleSubmit(e) {
 
-        let sI = this.state.selectedInstruments;
-        let cI = {};
+        let sG = this.state.selectedGenres;
+        let cG = {};
         let id = this.props.navigation.state.params.userid;
 
-        if (sI.length == 0) {
-            Alert.alert('Choose a Instrument');
-        } else if (sI.length < 21) {
+        if (sG.length === 0) {
+            Alert.alert('Choose a Genre');
+        } else if (sG.length < 21) {
 
-            for (let i = 0; i < sI.length; i++) {
-                let instrument = 'instrument' + i;
-                cI[instrument] = sI[i].label;
+            for (let i = 0; i < sG.length; i++) {
+                let genre = 'genre' + i;
+                cG[genre] = sG[i].label;
             }
 
-            test2Service.updateInstruments(id, cI)
+            testService.updateGenres(id, cG)
                 .then(() => {
-                    Alert.alert('Instruments Updated!!!!');
+                    Alert.alert('Genres Updated!!!!');
                     this.props.navigation.navigate('EditProfile');
                 }).catch((err) => {
                     console.log(err);
-                    alert("No Instruments Updated!!!");
+                    alert("No Genres Updated!!!!");
                 })
 
         } else {
-            Alert.alert('Something went wrong')
+            Alert.alert('Something went wrong...')
         }
 
     }
@@ -84,20 +84,19 @@ export default class EditInstrument extends Component {
             <View style={styles.container}>
 
                 <View>
-                    <Text style={styles.text}>Please the instruments you can play</Text>
+                    <Text style={styles.text}>Please choose your applicable genres</Text>
                 </View>
 
                 <SelectMultiple
-                    items={this.state.instruments}
-                    selectedItems={this.state.selectedInstruments}
+                    items={this.state.genres}
+                    selectedItems={this.state.selectedGenres}
                     onSelectionsChange={this.onSelectionsChange} />
 
                 <TouchableOpacity style={styles.buttonContainer}
                     onPress={(e) => this.handleSubmit(e)}
                 >
-                    <Text style={styles.buttonText}>SUBMIT INSTRUMENTS</Text>
+                    <Text style={styles.buttonText}>SUBMIT GENRES</Text>
                 </TouchableOpacity >
-
             </View>
         );
     }

@@ -10,6 +10,8 @@ import Search from './Search';
 import About from './About';
 import Gigs from './Gigs';
 import Events from './Events';
+import Contact from './Contact';
+import Version from './Version';
 
 import SearchResult from './SearchResult';
 import UserProfile from './UserProfile';
@@ -24,12 +26,12 @@ import Messenger from './Messenger';
 import EditInfo from './EditInfo';
 import EditGenre from './EditGenre';
 import EditInstrument from './EditInstrument';
+import EditPhoto from './EditPhoto';
 
 import SideMenu from './SideMenu';
 import loginSideMenu from './loginSideMenu';
 
 import Camera from './Camera';
-import iCamera from './iCamera';
 
 
 const generateDrawerHamburger = (currentNav) => {
@@ -108,6 +110,10 @@ const HomeStack = StackNavigator({
         screen: EditInstrument,
         navigationOptions: getStackNavOption
     },
+    EditPhoto: {
+        screen: EditPhoto,
+        navigationOptions: getStackNavOption
+    },
 });
 const LoginStack = StackNavigator({
     Login: {
@@ -164,16 +170,10 @@ const SearchStack = StackNavigator({
     },
 });
 const CameraStack = StackNavigator({
-    SearchResult: {
+    Camera: {
         screen: Camera,
         navigationOptions: getStackNavOption
     }
-});
-const iCameraStack = StackNavigator({
-    iCamera: {
-        screen: iCamera,
-        navigationOptions: getStackNavOptionIOS
-    },
 });
 const UserProfileStack = StackNavigator({
     UserProfile: {
@@ -199,6 +199,18 @@ const EventsStack = StackNavigator({
         navigationOptions: getStackNavOption
     },
 });
+const VersionStack = StackNavigator({
+    Version: {
+        screen: Version,
+        navigationOptions: getStackNavOption
+    },
+});
+const ContactStack = StackNavigator({
+    Contact: {
+        screen: Contact,
+        navigationOptions: getStackNavOption
+    },
+});
 
 export default DrawerNavigator({
     Home: {
@@ -221,10 +233,6 @@ export default DrawerNavigator({
         screen: CameraStack,
         // contentComponent: SideMenu,
     },
-    iCamera: {
-        screen: iCameraStack,
-        // contentComponent: SideMenu,
-    },
     UserProfile: {
         screen: UserProfileStack,
         // contentComponent: loginSideMenu,
@@ -241,9 +249,12 @@ export default DrawerNavigator({
         screen: EventsStack,
         // contentComponent: SideMenu,
     },
-    // MessengerInbox: {
-    //     screen: SearchStack
-    // },
+    Contact: {
+        screen: ContactStack
+    },
+    Version: {
+        screen: VersionStack
+    },
 
 }, {
         // contentComponent: SideMenu,

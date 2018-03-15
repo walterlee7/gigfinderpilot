@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import * as userService from '../services/user';
 
-export default class LoginForm extends Component {
+export default class EditInfo extends Component {
     constructor(props) {
         super(props);
         this.state = {

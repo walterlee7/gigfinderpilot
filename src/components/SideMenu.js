@@ -41,10 +41,7 @@ export default class SideMenu extends Component {
                                 Search
                             </Text>
                             <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Camera')}>
-                                Android Camera
-                            </Text>
-                            <Text style={styles.navItemStyle} onPress={this.navigateToScreen('iCamera')}>
-                                iOS Camera
+                                Camera
                             </Text>
                             <Text style={styles.navItemStyle} onPress={this.navigateToScreen('UserProfile')}>
                                 UserProfile
@@ -60,6 +57,12 @@ export default class SideMenu extends Component {
                             </Text>
                             <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Events')}>
                                 Events
+                            </Text>
+                            <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Contact Us')}>
+                                Contact Us
+                            </Text>
+                            <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Version')}>
+                                Version
                             </Text>
                         </View>
                     </View>

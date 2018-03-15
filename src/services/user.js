@@ -29,7 +29,6 @@ async function checkUser() {
         if (!user) {
             return false;
         }
-
         return user.id;
     } catch (e) {
         return false;

@@ -24,8 +24,10 @@ export default class Messenger extends Component {
             showButton: true,
             showFetchedMessages: false,
             timeStamp: 'Man, like, I don\'t know sometime?',
-            userid: 1,
-            whereFrom: 1,
+            localuserid: 0,
+            localreceiverid: 0,
+            databaseUserid: 0,
+            databaseReceiverid: 0,
         };
     }
 
