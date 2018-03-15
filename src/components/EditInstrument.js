@@ -6,7 +6,13 @@ import SelectMultiple from 'react-native-select-multiple';
 import * as searchService from '../services/search';
 import * as test2Service from '../services/test2';
 
-export default class Test extends Component {
+export default class Test2 extends Component {
+
+    static navigationOptions = {
+
+        title: 'Instruments'
+    }
+
     constructor(props) {
         super(props);
 
@@ -21,7 +27,6 @@ export default class Test extends Component {
 
     componentDidMount() {
         this.getInstruments();
-        console.log(this.state.instruments);
     }
 
     getInstruments() {
@@ -45,28 +50,29 @@ export default class Test extends Component {
     handleSubmit(e) {
 
         let sI = this.state.selectedInstruments;
-        let cI = this.state.chosenInstruments;
+        let cI = {};
+        let id = this.props.navigation.state.params.userid;
 
         if (sI.length == 0) {
             Alert.alert('Choose a Instrument');
-        } else if (sI.length < 4) {
+        } else if (sI.length < 21) {
 
-            for (i = 0; i < sI.length; i++) {
-                console.log(sI[i].label);
-                this.state.chosenInstruments.push(sI[i].label);
+            for (let i = 0; i < sI.length; i++) {
+                let instrument = 'instrument' + i;
+                cI[instrument] = sI[i].label;
             }
 
-            test2Service.insert(this.state.chosenInstruments)
+            test2Service.updateInstruments(id, cI)
                 .then(() => {
-                    Alert.alert('Instruments!!!!');
-                    this.props.navigation.navigate('Test2');
+                    Alert.alert('Instruments Updated!!!!');
+                    this.props.navigation.navigate('EditProfile');
                 }).catch((err) => {
                     console.log(err);
-                    alert("No Instruments!!!");
+                    alert("No Instruments Updated!!!");
                 })
 
         } else {
-            Alert.alert('Please only choose up to 3 instruments')
+            Alert.alert('Something went wrong')
         }
 
     }
@@ -78,7 +84,7 @@ export default class Test extends Component {
             <View style={styles.container}>
 
                 <View>
-                    <Text>Please choose up to 3 of your favorite instruments</Text>
+                    <Text style={styles.text}>Please the instruments you can play</Text>
                 </View>
 
                 <SelectMultiple
@@ -110,6 +116,10 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: '#fff',
+        textAlign: 'center',
+        fontWeight: '700'
+    },
+    text: {
         textAlign: 'center',
         fontWeight: '700'
     }

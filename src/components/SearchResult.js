@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Button, Card } from 'react-native-elements';
+import { ScrollView, View, StyleSheet, TouchableOpacity, Image, ImageBackground } from 'react-native';
+import { Container, Header, Content, Card, Text } from 'native-base';
+
 import SearchCard from './SearchCard';
 
 export default class SearchResult extends Component {
@@ -8,22 +9,11 @@ export default class SearchResult extends Component {
         super(props);
 
         this.state = {
-
             artists: [],
-
         };
-
     }
 
     handleSubmit(index) {
-        console.log(this.props.navigation.state.params.results);
-        // let arr = this.props.navigation.state.params.results;
-        // this.setState({ artists: arr });
-        // let x = Object.keys[e];
-        // let y = Object.values[e];
-        // console.log('event x: ' + x);
-        // console.log('event y: ' + y);
-
         this.props.navigation.navigate('ViewArtist', { array: this.props.navigation.state.params.results[index] });
     }
 
@@ -38,13 +28,25 @@ export default class SearchResult extends Component {
                 <View>
                     {this.props.navigation.state.params.results.map((artist, index) => {
                         return (
-                            <TouchableOpacity onPress={() => this.handleSubmit(index)} key={index}
-                            >
-                                <Card>
-                                    <Text>Name: {artist.name} </Text>
-                                    <Text>Location: {artist.artist_location}</Text>
-                                    <Text>Instrument: {artist.artist_instrument}</Text>
-                                </Card>
+                            <TouchableOpacity style={styles.container} onPress={() => this.handleSubmit(index)} key={index}>
+                                <ImageBackground style={styles.image}
+                                    source={require('/Users/walterlee/Documents/Test/GigPilot/gigfinderpilot/Images/gigfindersplash.png')}>
+                                    <View style={{ flexDirection: 'row', flex: 1 }}>
+                                        <Text style={styles.paragraph}>
+                                            <Text style={{ fontSize: 20 }}>
+                                                Name: {artist.name}
+                                            </Text>
+                                            {"\n"}
+                                            <Text style={{ fontSize: 12 }}>
+                                                Location: {artist.location}
+                                            </Text>
+                                            {/* {"\n"}
+                                            <Text style={{ fontSize: 12 }}>
+                                                Instrument: {artist.artist_instrument}
+                                            </Text> */}
+                                        </Text>
+                                    </View>
+                                </ImageBackground>
                             </TouchableOpacity>
                         );
                     })}
@@ -57,13 +59,30 @@ export default class SearchResult extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingLeft: 10,
-        paddingRight: 10
+        paddingLeft: 2,
+        paddingRight: 2,
+        borderColor: 'black',
+        borderStyle: 'solid',
+        borderWidth: 2,
+        margin: 2,
     },
     searchText: {
         textAlign: 'center',
         borderRadius: 50,
         backgroundColor: 'lightgrey',
         fontWeight: 'bold'
+    },
+    image: {
+        flexDirection: 'row',
+        alignContent: 'flex-end',
+        height: 300,
+        width: '100%'
+    },
+    paragraph: {
+        alignSelf: 'flex-end',
+        margin: 2
+    },
+    paragraph2: {
+        color: 'blue'
     }
 });

@@ -3,25 +3,39 @@ import { View, Text, StyleSheet } from 'react-native';
 import { DrawerNavigator, StackNavigator } from 'react-navigation';
 import { Icon, Button } from 'react-native-elements';
 
-import SideMenu from './SideMenu';
 import HomeScreen from './HomeScreen';
 import SignUp from './SignUp';
 import Login from './auth/Login';
-import LoginForm from './LoginForm';
 import Search from './Search';
+import About from './About';
+import Gigs from './Gigs';
+import Events from './Events';
+
 import SearchResult from './SearchResult';
+import UserProfile from './UserProfile';
+import EditProfile from './EditProfile';
+import ViewArtist from './ViewArtist';
+import LoginForm from './LoginForm';
+import ViewArtistMessenger from './ViewArtistMessenger';
+import LoginMessage from './auth/LoginMessage';
+import MessengerInbox from './MessengerInbox';
+import Messenger from './Messenger';
+
+import EditInfo from './EditInfo';
+import EditGenre from './EditGenre';
+import EditInstrument from './EditInstrument';
+
+import SideMenu from './SideMenu';
+import loginSideMenu from './loginSideMenu';
+
 import Camera from './Camera';
 import iCamera from './iCamera';
-import Test from './Test';
-import Test2 from './Test2';
-import UserProfile from './UserProfile';
-import ViewArtist from './ViewArtist';
+
 
 const generateDrawerHamburger = (currentNav) => {
     const onPress = () => currentNav.navigation.navigate('DrawerOpen');
 
     return (
-
         <Icon
             onPress={onPress}
             name="bars"
@@ -30,20 +44,40 @@ const generateDrawerHamburger = (currentNav) => {
             color='black'
             style={{ alignSelf: 'end' }}
         />
-
     );
 };
 
 const getStackNavOption = (current) => ({
     headerStyle: {
+        backgroundColor: '#A0ADBD',
+        display: 'flex',
+        paddingRight: 10,
+
+    },
+    headerTitle: <Text>GigFinder</Text>,
+    headerRight: generateDrawerHamburger(current),
+});
+
+const getStackNavOptionIOS = (current) => ({
+    headerStyle: {
+        backgroundColor: 'lightgrey',
+        display: 'flex',
+        paddingRight: 10,
+        fontWeight: 'bold'
+
+    },
+    headerTitle: <Text>iOS Camera Roll</Text>,
+    headerRight: generateDrawerHamburger(current),
+});
+const getStackNavOptionMessenger = (current) => ({
+    headerStyle: {
         backgroundColor: 'lightgrey',
         display: 'flex',
         paddingRight: 10
-
     },
-    headerTitle: <Text>Test</Text>,
+    headerTitle: 'Your Inbox',
     headerRight: generateDrawerHamburger(current),
-});
+})
 
 const HomeStack = StackNavigator({
     HomeScreen: {
@@ -57,7 +91,23 @@ const HomeStack = StackNavigator({
     UserProfile: {
         screen: UserProfile,
         navigationOptions: getStackNavOption
-    }
+    },
+    EditProfile: {
+        screen: EditProfile,
+        navigationOptions: getStackNavOption
+    },
+    EditInfo: {
+        screen: EditInfo,
+        navigationOptions: getStackNavOption
+    },
+    EditGenre: {
+        screen: EditGenre,
+        navigationOptions: getStackNavOption
+    },
+    EditInstrument: {
+        screen: EditInstrument,
+        navigationOptions: getStackNavOption
+    },
 });
 const LoginStack = StackNavigator({
     Login: {
@@ -67,24 +117,31 @@ const LoginStack = StackNavigator({
     UserProfile: {
         screen: UserProfile,
         navigationOptions: getStackNavOption
+    },
+    MessengerInbox: {
+        screen: MessengerInbox,
+        navigationOptions: getStackNavOptionMessenger
+    },
+    Messenger: {
+        screen: Messenger,
+        navigationOptions: getStackNavOption
     }
 });
 const SignUpStack = StackNavigator({
-    SignUp: {
-        screen: SignUp,
-        navigationOptions: getStackNavOption
+    HomeScreen: {
+        screen: HomeScreen,
+        navigationOptions: { header: null }
     },
     SignUp: {
         screen: SignUp,
         navigationOptions: getStackNavOption
     },
-    SignUp: {
-        screen: SignUp,
-        navigationOptions: getStackNavOption
-    },
-
 });
 const SearchStack = StackNavigator({
+    HomeScreen: {
+        screen: HomeScreen,
+        navigationOptions: { header: null }
+    },
     Search: {
         screen: Search,
         navigationOptions: getStackNavOption
@@ -96,7 +153,15 @@ const SearchStack = StackNavigator({
     ViewArtist: {
         screen: ViewArtist,
         navigationOptions: getStackNavOption
-    }
+    },
+    ViewArtistMessenger: {
+        screen: ViewArtistMessenger,
+        navigationOptions: getStackNavOption
+    },
+    LoginMessage: {
+        screen: LoginMessage,
+        navigationOptions: getStackNavOption
+    },
 });
 const CameraStack = StackNavigator({
     SearchResult: {
@@ -107,19 +172,7 @@ const CameraStack = StackNavigator({
 const iCameraStack = StackNavigator({
     iCamera: {
         screen: iCamera,
-        navigationOptions: getStackNavOption
-    },
-});
-const TestStack = StackNavigator({
-    Test: {
-        screen: Test,
-        navigationOptions: getStackNavOption
-    },
-});
-const TestStack2 = StackNavigator({
-    Test2: {
-        screen: Test2,
-        navigationOptions: getStackNavOption
+        navigationOptions: getStackNavOptionIOS
     },
 });
 const UserProfileStack = StackNavigator({
@@ -128,37 +181,73 @@ const UserProfileStack = StackNavigator({
         navigationOptions: getStackNavOption
     },
 });
+const AboutStack = StackNavigator({
+    About: {
+        screen: About,
+        navigationOptions: getStackNavOption
+    },
+});
+const GigsStack = StackNavigator({
+    Gigs: {
+        screen: Gigs,
+        navigationOptions: getStackNavOption
+    },
+});
+const EventsStack = StackNavigator({
+    Events: {
+        screen: Events,
+        navigationOptions: getStackNavOption
+    },
+});
 
 export default DrawerNavigator({
     Home: {
         screen: HomeStack,
+        // contentComponent: loginSideMenu,
     },
     Login: {
-        screen: LoginStack
+        screen: LoginStack,
+        // contentComponent: loginSideMenu,
     },
     SignUp: {
-        screen: SignUpStack
+        screen: SignUpStack,
+        // contentComponent: SideMenu,
     },
     Search: {
-        screen: SearchStack
+        screen: SearchStack,
+        // contentComponent: SideMenu,
     },
     Camera: {
-        screen: CameraStack
+        screen: CameraStack,
+        // contentComponent: SideMenu,
     },
     iCamera: {
-        screen: iCameraStack
-    },
-    Test: {
-        screen: TestStack
-    },
-    Test2: {
-        screen: TestStack2
+        screen: iCameraStack,
+        // contentComponent: SideMenu,
     },
     UserProfile: {
-        screen: UserProfileStack
-    }
+        screen: UserProfileStack,
+        // contentComponent: loginSideMenu,
+    },
+    About: {
+        screen: AboutStack,
+        // contentComponent: SideMenu,
+    },
+    Gigs: {
+        screen: GigsStack,
+        // contentComponent: SideMenu,
+    },
+    Events: {
+        screen: EventsStack,
+        // contentComponent: SideMenu,
+    },
+    // MessengerInbox: {
+    //     screen: SearchStack
+    // },
+
 }, {
-        contentComponent: SideMenu,
+        // contentComponent: SideMenu,
         drawerWidth: 300,
         drawerPosition: 'right'
     });
+

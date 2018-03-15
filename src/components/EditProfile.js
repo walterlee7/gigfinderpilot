@@ -4,7 +4,7 @@ import { Image, ScrollView, View, Text, StyleSheet, TouchableHighlight, Touchabl
 import * as profileService from '../services/profile';
 import * as userService from '../services/user';
 
-export default class UserProfile extends Component {
+export default class EditProfile extends Component {
     constructor(props) {
         super(props);
 
@@ -24,6 +24,82 @@ export default class UserProfile extends Component {
         this.getUserId();
 
     }
+
+    // async getUserId() {
+    //     let user;
+    //     let userInfo;
+    //     let userGenres;
+    //     let uG;
+    //     let userInstruments;
+    //     let uI;
+
+    //     try {
+    //         user = await userService.checkUser();
+    //     } catch (e) {
+    //         console.log(e);
+    //         return;
+    //     }
+
+    //     console.log(user);
+
+    //     try {
+    //         [userInfo, userGenres, userInstruments] = await Promise.all([
+    //             profileService.one(user),
+    //             profileService.getGenres(user),
+    //             profileService.getInstruments(user),
+    //         ]);
+    //     } catch (e) {
+    //         console.log(e);
+    //         return;
+    //     }
+
+    //     uG = Object.values(userGenres);
+    //     this.setState({ userG: uG });
+    //     uI = Object.values(userInstruments);
+    //     this.setState({ userI: uI });
+
+    //     this.setState({ user, userG: uG, userI: uI, userInfo, userGenres, userInstruments });
+
+    //     // try {
+    //     //     userInfo = await profileService.one(this.state.user);
+    //     // } catch (e) {
+    //     //     console.log(e);
+    //     //     return;
+    //     // }
+
+    //     // console.log('userInfo: ' + userInfo);
+    //     // console.dir(this.state.userInfo);
+
+    //     // try {
+    //     //     userGenres = await profileService.getGenres(this.state.user);
+    //     // } catch (e) {
+    //     //     console.log(e);
+    //     //     return;
+    //     // }
+
+    //     // this.setState({ userGenres });
+    //     // console.log('UserGenres: ' + userGenres);
+    //     // console.log(typeof this.state.userGenres);
+    //     // console.dir(this.state.userGenres);
+    //     // uG = Object.values(this.state.userGenres);
+    //     // this.setState({ userG: uG });
+    //     // console.log('userG: ' + this.state.userG);
+
+    //     // try {
+    //     //     userInstruments = await profileService.getInstruments(this.state.user);
+    //     // } catch (e) {
+    //     //     console.log(e);
+    //     //     return;
+    //     // }
+
+    //     // this.setState({ userInstruments });
+    //     // console.log('UserInstruments: ' + userInstruments);
+    //     // console.dir(this.state.userInstruments);
+    //     // uI = Object.values(this.state.userInstruments);
+    //     // this.setState({ userI: uI });
+    //     // console.log('userI: ' + this.state.userI);
+
+    // }
 
     getUserId() {
         userService.checkUser()
@@ -71,14 +147,22 @@ export default class UserProfile extends Component {
             });
     }
 
-    editProfile() {
-        console.log('edit profile');
-        return this.props.navigation.navigate('EditProfile');
+    editInfo(e) {
+        console.log('edit info');
+        console.log(this.state.userInfo);
+        return this.props.navigation.navigate('EditInfo', { userInfo: this.state.userInfo });
     }
 
-    inbox() {
-        console.log('user inbox');
-        return this.props.navigation.navigate('MessengerInbox');
+    editGenres(e) {
+        console.log('edit genre');
+
+        return this.props.navigation.navigate('EditGenre', { userid: this.state.userInfo.id });
+    }
+
+    editInstruments(e) {
+        console.log('edit instrument');
+
+        return this.props.navigation.navigate('EditInstrument', { userid: this.state.userInfo.id });
     }
 
     handleSubmit(e) {
@@ -116,6 +200,11 @@ export default class UserProfile extends Component {
                             </View>
                         </ImageBackground>
                     </TouchableHighlight>
+                    <TouchableOpacity style={styles.buttonContainer}
+                    // onPress={() => this.editProfile()}
+                    >
+                        <Text style={styles.buttonText}>Upload Images</Text>
+                    </TouchableOpacity >
                 </View>
 
                 <View style={styles.infoContainer}>
@@ -123,6 +212,11 @@ export default class UserProfile extends Component {
                     <Text>Name: {this.state.userInfo.name} </Text>
                     <Text>Location: {this.state.userInfo.location} </Text>
                     <Text style={styles.body}>{this.state.userInfo.aboutme}</Text>
+                    <TouchableOpacity style={styles.buttonContainer}
+                        onPress={(e) => this.editInfo(e)}
+                    >
+                        <Text style={styles.buttonText}>Edit Info</Text>
+                    </TouchableOpacity >
                 </View>
 
                 <View style={styles.infoContainer}>
@@ -136,6 +230,11 @@ export default class UserProfile extends Component {
                             </View>
                         );
                     })}
+                    <TouchableOpacity style={styles.buttonContainer}
+                        onPress={(e) => this.editGenres(e)}
+                    >
+                        <Text style={styles.buttonText}>Edit Genres</Text>
+                    </TouchableOpacity >
                 </View>
 
                 <View style={styles.infoContainer}>
@@ -149,16 +248,10 @@ export default class UserProfile extends Component {
                             </View>
                         );
                     })}
-                </View>
-
-                <View style={styles.btncontainer}>
                     <TouchableOpacity style={styles.buttonContainer}
-                        onPress={() => this.editProfile()}>
-                        <Text style={styles.buttonText}>Edit Profile</Text>
-                    </TouchableOpacity >
-                    <TouchableOpacity style={styles.buttonContainer}
-                        onPress={() => this.inbox()}>
-                        <Text style={styles.buttonText}>Inbox</Text>
+                        onPress={(e) => this.editInstruments(e)}
+                    >
+                        <Text style={styles.buttonText}>Edit Instruments</Text>
                     </TouchableOpacity >
                 </View>
             </ScrollView>
@@ -187,6 +280,7 @@ const styles = StyleSheet.create({
     },
     btncontainer: {
         flexDirection: 'column',
+
     },
     buttonText: {
         flexDirection: 'column',
@@ -226,7 +320,6 @@ const styles = StyleSheet.create({
         padding: 10,
         margin: 10,
         height: 70,
-        borderRadius: 20,
     },
     infoContainer: {
         paddingLeft: 5,

@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { KeyboardAvoidingView, Image, View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import LoginForm from '../LoginForm';
+import LoginForm from './LoginForm';
 
 
-export default class Login extends Component {
+//change it
+
+export default class Events extends Component {
 
     render() {
         return (
             <KeyboardAvoidingView behavior='padding' style={styles.container}>
                 <View style={styles.loginContainer}>
-                    <Image resizeMode="contain" style={styles.logo} source={require('../../../Images/gigfindersplash.png')} />
+                    <Image resizeMode="contain" style={styles.logo} source={require('../../Images/gigfindersplash.png')} />
                 </View>
                 <LoginForm />
                 <View style={styles.loginContainer}>

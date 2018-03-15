@@ -94,6 +94,11 @@ export default class Search extends Component {
             searchResultsService.getArtistLocation(selectedLocation)
                 .then((results) => {
                     // Alert.alert('Location Search Results');
+                    results.sort(function (a, b) {
+                        var textA = a.name.toUpperCase();
+                        var textB = b.name.toUpperCase();
+                        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+                    });
                     this.props.navigation.navigate('SearchResult', { results });
                 }).catch((err) => {
                     console.log(err);
@@ -106,6 +111,11 @@ export default class Search extends Component {
             searchResultsService.getArtistInstrument(selectedInstrument)
                 .then((results) => {
                     // Alert.alert('Instrument Search');
+                    results.sort(function (a, b) {
+                        var textA = a.name.toUpperCase();
+                        var textB = b.name.toUpperCase();
+                        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+                    });
                     this.props.navigation.navigate('SearchResult', { results });
                 }).catch((err) => {
                     console.log(err);
@@ -119,15 +129,15 @@ export default class Search extends Component {
     }
 
     handleReset() {
-        this.props.navigation.navigate('Home');
+        this.props.navigation.navigate('HomeScreen');
     }
 
     render() {
         return (
             <View style={styles.container}>
-
-                <Text>Choose Location</Text>
-
+                <View style={styles.textContainer}>
+                    <Text>Choose Location</Text>
+                </View>
                 <Picker
                     selectedValue={this.state.location_name}
                     onValueChange={this.onValueChange}
@@ -143,9 +153,9 @@ export default class Search extends Component {
                     })}
 
                 </Picker>
-
-                <Text>Choose Instrument</Text>
-
+                <View style={styles.textContainer}>
+                    <Text>Choose Instrument</Text>
+                </View>
                 <Picker
                     selectedValue={this.state.instrument_name}
                     onValueChange={this.onValChange}
@@ -182,31 +192,37 @@ export default class Search extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'lightblue',
+        backgroundColor: '#161F52',
         alignItems: 'center',
         justifyContent: 'center',
     },
     picker: {
         alignSelf: 'stretch',
-        backgroundColor: 'cadetblue',
+        backgroundColor: '#10498B',
         paddingHorizontal: 20,
         paddingVertical: 20,
         margin: 20,
         borderRadius: 10,
-
     },
     pickerText: {
         color: 'white',
+        fontSize: 12,
     },
     buttonContainer: {
         backgroundColor: '#2980b6',
         paddingVertical: 15,
         paddingHorizontal: 100,
         marginBottom: 15,
+        borderRadius: 50,
     },
     buttonText: {
         color: '#fff',
         textAlign: 'center',
         fontWeight: '700'
+    },
+    textContainer: {
+        backgroundColor: '#6F7B8B',
+        padding: 10,
+        borderRadius: 35,
     }
 })

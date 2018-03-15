@@ -10,11 +10,14 @@ export default class LoginForm extends Component {
             email: '',
             password: '',
             feedbackMessage: '',
-            checkingLogin: true
+            checkingLogin: true,
+
         };
     }
 
     componentDidMount() {
+        console.log(this.props.navigation.state.params.userid);
+
         userService.checkLogin()
             .then((loggedIn) => {
                 if (loggedIn) {
@@ -41,28 +44,18 @@ export default class LoginForm extends Component {
         this.setState({ email: value });
     }
 
-    handlePasswordChange(value) {
-        this.setState({ password: value });
-    }
-
     render() {
         return (
             <View style={styles.container}>
+                <Text>Edit Info</Text>
                 <TextInput style={styles.input}
                     autoCapitalize="none"
-                    onChangeText={(text) => this.handleEmailChange(text)}
+                    onChangeText={(text) => this.handleInfoChange(text)}
                     autoCorrect={false}
                     keyboardType='email-address'
                     returnKeyType="next"
                     placeholder='Email Address'
                     placeholderTextColor='rgba(225,225,225,0.7)' />
-
-                <TextInput style={styles.input}
-                    returnKeyType="go"
-                    onChangeText={(text) => this.handlePasswordChange(text)}
-                    placeholder='Password'
-                    placeholderTextColor='rgba(225,225,225,0.7)'
-                    secureTextEntry />
 
                 <TouchableOpacity style={styles.buttonContainer}
                     onPress={(e) => this.login(e)}

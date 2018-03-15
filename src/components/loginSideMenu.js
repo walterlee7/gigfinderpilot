@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import { NavigationActions } from 'react-navigation';
 import { ScrollView, Text, View, StyleSheet } from 'react-native';
 
-export default class SideMenu extends Component {
-
+export default class loginSideMenu extends Component {
     navigateToScreen = (route) => () => {
         const navigateAction = NavigationActions.navigate({
             routeName: route
@@ -34,32 +33,8 @@ export default class SideMenu extends Component {
                             <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Login')}>
                                 Login
                             </Text>
-                            <Text style={styles.navItemStyle} onPress={this.navigateToScreen('SignUp')}>
-                                Sign Up
-                            </Text>
                             <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Search')}>
                                 Search
-                            </Text>
-                            <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Camera')}>
-                                Android Camera
-                            </Text>
-                            <Text style={styles.navItemStyle} onPress={this.navigateToScreen('iCamera')}>
-                                iOS Camera
-                            </Text>
-                            <Text style={styles.navItemStyle} onPress={this.navigateToScreen('UserProfile')}>
-                                UserProfile
-                            </Text>
-                            <Text style={styles.navItemStyle} onPress={this.navigateToScreen('MessengerInbox')}>
-                                Inbox
-                            </Text>
-                            <Text style={styles.navItemStyle} onPress={this.navigateToScreen('About')}>
-                                About
-                            </Text>
-                            <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Gigs')}>
-                                Gigs
-                            </Text>
-                            <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Events')}>
-                                Events
                             </Text>
                         </View>
                     </View>
@@ -72,7 +47,7 @@ export default class SideMenu extends Component {
     }
 }
 
-SideMenu.propTypes = {
+loginSideMenu.propTypes = {
     navigation: PropTypes.object
 };
 

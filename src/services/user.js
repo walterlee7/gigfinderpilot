@@ -9,12 +9,28 @@ async function checkLogin() {
 
     try {
         const user = await me();
-
         if (!user) {
             return false;
         }
 
         return true;
+    } catch (e) {
+        return false;
+    }
+}
+
+async function checkUser() {
+    await baseService.getAuthToken();
+
+    try {
+        const user = await me();
+        console.log('user: ' + user);
+        console.dir(user);
+        if (!user) {
+            return false;
+        }
+
+        return user.id;
     } catch (e) {
         return false;
     }
@@ -39,4 +55,4 @@ async function me() {
     return baseService.get('/api/users/me');
 }
 
-export { isLoggedIn, checkLogin, login, logout, me };
+export { isLoggedIn, checkLogin, login, logout, me, checkUser };

@@ -20,7 +20,7 @@ const { width } = Dimensions.get('window')
 
 class iCamera extends React.Component {
     static navigationOptions = {
-        title: 'Camera Roll App'
+        title: 'iOS Camera Roll'
     }
 
     state = {

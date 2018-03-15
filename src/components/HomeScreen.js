@@ -4,7 +4,6 @@ import Video from "react-native-video";
 
 import VideoGround from '../../Videos/CIRCULAR_INTERFACE_HUD.mp4';
 
-// import LoginForm from './LoginForm';
 import * as userService from '../services/user';
 
 
@@ -23,16 +22,19 @@ export default class HomeScreen extends Component {
     componentDidMount() {
         userService.checkLogin()
             .then((loggedIn) => {
-                if (loggedIn) {
-                    this.setState({ redirectToReferrer: true, checkingLogin: false });
-                } else {
-                    this.setState({ checkingLogin: false });
-                }
+                // alert(loggedIn);
+                // if (loggedIn) {
+                //     console.log('loggedIN happened');
+
+                //     this.setState({ redirectToReferrer: true, checkingLogin: false });
+                // } else {
+                //     this.setState({ checkingLogin: false });
+                // }
             });
     }
 
     skip() {
-        console.log('skip here');
+        console.log('skip to search');
         return this.props.navigation.navigate('Search');
     }
 
@@ -77,9 +79,6 @@ export default class HomeScreen extends Component {
                 >
                     <Text style={styles.buttonText}>SKIP TO SEARCH</Text>
                 </TouchableOpacity >
-
-                {/* <LoginForm /> */}
-
                 <View style={styles.logContainer}>
                     <TextInput style={styles.input}
                         autoCapitalize="none"
@@ -118,8 +117,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        // alignItems: 'center',
-        backgroundColor: '#2c3e50',
+        backgroundColor: '#071525',
     },
     loginContainer: {
         alignItems: 'center',
@@ -128,22 +126,24 @@ const styles = StyleSheet.create({
     },
     logo: {
         position: 'absolute',
-        width: 400,
-        height: 400
+        width: 375,
+        height: 375
     },
     buttonContainer: {
         backgroundColor: 'green',
         paddingVertical: 15,
-        paddingHorizontal: 100,
-        marginBottom: 15,
+        paddingHorizontal: 50,
+        margin: 20,
+        borderRadius: 20,
     },
     buttonText: {
         color: '#fff',
         textAlign: 'center',
-        fontWeight: '700'
+        fontWeight: 'bold',
+        width: 20,
     },
     logContainer: {
-        padding: 20,
+        padding: 10,
         alignItems: 'center',
     },
     input: {
@@ -156,11 +156,13 @@ const styles = StyleSheet.create({
     },
     buttonLogContainer: {
         backgroundColor: '#2980b6',
-        paddingVertical: 15
+        paddingVertical: 15,
+        margin: 20,
+        borderRadius: 20,
     },
     buttonText: {
         color: '#fff',
         textAlign: 'center',
-        fontWeight: '700'
+        fontWeight: 'bold'
     }
 });

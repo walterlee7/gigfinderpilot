@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import { Image, ScrollView, View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ImageBackground } from 'react-native';
-// import ArtistCard from './artistCard';
+import * as userService from '../services/user';
 
 export default class ViewArtist extends Component {
-    // constructor(props) {
-    //     super(props);
-    // }
 
-    msgArtist() {
+    msgArtist(e) {
         console.log('Message');
-        // return this.props.navigation.navigate('MessageArtist');
+
+        userService.checkLogin()
+            .then((loggedIn) => {
+                alert(loggedIn);
+                if (loggedIn === false) {
+                    this.props.navigation.navigate('LoginMessage');
+                } else {
+                    return this.props.navigation.navigate('ViewArtistMessenger', { userid: this.props.navigation.state.params.array.id });
+                }
+
+            });
     }
 
     render() {
@@ -23,31 +30,26 @@ export default class ViewArtist extends Component {
                             <View style={{ flexDirection: 'row', flex: 1 }}>
                                 <Text style={styles.paragraph}>
                                     <Text style={{ fontSize: 20 }}>
-                                        Victor Arvidsson
-              </Text>
+                                        {this.props.navigation.state.params.array.name}
+                                    </Text>
                                     {"\n"}
                                     <Text style={{ fontSize: 12 }}>
-                                        Nashville, TN
-              </Text>
+                                        {this.props.navigation.state.params.array.location}
+                                    </Text>
                                 </Text>
                             </View>
                         </ImageBackground>
                     </TouchableHighlight>
-
-
-                    <View>
-                        <Text>Name </Text>
-                        <Text>Location </Text>
+                    <View style={styles.container}>
+                        <Text>Name: {this.props.navigation.state.params.array.name} </Text>
+                        <Text>Location: {this.props.navigation.state.params.array.location}</Text>
                         <Text style={styles.header}>About Me:</Text>
-                        <Text style={{ color: 'white' }}> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</Text>
-
-                        <Text>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</Text>
+                        <Text style={{ color: 'white' }}> {this.props.navigation.state.params.array.aboutme}</Text>
                     </View>
 
                     <View>
                         <TouchableOpacity style={styles.buttonContainer}
-                            onPress={() => this.msgArtist()}>
+                            onPress={(e) => this.msgArtist(e)}>
                             <Text style={styles.buttonText}>Message Artist</Text>
                         </TouchableOpacity >
 
@@ -66,10 +68,11 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#605b4f',
         flex: 1,
-        // alignItems: 'stretch',
+        borderStyle: 'dotted',
+        borderWidth: 2,
     },
     header: {
-        fontSize: 20,
+        fontSize: 10,
         color: 'white',
         fontWeight: 'bold'
     },

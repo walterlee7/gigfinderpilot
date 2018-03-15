@@ -7,6 +7,11 @@ import * as searchService from '../services/search';
 import * as testService from '../services/test';
 
 export default class Test extends Component {
+
+    static navigationOptions = {
+        title: 'Genres'
+    }
+
     constructor(props) {
         super(props);
 
@@ -15,13 +20,13 @@ export default class Test extends Component {
                 { label: '', value: '' },
             ],
             selectedGenres: [],
-            chosenGenres: []
+            chosenGenres: [],
+
         };
     }
 
     componentDidMount() {
         this.getGenres();
-        // console.log(this.state.chosenGenres);
     }
 
     getGenres() {
@@ -45,47 +50,29 @@ export default class Test extends Component {
     handleSubmit(e) {
 
         let sG = this.state.selectedGenres;
-        let cG = this.state.chosenGenres;
+        let cG = {};
+        let id = this.props.navigation.state.params.userid;
 
         if (sG.length === 0) {
             Alert.alert('Choose a Genre');
-        } else if (sG.length < 4) {
+        } else if (sG.length < 21) {
 
-            for (i = 0; i < sG.length; i++) {
-                console.log(sG[i]);
-                this.state.chosenGenres.push(sG[i].label);
+            for (let i = 0; i < sG.length; i++) {
+                let genre = 'genre' + i;
+                cG[genre] = sG[i].label;
             }
 
-            let a = Object.keys(cG);
-            let b = Object.values(cG);
-            console.log('key: ' + a);
-            console.log('values: ' + b);
-            console.log('cG number: ' + cG.length);
-            let x = [];
-            for (var i = 0; i < cG.length; i++) {
-                console.log(cG[i].genre[i]);
-                console.log(cG[i].key[i]);
-
-                cG[i].genre[i] = cG[i].key[i];
-                delete cG[i].key[i];
-                x.push
-            }
-
-            console.log('key after: ' + a);
-            console.log('values after: ' + b);
-
-            this.state.chosenGenres = [];
-            // testService.insert(this.state.chosenGenres)
-            //     .then(() => {
-            //         Alert.alert('Genres!!!!');
-            //         this.props.navigation.navigate('Test');
-            //     }).catch((err) => {
-            //         console.log(err);
-            //         alert("No Genres!!!!");
-            //     })
+            testService.updateGenres(id, cG)
+                .then(() => {
+                    Alert.alert('Genres Updated!!!!');
+                    this.props.navigation.navigate('EditProfile');
+                }).catch((err) => {
+                    console.log(err);
+                    alert("No Genres Updated!!!!");
+                })
 
         } else {
-            Alert.alert('Please only choose up to 3 genres')
+            Alert.alert('Something went wrong...')
         }
 
     }
@@ -97,7 +84,7 @@ export default class Test extends Component {
             <View style={styles.container}>
 
                 <View>
-                    <Text>Please choose up to 3 of your favorite genres</Text>
+                    <Text style={styles.text}>Please choose your applicable genres</Text>
                 </View>
 
                 <SelectMultiple
@@ -110,7 +97,6 @@ export default class Test extends Component {
                 >
                     <Text style={styles.buttonText}>SUBMIT GENRES</Text>
                 </TouchableOpacity >
-
             </View>
         );
     }
@@ -129,6 +115,10 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: '#fff',
+        textAlign: 'center',
+        fontWeight: '700'
+    },
+    text: {
         textAlign: 'center',
         fontWeight: '700'
     }
