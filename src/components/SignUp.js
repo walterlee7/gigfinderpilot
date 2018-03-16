@@ -139,9 +139,8 @@ export default class SignUp extends Component {
                             placeholderTextColor='darkgrey' />
 
                         <TouchableOpacity style={styles.buttonContainer}
-                            onPress={(e) => this.handleSubmit(e)}
-                        >
-                            <Text style={styles.buttonText}>SIGN UP</Text>
+                            onPress={(e) => this.handleSubmit(e)}>
+                            <Text style={styles.buttonText}>Sign Up</Text>
                         </TouchableOpacity >
                     </View>
                 </View >
@@ -151,15 +150,15 @@ export default class SignUp extends Component {
         }
         
 const styles = StyleSheet.create({
-                    container: {
-                    alignItems: 'center',
+                container: {
+                alignItems: 'center',
                 flex: 1,
                 height: null,
-                width: null
-        
+                width: null,
+                justifyContent: 'center'
             },
     logo: {
-                    position: 'relative',
+                position: 'relative',
                 width: 350,
                 height: 350
             },
@@ -172,7 +171,8 @@ const styles = StyleSheet.create({
                 width: 120,
                 margin: 5,
                 alignSelf: 'center',
-                borderBottomWidth: 0
+                borderBottomWidth: 0,
+                marginTop: 20
             },
     buttonText: {
                     color: 'white',
@@ -181,10 +181,10 @@ const styles = StyleSheet.create({
                 paddingTop: 3
             },
     input: {
-                    height: 40,
+                height: 40,
                 width: 250,
                 backgroundColor: '#f2f2f2',
-                marginBottom: 5,
+                marginBottom: 10,
                 padding: 5,
                 fontSize: 15,
                 color: 'black',

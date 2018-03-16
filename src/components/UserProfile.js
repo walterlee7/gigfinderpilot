@@ -219,10 +219,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#111111',
         opacity: 0.9
     },
-    
     text: {
         fontSize: 22,
-        color: 'lightgrey',
+        color: 'white',
         fontWeight: 'bold',
     },
     
