@@ -4,7 +4,8 @@ import {
     ScrollView,
     TouchableOpacity,
     Text,
-    StyleSheet
+    StyleSheet,
+    ImageBackground,
 } from 'react-native';
 import * as messageService from '../services/message';
 import TextCard from './TextCard';
@@ -85,9 +86,11 @@ export default class MessengerInbox extends Component {
 
     render() {
         return (
-            <ScrollView style={styles.container}>
-                {this.renderTextCards()}
-            </ScrollView>
+            <ImageBackground source={{ uri: 'https://static.tumblr.com/e31f3012fa7c249095a8dddbfc58f0c4/rgmmpty/K3Tmpmf2h/tumblr_static_brick_wall_night_texture_by_kaf94-d373s49.jpg' }} style={styles.container}>
+                <ScrollView style={styles.container}>
+                    {this.renderTextCards()}
+                </ScrollView>
+            </ImageBackground>
         );
     }
 }
