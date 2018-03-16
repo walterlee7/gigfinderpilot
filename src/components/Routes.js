@@ -54,7 +54,7 @@ const getStackNavOption = (current) => ({
         backgroundColor: '#A0ADBD',
         display: 'flex',
         paddingRight: 10,
-
+        
     },
     headerTitle: <Text>GigFinder</Text>,
     headerRight: generateDrawerHamburger(current),

@@ -196,7 +196,7 @@ export default class EditProfile extends Component {
                 <View style={styles.infoContainer}>
                     <TouchableHighlight style={styles.container}>
                         <ImageBackground style={styles.image}
-                            source={require('/Users/walterlee/Documents/Test/GigPilot/gigfinderpilot/Images/gigfindersplash.png')}>
+                            source={require('/Users/Chelsee/Documents/GigFinder/gigfinderpilot/Images/gigfindersplash.png')}>
                             <View style={{ flexDirection: 'row', flex: 1 }}>
                                 <Text style={styles.paragraph}>
                                     <Text style={{ fontSize: 20 }}>
