@@ -19,7 +19,6 @@ export default class About extends Component {
     render() {
         return (
             <ScrollView style={{ backgroundColor: '#333333' }}>
-
                 {/* <Image>
                 source={require('../images/Arvi.jpg')}>
                 </Image> */}

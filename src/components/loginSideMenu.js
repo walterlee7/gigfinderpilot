@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         padding: 10
     },
     navSectionStyle: {
-        backgroundColor: 'lightgrey'
+        backgroundColor: '#333333'
     },
     sectionHeadingStyle: {
         paddingVertical: 10,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     },
     footerContainer: {
         padding: 20,
-        backgroundColor: 'lightgrey'
+        backgroundColor: '#333333'
     }
 })
 

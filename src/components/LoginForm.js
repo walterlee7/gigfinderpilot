@@ -47,6 +47,7 @@ export default class LoginForm extends Component {
 
     render() {
         return (
+            <View>
             <View style={styles.container}>
                 <TextInput style={styles.input}
                     autoCapitalize="none"
@@ -55,44 +56,64 @@ export default class LoginForm extends Component {
                     keyboardType='email-address'
                     returnKeyType="next"
                     placeholder='Email Address'
-                    placeholderTextColor='rgba(225,225,225,0.7)' />
+                    placeholderTextColor='darkgrey' />
 
                 <TextInput style={styles.input}
                     returnKeyType="go"
                     onChangeText={(text) => this.handlePasswordChange(text)}
                     placeholder='Password'
-                    placeholderTextColor='rgba(225,225,225,0.7)'
+                    placeholderTextColor='darkgrey'
                     secureTextEntry />
-
+            </View>
+            <View>
                 <TouchableOpacity style={styles.buttonContainer}
-                    onPress={(e) => this.login(e)}
-                >
-                    <Text style={styles.buttonText}>LOGIN</Text>
+                    onPress={(e) => this.login(e)}>
+                    <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity >
-            </View >
+            </View>
+            </View>
         );
     }
 }
 
+
 const styles = StyleSheet.create({
     container: {
-        padding: 20
+        padding: 10,
+        position: 'relative',
+        borderRadius: 10,
+  
     },
     input: {
         height: 40,
-        width: 300,
-        backgroundColor: 'rgba(225,225,225,0.2)',
-        marginBottom: 10,
-        padding: 10,
-        color: '#fff'
-    },
-    buttonContainer: {
-        backgroundColor: '#2980b6',
-        paddingVertical: 15
+        width: 250,
+        backgroundColor: '#f2f2f2',
+        marginBottom: 5,
+        padding: 5,
+        fontSize: 15,
+        color: 'black',
+        position: 'relative',
+        borderRadius: 5,
+        borderColor: '#555555',
+        borderWidth: 3,
+        borderBottomWidth: 0,
+        borderRightWidth: 0,
     },
     buttonText: {
         color: '#fff',
-        textAlign: 'center',
-        fontWeight: '700'
-    }
+        fontSize: 17,
+        alignSelf: 'center',
+        paddingTop: 3,
+    },
+    buttonContainer: {
+        backgroundColor: '#15a3a3',
+        borderColor: '#21ffff',
+        borderWidth: 1,
+        borderRadius: 40,
+        height: 30,
+        width: 250,
+        alignSelf: 'center',
+        borderBottomWidth: 0
+    },
+
 });

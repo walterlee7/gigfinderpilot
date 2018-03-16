@@ -125,13 +125,8 @@ export default class UserProfile extends Component {
         // console.log('userInstruments: ' + this.state.userInstruments);
         // console.dir(this.state.userInstruments);
         return (
+            <ImageBackground source={{ uri: 'https://static.tumblr.com/e31f3012fa7c249095a8dddbfc58f0c4/rgmmpty/K3Tmpmf2h/tumblr_static_brick_wall_night_texture_by_kaf94-d373s49.jpg' }} style={styles.container}>
             <ScrollView>
-                <TouchableOpacity style={styles.buttContainer}
-                    onPress={(e) => this.handleSubmit(e)}
-                >
-                    <Text style={styles.buttonText}>LOGOUT</Text>
-                </TouchableOpacity >
-
                 <View style={styles.infoContainer}>
                     <TouchableHighlight style={styles.container}>
                         <ImageBackground style={styles.image}
@@ -152,7 +147,7 @@ export default class UserProfile extends Component {
                 </View>
 
                 <View style={styles.infoContainer}>
-                    <Text style={styles.header}>About Me</Text>
+                    <Text style={{ fontWeight: 'bold', fontSize: 17, color: 'white'}}>About Me</Text>
                     <Text>Name: {this.state.userInfo.name} </Text>
                     <Text>Location: {this.state.userInfo.location} </Text>
                     <Text style={styles.body}>{this.state.userInfo.aboutme}</Text>
@@ -194,7 +189,13 @@ export default class UserProfile extends Component {
                         <Text style={styles.buttonText}>Inbox</Text>
                     </TouchableOpacity >
                 </View>
+                <TouchableOpacity style={styles.buttContainer}
+                    onPress={(e) => this.handleSubmit(e)}
+                >
+                    <Text style={styles.buttonText}>Logout</Text>
+                </TouchableOpacity >
             </ScrollView>
+            </ImageBackground>
         )
     }
 }
@@ -208,38 +209,30 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'stretch'
     },
-    input: {
-        height: 40,
-        width: 270,
-        backgroundColor: 'rgba(225,225,225,0.2)',
-        marginBottom: 10,
-        padding: 10,
-        color: '#fff',
-        position: 'relative',
-        borderRadius: 10
-    },
     btncontainer: {
-        flexDirection: 'column',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 10
     },
     buttonText: {
         flexDirection: 'column',
         // width: '50%',
-
         flex: 2,
-        color: 'black',
-        fontSize: 18,
+        color: 'white',
+        fontSize: 17,
         alignSelf: 'center',
-        paddingTop: 9,
+        paddingTop: 4,
         position: 'relative',
     },
     buttonContainer: {
-        flex: 1,
-        flexDirection: 'column',
-        backgroundColor: "#21ffff",
+        backgroundColor: '#15a3a3',
+        borderColor: '#21ffff',
+        borderWidth: 1,
         borderRadius: 40,
-        height: 40,
-        width: 270,
-        margin: 5
+        height: 30,
+        width: 100,
+        margin: 5,
+        borderBottomWidth: 0
     },
     image: {
         flexDirection: 'row',
@@ -255,19 +248,21 @@ const styles = StyleSheet.create({
         color: 'blue'
     },
     buttContainer: {
-        backgroundColor: '#2980b6',
-        padding: 10,
-        margin: 10,
-        height: 70,
-        borderRadius: 20,
+        backgroundColor: '#15a3a3',
+        borderColor: '#21ffff',
+        borderWidth: 1,
+        borderRadius: 40,
+        height: 30,
+        width: 210,
+        alignSelf: 'center',
+        borderBottomWidth: 0,
+        marginTop: 10
     },
     infoContainer: {
-        paddingLeft: 5,
-        paddingRight: 5,
-        borderColor: 'black',
-        borderStyle: 'dashed',
-        borderWidth: 5,
-        margin: 5,
+        padding: 7,
+        marginTop: 3,
         flex: 1,
-    }
+        backgroundColor: '#fafafa',
+        borderRadius: 5
+    },
 });
