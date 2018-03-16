@@ -13,13 +13,13 @@ export default class FetchTextCard extends Component {
         if (userid !== loggedInUserid) {
             return (
                 <View style={styles.containerLeft}>
-                    <Text style={styles.text}>{this.props.message.message}</Text>
+                    <Text style={styles.text}>{message}</Text>
                 </View>
             );
         } else {
             return (
                 <View style={styles.containerRight}>
-                    <Text style={styles.text}>{this.props.message.message}</Text>
+                    <Text style={styles.text}>{message}</Text>
                 </View>
             );
         }

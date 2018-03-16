@@ -8,34 +8,58 @@ import {
 } from 'react-native';
 import * as messageService from '../services/message';
 import TextCard from './TextCard';
+import * as userService from '../services/user';
 
 export default class MessengerInbox extends Component {
     constructor(props) {
         super(props);
         this.state = {
             fetchMessages: [],
-            showMessages: false
+            showMessages: false,
+            userid: 0,
+            receiverid: ''
         }
     }
 
     componentDidMount() {
-        this.fetchMessages()
+        this.fetchMessages();
     }
 
+    // checkUser() {
+    //     userService.checkUser()
+    //         .then((user) => {
+    //             this.setState({ userid: user });
+    //         }).catch(err => {
+    //             console.log('getUserId error');
+    //             console.log(err);
+    //         });
+    // }
+
     fetchMessages() {
-        messageService.getRecent()
-            .then((inbox) => {
-                this.setState({
-                    fetchMessages: inbox,
-                    showMessages: true,
-                });
-            }).catch((err) => {
+        // this.checkUser()
+        userService.checkUser()
+            .then((user) => {
+                console.log('user: ' + user);
+                console.dir(user);
+                messageService.getUserInbox(user)
+                    .then((inbox) => {
+                        this.setState({
+                            fetchMessages: inbox,
+                            showMessages: true,
+                        });
+                    }).catch((err) => {
+                        console.log(err);
+                    });
+                this.setState({ userid: user });
+            }).catch(err => {
+                console.log('getUserId error');
                 console.log(err);
             });
     }
 
-    handlePress(event) {
-        this.props.navigation.navigate('Messenger');
+    handlePress(event, index) {
+        let receiverid = this.state.fetchMessages[index].receiverid
+        this.props.navigation.navigate('Messenger', { receiverid });
     }
 
     renderTextCards() {
@@ -46,10 +70,10 @@ export default class MessengerInbox extends Component {
                         return (
                             <TouchableOpacity
                                 key={index}
-                                onPress={(event) => { this.handlePress(event) }}>
+                                onPress={(event) => { this.handlePress(event, index) }}>
                                 <TextCard
                                     id={index}
-                                    artist={inbox.receiverid}
+                                    artist={inbox.friend}
                                     textPreview={inbox.message} />
                             </TouchableOpacity>
                         );

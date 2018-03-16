@@ -12,7 +12,7 @@ export default class SignUp extends Component {
             aboutme: '',
             password: '',
             confirmPassword: '',
-            //uri: '',
+            uri: 'https://gigfinder.s3.us-east-2.amazonaws.com/1521222791494.jpg',
 
         };
     }
@@ -134,8 +134,8 @@ export default class SignUp extends Component {
                             keyboardType='default'
                             returnKeyType="next"
                             placeholder='AboutMe'
-                            multiline= {true}
-                            height= {150}
+                            multiline={true}
+                            height={150}
                             placeholderTextColor='darkgrey' />
 
                         <TouchableOpacity style={styles.buttonContainer}
@@ -146,58 +146,58 @@ export default class SignUp extends Component {
                     </View>
                 </View >
             </ImageBackground>
-                );
-            }
-        }
-        
+        );
+    }
+}
+
 const styles = StyleSheet.create({
-                    container: {
-                    alignItems: 'center',
-                flex: 1,
-                height: null,
-                width: null
-        
-            },
+    container: {
+        alignItems: 'center',
+        flex: 1,
+        height: null,
+        width: null
+
+    },
     logo: {
-                    position: 'relative',
-                width: 350,
-                height: 350
-            },
+        position: 'relative',
+        width: 350,
+        height: 350
+    },
     buttonContainer: {
-                    backgroundColor: '#15a3a3',
-                borderColor: '#21ffff',
-                borderWidth: 1,
-                borderRadius: 40,
-                height: 30,
-                width: 120,
-                margin: 5,
-                alignSelf: 'center',
-                borderBottomWidth: 0
-            },
+        backgroundColor: '#15a3a3',
+        borderColor: '#21ffff',
+        borderWidth: 1,
+        borderRadius: 40,
+        height: 30,
+        width: 120,
+        margin: 5,
+        alignSelf: 'center',
+        borderBottomWidth: 0
+    },
     buttonText: {
-                    color: 'white',
-                fontSize: 17,
-                alignSelf: 'center',
-                paddingTop: 3
-            },
+        color: 'white',
+        fontSize: 17,
+        alignSelf: 'center',
+        paddingTop: 3
+    },
     input: {
-                    height: 40,
-                width: 250,
-                backgroundColor: '#f2f2f2',
-                marginBottom: 5,
-                padding: 5,
-                fontSize: 15,
-                color: 'black',
-                position: 'relative',
-                borderRadius: 5,
-                borderColor: '#555555',
-                borderWidth: 3,
-                borderBottomWidth: 0,
-                borderRightWidth: 0,
-            }
-        });
-        
-        
+        height: 40,
+        width: 250,
+        backgroundColor: '#f2f2f2',
+        marginBottom: 5,
+        padding: 5,
+        fontSize: 15,
+        color: 'black',
+        position: 'relative',
+        borderRadius: 5,
+        borderColor: '#555555',
+        borderWidth: 3,
+        borderBottomWidth: 0,
+        borderRightWidth: 0,
+    }
+});
+
+
     // const styles = StyleSheet.create({
     //     container: {
     //         padding: 20,

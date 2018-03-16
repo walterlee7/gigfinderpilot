@@ -4,12 +4,12 @@ async function insert(data) {
     return baseService.post('/api/message', data);
 }
 
-async function get(url) {
-    return baseService.get('/api/message');
+async function getUserConversation(userid, receiverid) {
+    return baseService.get(`/api/message/chat/${userid}/${receiverid}`);
 }
 
-async function getRecent(url) {
-    return baseService.get('/api/message/inbox');
+async function getUserInbox(userid) {
+    return baseService.get('/api/message/inbox/' + userid);
 }
 
-export { insert, get, getRecent };
+export { insert, getUserConversation, getUserInbox };
