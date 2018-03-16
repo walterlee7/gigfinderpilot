@@ -33,7 +33,6 @@ export default class UserProfile extends Component {
                 return;
             }
 
-
             const userInfo = await profileService.one(user);
             // console.log('userInfo: ' + userInfo);
             // console.dir(userInfo);
@@ -55,54 +54,6 @@ export default class UserProfile extends Component {
             console.log(e);
         }
     }
-
-
-
-    // getUserId() {
-    //     userService.checkUser()
-    //         .then((user) => {
-    //             console.log(user);
-    //             this.setState({ user });
-    //             console.log('this.state.user: ' + user);
-    //             profileService.one(user)
-    //                 .then((userInfo) => {
-    //                     this.setState({ userInfo });
-    //                     console.log('userInfo: ' + userInfo);
-    //                     console.dir(userInfo);
-    //                     profileService.getGenres(user)
-    //                         .then((userGenres) => {
-    //                             this.setState({ userGenres });
-    //                             console.log('UserGenres: ' + userGenres);
-    //                             console.log(typeof userGenres);
-    //                             console.dir(userGenres);
-    //                             let uG = Object.values(userGenres);
-    //                             this.setState({ userG: uG });
-    //                             console.log('userG: ' + uG);
-    //                             profileService.getInstruments(user)
-    //                                 .then((userInstruments) => {
-    //                                     this.setState({ userInstruments });
-    //                                     console.log('UserInstruments: ' + userInstruments);
-    //                                     console.dir(userInstruments);
-    //                                     let uI = Object.values(userInstruments);
-    //                                     this.setState({ userI: uI });
-    //                                     console.log('userI: ' + uI);
-    //                                 }).catch(err => {
-    //                                     console.log('UserInstruments error');
-    //                                     console.log(err);
-    //                                 });
-    //                         }).catch(err => {
-    //                             console.log('UserGenres error');
-    //                             console.log(err);
-    //                         });
-    //                 }).catch(err => {
-    //                     console.log('getUserInfo error');
-    //                     console.log(err);
-    //                 });
-    //         }).catch(err => {
-    //             console.log('getUserId error');
-    //             console.log(err);
-    //         });
-    // }
 
     editProfile() {
         console.log('edit profile');
@@ -126,75 +77,77 @@ export default class UserProfile extends Component {
         // console.dir(this.state.userInstruments);
         return (
             <ImageBackground source={{ uri: 'https://static.tumblr.com/e31f3012fa7c249095a8dddbfc58f0c4/rgmmpty/K3Tmpmf2h/tumblr_static_brick_wall_night_texture_by_kaf94-d373s49.jpg' }} style={styles.container}>
-            <ScrollView>
-                <View style={styles.infoContainer}>
-                    <TouchableHighlight style={styles.container}>
-                        <ImageBackground style={styles.image}
-                            source={{ uri: this.state.userInfo.uri }}>
-                            <View style={{ flexDirection: 'row', flex: 1 }}>
-                                <Text style={styles.paragraph}>
-                                    <Text style={{ fontSize: 20 }}>
-                                        {this.state.userInfo.name}
+                <ScrollView>
+                    <View>
+                        <TouchableHighlight style={styles.container}>
+                            <ImageBackground style={styles.image}
+                                source={{ uri: this.state.userInfo.uri }}>
+                                <View style={{ flexDirection: 'row', flex: 1, padding: 15 }}>
+                                    <Text style={styles.paragraph}>
+                                        <Text style={{ fontSize: 30, color: 'white', fontWeight: 'bold' }}>
+                                            {this.state.userInfo.name}
+                                        </Text>
+                                        {"\n"}
+                                        <Text style={{ fontSize: 17, color: 'white', fontWeight: 'bold' }}>
+                                            {this.state.userInfo.location}
+                                        </Text>
                                     </Text>
-                                    {"\n"}
-                                    <Text style={{ fontSize: 12 }}>
-                                        {this.state.userInfo.location}
+                                </View>
+                            </ImageBackground>
+                        </TouchableHighlight>
+                    </View>
+                    <View style={{ flex: 1 }}>
+                    <View style={styles.infoContainer}>
+                        <Text style={styles.text}>About Me</Text>
+
+                        <Text style={styles.text2}>Location: {this.state.userInfo.location} </Text>
+
+                        <Text style={styles.text2}>{this.state.userInfo.aboutme}</Text>
+                    </View>
+
+                    <View style={styles.infoContainer}>
+                        <Text style={styles.text}>Genres</Text>
+                        {this.state.userG.map((genre, index) => {
+                            return (
+                                <View key={index}>
+                                    <Text style={styles.text2} >
+                                        {genre}
                                     </Text>
-                                </Text>
-                            </View>
-                        </ImageBackground>
-                    </TouchableHighlight>
-                </View>
+                                </View>
+                            );
+                        })}
+                    </View>
 
-                <View style={styles.infoContainer}>
-                    <Text style={{ fontWeight: 'bold', fontSize: 17, color: 'white'}}>About Me</Text>
-                    <Text>Name: {this.state.userInfo.name} </Text>
-                    <Text>Location: {this.state.userInfo.location} </Text>
-                    <Text style={styles.body}>{this.state.userInfo.aboutme}</Text>
-                </View>
+                    <View style={styles.infoContainer}>
+                        <Text style={styles.text}>Instruments</Text>
+                        {this.state.userI.map((instrument, index) => {
+                            return (
+                                <View key={index}>
+                                    <Text style={styles.text2}>
+                                        {instrument}
+                                    </Text>
+                                </View>
+                            );
+                        })}
+                    </View>
+                    </View>
 
-                <View style={styles.infoContainer}>
-                    <Text>Genres</Text>
-                    {this.state.userG.map((genre, index) => {
-                        return (
-                            <View key={index}>
-                                <Text>
-                                    {genre}
-                                </Text>
-                            </View>
-                        );
-                    })}
-                </View>
-
-                <View style={styles.infoContainer}>
-                    <Text>Instruments</Text>
-                    {this.state.userI.map((instrument, index) => {
-                        return (
-                            <View key={index}>
-                                <Text>
-                                    {instrument}
-                                </Text>
-                            </View>
-                        );
-                    })}
-                </View>
-
-                <View style={styles.btncontainer}>
-                    <TouchableOpacity style={styles.buttonContainer}
-                        onPress={() => this.editProfile()}>
-                        <Text style={styles.buttonText}>Edit Profile</Text>
+                    <View style={styles.btncontainer}>
+                        <TouchableOpacity style={styles.buttonContainer}
+                            onPress={() => this.editProfile()}>
+                            <Text style={styles.buttonText}>Edit Profile</Text>
+                        </TouchableOpacity >
+                        <TouchableOpacity style={styles.buttonContainer}
+                            onPress={() => this.inbox()}>
+                            <Text style={styles.buttonText}>Inbox</Text>
+                        </TouchableOpacity >
+                    </View>
+                    <TouchableOpacity style={styles.buttContainer}
+                        onPress={(e) => this.handleSubmit(e)}
+                    >
+                        <Text style={styles.buttonText}>Logout</Text>
                     </TouchableOpacity >
-                    <TouchableOpacity style={styles.buttonContainer}
-                        onPress={() => this.inbox()}>
-                        <Text style={styles.buttonText}>Inbox</Text>
-                    </TouchableOpacity >
-                </View>
-                <TouchableOpacity style={styles.buttContainer}
-                    onPress={(e) => this.handleSubmit(e)}
-                >
-                    <Text style={styles.buttonText}>Logout</Text>
-                </TouchableOpacity >
-            </ScrollView>
+                </ScrollView>
             </ImageBackground>
         )
     }
@@ -202,12 +155,9 @@ export default class UserProfile extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 10,
-        position: 'relative',
-        borderRadius: 10,
-        marginBottom: 10,
         flex: 1,
-        alignItems: 'stretch'
+        height: null,
+        width: null
     },
     btncontainer: {
         flexDirection: 'row',
@@ -216,7 +166,6 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         flexDirection: 'column',
-        // width: '50%',
         flex: 2,
         color: 'white',
         fontSize: 17,
@@ -236,9 +185,9 @@ const styles = StyleSheet.create({
     },
     image: {
         flexDirection: 'row',
-        alignContent: 'flex-end',
         height: 300,
-        width: '100%'
+        width: '100%',
+        borderRadius: 10
     },
     paragraph: {
         alignSelf: 'flex-end',
@@ -256,13 +205,25 @@ const styles = StyleSheet.create({
         width: 210,
         alignSelf: 'center',
         borderBottomWidth: 0,
-        marginTop: 10
+        marginTop: 10,
+        marginBottom: 40
     },
     infoContainer: {
-        padding: 7,
-        marginTop: 3,
-        flex: 1,
-        backgroundColor: '#fafafa',
-        borderRadius: 5
+        padding: 20,
+        marginTop: 20,
+        backgroundColor: '#111111',
+        opacity: 0.9
     },
+    
+    text: {
+        fontSize: 22,
+        color: 'lightgrey',
+        fontWeight: 'bold',
+    },
+    
+    text2: {
+        fontSize: 15,
+        color: 'white'
+    }
 });
+

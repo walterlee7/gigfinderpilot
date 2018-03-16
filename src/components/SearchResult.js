@@ -57,10 +57,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingLeft: 2,
         paddingRight: 2,
-        borderColor: 'black',
-        borderStyle: 'solid',
-        borderWidth: 2,
-        margin: 2,
+        margin: 2
     },
     searchText: {
         textAlign: 'center',
