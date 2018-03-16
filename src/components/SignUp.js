@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ImageBackground, View, Alert, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { ScrollView, Image, ImageBackground, View, Alert, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import * as signupService from '../services/signup';
 
 export default class SignUp extends Component {
@@ -70,12 +70,16 @@ export default class SignUp extends Component {
 
     render() {
         return (
+        <ScrollView>
             <ImageBackground source={{ uri: 'https://static.tumblr.com/e31f3012fa7c249095a8dddbfc58f0c4/rgmmpty/K3Tmpmf2h/tumblr_static_brick_wall_night_texture_by_kaf94-d373s49.jpg' }} style={styles.container}>
+                <View>
+                    <Image resizeMode="contain" style={styles.logo} source={require('../../Images/gigfindersplash.png')} />
+                </View>
 
                 <View style={styles.container}>
-                    <View>
+                    {/* <View>
                         <Text>Registration</Text>
-                    </View>
+                    </View> */}
 
 
                     <View style={styles.form}>
@@ -134,8 +138,8 @@ export default class SignUp extends Component {
                             keyboardType='default'
                             returnKeyType="next"
                             placeholder='AboutMe'
-                            multiline= {true}
-                            height= {150}
+                            multiline={true}
+                            height={150}
                             placeholderTextColor='darkgrey' />
 
                         <TouchableOpacity style={styles.buttonContainer}
@@ -145,11 +149,14 @@ export default class SignUp extends Component {
                     </View>
                 </View >
             </ImageBackground>
-                );
-            }
-        }
-        
+
+        </ScrollView>
+        );
+    }
+}
+
 const styles = StyleSheet.create({
+<<<<<<< HEAD
                 container: {
                 alignItems: 'center',
                 flex: 1,
@@ -174,13 +181,43 @@ const styles = StyleSheet.create({
                 borderBottomWidth: 0,
                 marginTop: 20
             },
+=======
+    container: {
+        alignItems: 'center',
+        flex: 1,
+        height: null,
+        width: null
+
+    },
+    logo: {
+        position: 'relative',
+        width: 350,
+        height: 350,
+        marginBottom: -30,
+        marginTop: -30
+    },
+    buttonContainer: {
+        backgroundColor: '#15a3a3',
+        borderColor: '#21ffff',
+        borderWidth: 1,
+        borderRadius: 40,
+        height: 30,
+        width: 120,
+        margin: 5,
+        marginBottom: 40,
+        marginTop: 40,
+        alignSelf: 'center',
+        borderBottomWidth: 0
+    },
+>>>>>>> 18905457580bb73bcc003b8cd1e6b4440a0b0d2c
     buttonText: {
-                    color: 'white',
-                fontSize: 17,
-                alignSelf: 'center',
-                paddingTop: 3
-            },
+        color: 'white',
+        fontSize: 17,
+        alignSelf: 'center',
+        paddingTop: 3
+    },
     input: {
+<<<<<<< HEAD
                 height: 40,
                 width: 250,
                 backgroundColor: '#f2f2f2',
@@ -198,6 +235,25 @@ const styles = StyleSheet.create({
         });
         
         
+=======
+        height: 40,
+        width: 250,
+        backgroundColor: '#f2f2f2',
+        marginBottom: 5,
+        padding: 5,
+        fontSize: 15,
+        color: 'black',
+        position: 'relative',
+        borderRadius: 5,
+        borderColor: '#555555',
+        borderWidth: 3,
+        borderBottomWidth: 0,
+        borderRightWidth: 0,
+    }
+});
+
+
+>>>>>>> 18905457580bb73bcc003b8cd1e6b4440a0b0d2c
     // const styles = StyleSheet.create({
     //     container: {
     //         padding: 20,
