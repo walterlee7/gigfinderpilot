@@ -18,18 +18,18 @@ export default class About extends Component {
 
     render() {
         return (
-            <ScrollView style={{ backgroundColor: '#333333' }}>
-                {/* <Image>
-                source={require('../images/Arvi.jpg')}>
-                </Image> */}
-                <View style={{ backgroundColor: '#333333' }}>
+
+
+            <ScrollView>
+                <ImageBackground source={{ uri: 'https://static.tumblr.com/e31f3012fa7c249095a8dddbfc58f0c4/rgmmpty/K3Tmpmf2h/tumblr_static_brick_wall_night_texture_by_kaf94-d373s49.jpg' }} style={styles.container}>
+
                     <View style={styles.container}>
 
                         <Text style={styles.header}>About GigFinder</Text>
 
                         <Text style={styles.paragraph}>
                             GigFinder is a mobile application for connecting bands and individual artists. Its primary function is to help users search for an artist that matches their ideal requirements for a bandmate. Use GigFinder to find a quick replacement for a bandmate who is unable to perform! Users can connect with one another via an instant messenger, manage their profile, search out various artists by Location, Instrument, and Genre.
-                    </Text>
+                            </Text>
                         <Text style={styles.header}>GigFinder Devs</Text>
                         <Text style={styles.paragraph}>Dylan Commean</Text>
                         <Text style={styles.paragraph}>Walter Lee</Text>
@@ -43,9 +43,10 @@ export default class About extends Component {
                             </TouchableOpacity >
                         </View>
                     </View>
-                </View>
 
+                </ImageBackground>
             </ScrollView>
+
         );
     }
 }
@@ -55,9 +56,9 @@ const styles = StyleSheet.create({
     container: {
         padding: 10,
         position: 'relative',
-        borderRadius: 10,
-        marginBottom: 5,
-        backgroundColor: '#333333'
+        flex: 1,
+        height: null,
+        width: null
     },
     header: {
         fontSize: 20,
@@ -73,6 +74,8 @@ const styles = StyleSheet.create({
     },
     btncontainer: {
         flexDirection: 'column',
+        marginTop: 20,
+        paddingTop: 20,
     },
     input: {
         height: 40,
