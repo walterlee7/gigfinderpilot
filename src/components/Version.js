@@ -18,32 +18,29 @@ export default class Version extends Component {
                     resizeMode="cover"
                     style={StyleSheet.absoluteFill}
                 />
-                <View>
+                <View style={{ padding: 5, alignItems: 'center', backgroundColor: 'black', opacity: 0.7 }}>
                     <Text style={styles.text}>
                         GigFinder 2018
-                        {"\n"}
                     </Text>
-                </View>
-                <View>
-                    <Text style={styles.text}>
+                    <Text style={{ fontSize: 17, fontWeight: 'bold', color: 'white'}}>
                         Version 1.0
                     </Text>
                 </View>
             </View>
         );
     }
-
-
 }
 
 const styles = StyleSheet.create({
+
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#2c3e50',
+        justifyContent: 'center'
     },
+
     text: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: 27,
+        color: 'white'
     }
 });

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { KeyboardAvoidingView, Image, TextInput, View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { KeyboardAvoidingView, Image, TextInput, View, Text, TouchableOpacity, StyleSheet, Alert, ImageBackground } from 'react-native';
 import { sendContactEmail } from '../services/contact';
 
 export default class Contact extends Component {
@@ -35,14 +35,13 @@ export default class Contact extends Component {
     }
     render() {
         return (
-
-            <KeyboardAvoidingView behavior='padding' style={styles.container}>
-
-                <View style={styles.loginContainer}>
+            <ImageBackground source={{ uri: 'https://static.tumblr.com/e31f3012fa7c249095a8dddbfc58f0c4/rgmmpty/K3Tmpmf2h/tumblr_static_brick_wall_night_texture_by_kaf94-d373s49.jpg' }} style={styles.container}>
+                <View>
                     <Image resizeMode="contain" style={styles.logo} source={require('../../Images/gigfindersplash.png')}
                     />
                 </View>
-                <View style={{ marginBottom: 65 }}>
+            
+                <View >
                     <View>
                         <TextInput style={styles.input}
                             autoCapitalize="none"
@@ -51,7 +50,7 @@ export default class Contact extends Component {
                             keyboardType='default'
                             returnKeyType="next"
                             placeholder='Name'
-                            placeholderTextColor='rgba(225,225,225,0.7)' />
+                            placeholderTextColor='#888888' />
                     </View>
                     <View>
                         <TextInput style={styles.input}
@@ -61,14 +60,14 @@ export default class Contact extends Component {
                             keyboardType='email-address'
                             returnKeyType="next"
                             placeholder='Email Address'
-                            placeholderTextColor='rgba(225,225,225,0.7)' />
+                            placeholderTextColor='#888888' />
                     </View>
                     <View>
-                        <TextInput style={styles.inputMsg}
+                        <TextInput style={styles.input}
                             returnKeyType="go"
                             onChangeText={(text) => this.handleMessage(text)}
                             placeholder='Your Message'
-                            placeholderTextColor='rgba(225,225,225,0.7)'
+                            placeholderTextColor='#888888'
                             multiline={true}
                         />
                     </View>
@@ -82,7 +81,7 @@ export default class Contact extends Component {
                     </View>
                 </View>
 
-            </KeyboardAvoidingView>
+            </ImageBackground>
         );
     }
 
@@ -91,25 +90,16 @@ export default class Contact extends Component {
 
 const styles = StyleSheet.create({
     container: {
+        alignItems: 'center',
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#333333',
+        height: null,
+        width: null
     },
     logo: {
-        position: 'absolute',
-        width: 375,
-        height: 375
-    },
-    loginContainer: {
-        alignItems: 'center',
-        flexGrow: 1,
-        justifyContent: 'center'
-    },
-    logo: {
-        position: 'absolute',
-        width: 400,
-        height: 400
+        position: 'relative',
+        width: 350,
+        height: 350,
+        marginTop: -50
     },
     buttonContainer: {
         backgroundColor: '#15a3a3',
@@ -119,6 +109,7 @@ const styles = StyleSheet.create({
         height: 30,
         width: 120,
         margin: 5,
+        marginTop: 15,
         alignSelf: 'center',
         borderBottomWidth: 0,
         borderRightWidth: 0
@@ -132,18 +123,16 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 40,
-        width: 300,
-        backgroundColor: 'rgba(225,225,225,0.2)',
-        marginBottom: 10,
-        padding: 10,
-        color: '#fff'
-    },
-    inputMsg: {
-        height: 100,
-        width: 300,
-        backgroundColor: 'rgba(225,225,225,0.2)',
-        marginBottom: 10,
-        padding: 10,
-        color: '#fff'
+        width: 250,
+        backgroundColor: '#f2f2f2',
+        marginBottom: 5,
+        padding: 5,
+        fontSize: 15,
+        color: 'black',
+        borderRadius: 5,
+        borderColor: '#555555',
+        borderWidth: 3,
+        borderBottomWidth: 0,
+        borderRightWidth: 0,
     },
 });

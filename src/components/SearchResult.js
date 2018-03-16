@@ -19,58 +19,55 @@ export default class SearchResult extends Component {
 
 
     render() {
-            console.log(this.props.navigation.state.params.results);
+        console.log(this.props.navigation.state.params.results);
         return (
-            <ScrollView style={styles.container}>
-                <View>
-                    <Text style={styles.searchText}>Number of Search Results: {this.props.navigation.state.params.results.length}</Text>
-                </View>
-                <View>
-                    {this.props.navigation.state.params.results.map((artist, index) => {
-                        return (
-                            <TouchableOpacity style={styles.container} onPress={() => this.handleSubmit(index)} key={index}>
-                                <ImageBackground style={styles.image}
-                                    source={{ uri: artist.uri }}>
-                                    <View style={{ flexDirection: 'row', flex: 1 }}>
-                                        <Text style={styles.paragraph}>
-                                            <Text style={{ fontSize: 20 }}>
-                                                Name: {artist.name}
+            <ImageBackground source={{ uri: 'https://static.tumblr.com/e31f3012fa7c249095a8dddbfc58f0c4/rgmmpty/K3Tmpmf2h/tumblr_static_brick_wall_night_texture_by_kaf94-d373s49.jpg' }} style={styles.container}>
+
+                <ScrollView>
+
+
+                        <Text style={styles.searchText}>Number of Search Results: {this.props.navigation.state.params.results.length}</Text>
+                    <View>
+                        {this.props.navigation.state.params.results.map((artist, index) => {
+                            return (
+                                <TouchableOpacity style={styles.container} onPress={() => this.handleSubmit(index)} key={index}>
+                                    <ImageBackground style={styles.image}
+                                        source={{ uri: artist.uri }}>
+                                        <View style={{ flexDirection: 'row', flex: 1 }}>
+                                            <Text style={styles.paragraph}>
+                                                <Text style={{ fontSize: 30, color: 'white', fontWeight: 'bold' }}>
+                                                    Name: {artist.name}
+                                                </Text>
+                                                {"\n"}
+                                                <Text style={{ fontSize: 17, color: 'white', fontWeight: 'bold' }}>
+                                                    Location: {artist.location}
+                                                </Text>
                                             </Text>
-                                            {"\n"}
-                                            <Text style={{ fontSize: 12 }}>
-                                                Location: {artist.location}
-                                            </Text>
-                                        </Text>
-                                    </View>
-                                </ImageBackground>
-                            </TouchableOpacity>
-                        );
-                    })}
-                </View>
-            </ScrollView >
+                                        </View>
+                                    </ImageBackground>
+                                </TouchableOpacity>
+                            );
+                        })}
+                    </View>
+                </ScrollView >
+            </ImageBackground>
         );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        paddingLeft: 2,
-        paddingRight: 2,
-        borderColor: 'black',
-        borderStyle: 'solid',
-        borderWidth: 2,
-        margin: 2,
+        flex: 1
     },
     searchText: {
         textAlign: 'center',
         borderRadius: 50,
-        backgroundColor: 'lightgrey',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: 14,
+        color: 'white',
+        margin: 18,
     },
     image: {
-        flexDirection: 'row',
-        alignContent: 'flex-end',
         height: 300,
         width: '100%'
     },

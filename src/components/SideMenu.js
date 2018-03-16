@@ -34,12 +34,12 @@ export default class SideMenu extends Component {
                             <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Login')}>
                                 Login
                             </Text>
-                            <Text style={styles.navItemStyle} onPress={this.navigateToScreen('SignUp')}>
+                            {/* <Text style={styles.navItemStyle} onPress={this.navigateToScreen('SignUp')}>
                                 Sign Up
                             </Text>
                             <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Search')}>
                                 Search
-                            </Text>
+                            </Text> */}
                             <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Camera')}>
                                 Camera
                             </Text>

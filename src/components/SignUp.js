@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ImageBackground, View, Alert, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { ScrollView, Image, ImageBackground, View, Alert, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import * as signupService from '../services/signup';
 
 export default class SignUp extends Component {
@@ -70,82 +70,87 @@ export default class SignUp extends Component {
 
     render() {
         return (
-            <ImageBackground source={{ uri: 'https://static.tumblr.com/e31f3012fa7c249095a8dddbfc58f0c4/rgmmpty/K3Tmpmf2h/tumblr_static_brick_wall_night_texture_by_kaf94-d373s49.jpg' }} style={styles.container}>
-
-                <View style={styles.container}>
+            <ScrollView>
+                <ImageBackground source={{ uri: 'https://static.tumblr.com/e31f3012fa7c249095a8dddbfc58f0c4/rgmmpty/K3Tmpmf2h/tumblr_static_brick_wall_night_texture_by_kaf94-d373s49.jpg' }} style={styles.container}>
                     <View>
+                        <Image resizeMode="contain" style={styles.logo} source={require('../../Images/gigfindersplash.png')} />
+                    </View>
+
+                    <View style={styles.container}>
+                        {/* <View>
                         <Text>Registration</Text>
-                    </View>
+                    </View> */}
 
 
-                    <View style={styles.form}>
+                        <View style={styles.form}>
 
-                        <TextInput style={styles.input}
-                            autoCapitalize="none"
-                            onChangeText={(text) => this.handleName(text)}
-                            autoCorrect={false}
-                            maxLength={30}
-                            keyboardType='default'
-                            returnKeyType="next"
-                            placeholder='Full Name'
-                            placeholderTextColor='darkgrey' />
+                            <TextInput style={styles.input}
+                                autoCapitalize="none"
+                                onChangeText={(text) => this.handleName(text)}
+                                autoCorrect={false}
+                                maxLength={30}
+                                keyboardType='default'
+                                returnKeyType="next"
+                                placeholder='Full Name'
+                                placeholderTextColor='darkgrey' />
 
-                        <TextInput style={styles.input}
-                            autoCapitalize="none"
-                            onChangeText={(text) => this.handleEmail(text)}
-                            autoCorrect={false}
-                            maxLength={30}
-                            keyboardType='email-address'
-                            returnKeyType="next"
-                            placeholder='Email Address'
-                            placeholderTextColor='darkgrey' />
+                            <TextInput style={styles.input}
+                                autoCapitalize="none"
+                                onChangeText={(text) => this.handleEmail(text)}
+                                autoCorrect={false}
+                                maxLength={30}
+                                keyboardType='email-address'
+                                returnKeyType="next"
+                                placeholder='Email Address'
+                                placeholderTextColor='darkgrey' />
 
-                        <TextInput style={styles.input}
-                            autoCapitalize="none"
-                            onChangeText={(text) => this.handleLocation(text)}
-                            autoCorrect={false}
-                            maxLength={30}
-                            keyboardType='default'
-                            returnKeyType="next"
-                            placeholder='Location'
-                            placeholderTextColor='darkgrey' />
+                            <TextInput style={styles.input}
+                                autoCapitalize="none"
+                                onChangeText={(text) => this.handleLocation(text)}
+                                autoCorrect={false}
+                                maxLength={30}
+                                keyboardType='default'
+                                returnKeyType="next"
+                                placeholder='Location'
+                                placeholderTextColor='darkgrey' />
 
-                        <TextInput style={styles.input}
-                            returnKeyType="next"
-                            onChangeText={(text) => this.handlePassword(text)}
-                            placeholder='Password'
-                            maxLength={30}
-                            placeholderTextColor='darkgrey'
-                            secureTextEntry />
+                            <TextInput style={styles.input}
+                                returnKeyType="next"
+                                onChangeText={(text) => this.handlePassword(text)}
+                                placeholder='Password'
+                                maxLength={30}
+                                placeholderTextColor='darkgrey'
+                                secureTextEntry />
 
-                        <TextInput style={styles.input}
-                            returnKeyType="go"
-                            onChangeText={(text) => this.handleConfirmPassword(text)}
-                            placeholder='Confirm Password'
-                            maxLength={30}
-                            placeholderTextColor='darkgrey'
-                            secureTextEntry />
+                            <TextInput style={styles.input}
+                                returnKeyType="go"
+                                onChangeText={(text) => this.handleConfirmPassword(text)}
+                                placeholder='Confirm Password'
+                                maxLength={30}
+                                placeholderTextColor='darkgrey'
+                                secureTextEntry />
 
-                        <TextInput style={styles.input}
-                            autoCapitalize="none"
-                            onChangeText={(text) => this.handleAboutMe(text)}
-                            autoCorrect={false}
-                            maxLength={250}
-                            keyboardType='default'
-                            returnKeyType="next"
-                            placeholder='AboutMe'
-                            multiline={true}
-                            height={150}
-                            placeholderTextColor='darkgrey' />
+                            <TextInput style={styles.input}
+                                autoCapitalize="none"
+                                onChangeText={(text) => this.handleAboutMe(text)}
+                                autoCorrect={false}
+                                maxLength={250}
+                                keyboardType='default'
+                                returnKeyType="next"
+                                placeholder='AboutMe'
+                                multiline={true}
+                                height={150}
+                                placeholderTextColor='darkgrey' />
 
-                        <TouchableOpacity style={styles.buttonContainer}
-                            onPress={(e) => this.handleSubmit(e)}
-                        >
-                            <Text style={styles.buttonText}>SIGN UP</Text>
-                        </TouchableOpacity >
-                    </View>
-                </View >
-            </ImageBackground>
+                            <TouchableOpacity style={styles.buttonContainer}
+                                onPress={(e) => this.handleSubmit(e)}>
+                                <Text style={styles.buttonText}>Sign Up</Text>
+                            </TouchableOpacity >
+                        </View>
+                    </View >
+                </ImageBackground>
+
+            </ScrollView>
         );
     }
 }
@@ -161,7 +166,9 @@ const styles = StyleSheet.create({
     logo: {
         position: 'relative',
         width: 350,
-        height: 350
+        height: 350,
+        marginBottom: -30,
+        marginTop: -30
     },
     buttonContainer: {
         backgroundColor: '#15a3a3',
@@ -171,6 +178,8 @@ const styles = StyleSheet.create({
         height: 30,
         width: 120,
         margin: 5,
+        marginBottom: 40,
+        marginTop: 40,
         alignSelf: 'center',
         borderBottomWidth: 0
     },

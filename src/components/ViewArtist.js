@@ -72,36 +72,36 @@ export default class ViewArtist extends Component {
     render() {
         console.log('VIEW ARTIST: ' + this.props.navigation.state.params.array.name);
         return (
-            <View style={styles.container}>
-                <ScrollView style={styles.container}>
-                    <TouchableHighlight style={styles.container}>
+            <ImageBackground source={{ uri: 'https://static.tumblr.com/e31f3012fa7c249095a8dddbfc58f0c4/rgmmpty/K3Tmpmf2h/tumblr_static_brick_wall_night_texture_by_kaf94-d373s49.jpg' }} style={styles.container}>
+            <View>
+                <ScrollView>
+                    <TouchableHighlight>
                         <ImageBackground style={styles.image}
                             source={{ uri: this.props.navigation.state.params.array.uri }}>
-                            <View style={{ flexDirection: 'row', flex: 1 }}>
+                            <View style={{ flexDirection: 'row', flex: 1, padding: 10 }}>
                                 <Text style={styles.paragraph}>
-                                    <Text style={{ fontSize: 20 }}>
+                                    <Text style={styles.text}>
                                         {this.props.navigation.state.params.array.name}
                                     </Text>
                                     {"\n"}
-                                    <Text style={{ fontSize: 12 }}>
+                                    <Text style={styles.text2}>
                                         {this.props.navigation.state.params.array.location}
                                     </Text>
                                 </Text>
                             </View>
                         </ImageBackground>
                     </TouchableHighlight>
-                    <View style={styles.container}>
-                        <Text>Name: {this.props.navigation.state.params.array.name} </Text>
-                        <Text>Location: {this.props.navigation.state.params.array.location}</Text>
-                        <Text style={styles.header}>About Me:</Text>
-                        <Text style={{ color: 'white' }}> {this.props.navigation.state.params.array.aboutme}</Text>
+                    <View>
+                    <View style={styles.container2}>
+                        <Text style={styles.text}>About Me:</Text>
+                        <Text style={styles.text2}> {this.props.navigation.state.params.array.aboutme}</Text>
                     </View>
-                    <View style={styles.infoContainer}>
-                        <Text>Genres</Text>
+                    <View style={styles.container2}>
+                        <Text style={styles.text}>Genres</Text>
                         {this.state.userG.map((genre, index) => {
                             return (
                                 <View key={index}>
-                                    <Text>
+                                    <Text style={styles.text2}>
                                         {genre}
                                     </Text>
                                 </View>
@@ -109,17 +109,18 @@ export default class ViewArtist extends Component {
                         })}
                     </View>
 
-                    <View style={styles.infoContainer}>
-                        <Text>Instruments</Text>
+                    <View style={styles.container2}>
+                        <Text style={styles.text}>Instruments</Text>
                         {this.state.userI.map((instrument, index) => {
                             return (
                                 <View key={index}>
-                                    <Text>
+                                    <Text style={styles.text2}>
                                         {instrument}
                                     </Text>
                                 </View>
                             );
                         })}
+                    </View>
                     </View>
                     <View>
                         <TouchableOpacity style={styles.buttonContainer}
@@ -132,6 +133,7 @@ export default class ViewArtist extends Component {
                 </ScrollView>
 
             </View>
+        </ImageBackground>
 
 
         )
@@ -142,8 +144,13 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#605b4f',
         flex: 1,
-        borderStyle: 'dotted',
-        borderWidth: 2,
+        height: null,
+        width: null,
+    },
+    container2: {
+        padding: 15,
+        backgroundColor: '#111111',
+        marginTop: 10
     },
     header: {
         fontSize: 10,
@@ -174,14 +181,12 @@ const styles = StyleSheet.create({
         height: 30,
         width: 160,
         marginTop: 10,
+        marginBottom: 30,
         alignSelf: 'center',
         borderBottomWidth: 0,
         borderRightWidth: 0,
-
     },
     image: {
-        flexDirection: 'row',
-        alignContent: 'flex-end',
         height: 300,
         width: '100%'
     },
@@ -192,13 +197,13 @@ const styles = StyleSheet.create({
     paragraph2: {
         color: 'blue'
     },
-    infoContainer: {
-        paddingLeft: 5,
-        paddingRight: 5,
-        borderColor: 'black',
-        borderStyle: 'dashed',
-        borderWidth: 5,
-        margin: 5,
-        flex: 1,
+    text: {
+        fontSize: 22,
+        color: 'white',
+        fontWeight: 'bold',
+    },
+    text2: {
+        fontSize: 15,
+        color: 'white'
     }
 });

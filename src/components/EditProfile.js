@@ -200,11 +200,11 @@ export default class EditProfile extends Component {
                             source={{ uri: this.state.userInfo.uri }}>
                             <View style={{ flexDirection: 'row', flex: 1 }}>
                                 <Text style={styles.paragraph}>
-                                    <Text style={{ fontSize: 20 }}>
+                                    <Text style={{ fontSize: 30, color: 'white', fontWeight: 'bold' }}>
                                         {this.state.userInfo.name}
                                     </Text>
                                     {"\n"}
-                                    <Text style={{ fontSize: 12 }}>
+                                    <Text style={{ fontSize: 17, color: 'white', fontWeight: 'bold' }}>
                                         {this.state.userInfo.location}
                                     </Text>
                                 </Text>
@@ -219,10 +219,10 @@ export default class EditProfile extends Component {
                 </View>
 
                 <View style={styles.infoContainer}>
-                    <Text style={styles.header}>About Me</Text>
-                    <Text>Name: {this.state.userInfo.name} </Text>
-                    <Text>Location: {this.state.userInfo.location} </Text>
-                    <Text style={styles.body}>{this.state.userInfo.aboutme}</Text>
+                    <Text style={styles.text}>About Me</Text>
+                    <Text style={styles.text2}>Name: {this.state.userInfo.name} </Text>
+                    <Text style={styles.text2}>Location: {this.state.userInfo.location} </Text>
+                    <Text style={styles.text2}>{this.state.userInfo.aboutme}</Text>
 
                     <TouchableOpacity style={styles.buttonContainer}
                         onPress={(e) => this.editInfo(e)} >
@@ -231,11 +231,11 @@ export default class EditProfile extends Component {
                 </View>
 
                 <View style={styles.infoContainer}>
-                    <Text>Genres</Text>
+                    <Text style={styles.text}>Genres</Text>
                     {this.state.userG.map((genre, index) => {
                         return (
                             <View key={index}>
-                                <Text>
+                                <Text style={styles.text2}>
                                     {genre}
                                 </Text>
                             </View>
@@ -248,11 +248,11 @@ export default class EditProfile extends Component {
                 </View>
 
                 <View style={styles.infoContainer}>
-                    <Text>Instruments</Text>
+                    <Text style={styles.text}>Instruments</Text>
                     {this.state.userI.map((instrument, index) => {
                         return (
                             <View key={index}>
-                                <Text>
+                                <Text style={styles.text2}>
                                     {instrument}
                                 </Text>
                             </View>
@@ -273,14 +273,12 @@ export default class EditProfile extends Component {
     }
 }
 
+
 const styles = StyleSheet.create({
     container: {
-        padding: 10,
-        position: 'relative',
-        borderRadius: 10,
-        marginBottom: 10,
         flex: 1,
-        alignItems: 'stretch'
+        height: null,
+        width: null
     },
     btncontainer: {
         flexDirection: 'row',
@@ -289,7 +287,6 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         flexDirection: 'column',
-        // width: '50%',
         flex: 2,
         color: 'white',
         fontSize: 17,
@@ -303,15 +300,18 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 40,
         height: 30,
-        margin: 5,
+        width: 150,
+        //margin: 5,
         borderBottomWidth: 0,
-        padding: 'auto'
+        alignSelf: 'center',
+        // marginBottom: 20,
+        marginTop: 20,
     },
     image: {
         flexDirection: 'row',
-        alignContent: 'flex-end',
-        height: 350,
-        width: 325,
+        height: 300,
+        width: '100%',
+        borderRadius: 10
     },
     paragraph: {
         alignSelf: 'flex-end',
@@ -330,13 +330,91 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         borderBottomWidth: 0,
         marginTop: 10,
-        
+        marginBottom: 40
     },
     infoContainer: {
-        padding: 7,
-        marginTop: 3,
-        flex: 1,
-        backgroundColor: '#fafafa',
-        borderRadius: 5
+        padding: 20,
+        marginTop: 20,
+        backgroundColor: '#111111',
+        opacity: 0.9
     },
+    
+    text: {
+        fontSize: 22,
+        color: 'lightgrey',
+        fontWeight: 'bold',
+    },
+    
+    text2: {
+        fontSize: 15,
+        color: 'white'
+    }
 });
+
+// const styles = StyleSheet.create({
+//     container: {
+//         padding: 10,
+//         position: 'relative',
+//         borderRadius: 10,
+//         marginBottom: 10,
+//         flex: 1,
+//         alignItems: 'stretch'
+//     },
+//     btncontainer: {
+//         flexDirection: 'row',
+//         justifyContent: 'center',
+//         marginTop: 10
+//     },
+//     buttonText: {
+//         flexDirection: 'column',
+//         // width: '50%',
+//         flex: 2,
+//         color: 'white',
+//         fontSize: 17,
+//         alignSelf: 'center',
+//         paddingTop: 4,
+//         position: 'relative',
+//     },
+//     buttonContainer: {
+//         backgroundColor: '#15a3a3',
+//         borderColor: '#21ffff',
+//         borderWidth: 1,
+//         borderRadius: 40,
+//         height: 30,
+//         margin: 5,
+//         borderBottomWidth: 0,
+//         padding: 'auto'
+//     },
+//     image: {
+//         flexDirection: 'row',
+//         alignContent: 'flex-end',
+//         height: 350,
+//         width: 325,
+//     },
+//     paragraph: {
+//         alignSelf: 'flex-end',
+//         margin: 5
+//     },
+//     paragraph2: {
+//         color: 'blue'
+//     },
+//     buttContainer: {
+//         backgroundColor: '#15a3a3',
+//         borderColor: '#21ffff',
+//         borderWidth: 1,
+//         borderRadius: 40,
+//         height: 30,
+//         width: 210,
+//         alignSelf: 'center',
+//         borderBottomWidth: 0,
+//         marginTop: 10,
+        
+//     },
+//     infoContainer: {
+//         padding: 7,
+//         marginTop: 3,
+//         flex: 1,
+//         backgroundColor: '#fafafa',
+//         borderRadius: 5
+//     },
+// });
