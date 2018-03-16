@@ -19,7 +19,7 @@ export default class SearchResult extends Component {
 
 
     render() {
-
+            console.log(this.props.navigation.state.params.results);
         return (
             <ScrollView style={styles.container}>
                 <View>
