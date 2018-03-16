@@ -28,28 +28,29 @@ export default class FetchTextCard extends Component {
 
 const styles = StyleSheet.create({
     text: {
-        color: 'white',
+        color: 'black',
         paddingRight: 5,
-        paddingLeft: 5
+        paddingLeft: 5,
+        fontSize: 16
     },
     containerLeft: {
         borderRadius: 15,
-        backgroundColor: 'rgb(30,144,255)',
+        backgroundColor: 'lightgrey',
         marginRight: 'auto',
         marginLeft: 3,
         minHeight: 25,
-        padding: 3,
+        padding: 7,
         marginTop: 3,
         marginBottom: 3,
     },
     containerRight: {
         borderRadius: 15,
-        backgroundColor: 'rgb(169,169,169)',
+        backgroundColor: '#15a3a3',
         marginLeft: 'auto',
         marginRight: 3,
         minHeight: 25,
         alignItems: 'center',
-        padding: 3,
+        padding: 7,
         marginTop: 3,
         marginBottom: 3,
 
