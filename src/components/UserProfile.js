@@ -20,56 +20,89 @@ export default class UserProfile extends Component {
     }
 
     componentDidMount() {
-
         this.getUserId();
-
     }
 
-    getUserId() {
-        userService.checkUser()
-            .then((user) => {
-                console.log(user);
-                this.setState({ user });
-                console.log('this.state.user: ' + this.state.user);
-                profileService.one(this.state.user)
-                    .then((userInfo) => {
-                        this.setState({ userInfo });
-                        console.log('userInfo: ' + userInfo);
-                        console.dir(this.state.userInfo);
-                        profileService.getGenres(this.state.user)
-                            .then((userGenres) => {
-                                this.setState({ userGenres });
-                                console.log('UserGenres: ' + userGenres);
-                                console.log(typeof this.state.userGenres);
-                                console.dir(this.state.userGenres);
-                                let uG = Object.values(this.state.userGenres);
-                                this.setState({ userG: uG });
-                                console.log('userG: ' + this.state.userG);
-                                profileService.getInstruments(this.state.user)
-                                    .then((userInstruments) => {
-                                        this.setState({ userInstruments });
-                                        console.log('UserInstruments: ' + userInstruments);
-                                        console.dir(this.state.userInstruments);
-                                        let uI = Object.values(this.state.userInstruments);
-                                        this.setState({ userI: uI });
-                                        console.log('userI: ' + this.state.userI);
-                                    }).catch(err => {
-                                        console.log('UserInstruments error');
-                                        console.log(err);
-                                    });
-                            }).catch(err => {
-                                console.log('UserGenres error');
-                                console.log(err);
-                            });
-                    }).catch(err => {
-                        console.log('getUserInfo error');
-                        console.log(err);
-                    });
-            }).catch(err => {
-                console.log('getUserId error');
-                console.log(err);
-            });
+    async getUserId() {
+        try {
+            const user = await userService.checkUser();
+            // console.log(user);
+            // console.log('this.state.user: ' + user);
+            // Alert.alert('userid', String(user));
+            if (user < 1) {
+                return;
+            }
+
+
+            const userInfo = await profileService.one(user);
+            // console.log('userInfo: ' + userInfo);
+            // console.dir(userInfo);
+
+            const userGenres = await profileService.getGenres(user);
+
+            // console.log('UserGenres: ' + userGenres);
+            // console.log(typeof userGenres);
+            // console.dir(userGenres);
+            let userG = Object.values(userGenres);
+            // console.log('userG: ' + userG);
+            const userInstruments = await profileService.getInstruments(user);
+            // console.log('UserInstruments: ' + userInstruments);
+            // console.dir(userInstruments);
+            let userI = Object.values(userInstruments);
+            // console.log('userI: ' + userI);
+            this.setState({ user, userInfo, userGenres, userG, userInstruments, userI });
+        } catch (e) {
+            console.log(e);
+        }
     }
+
+
+
+    // getUserId() {
+    //     userService.checkUser()
+    //         .then((user) => {
+    //             console.log(user);
+    //             this.setState({ user });
+    //             console.log('this.state.user: ' + user);
+    //             profileService.one(user)
+    //                 .then((userInfo) => {
+    //                     this.setState({ userInfo });
+    //                     console.log('userInfo: ' + userInfo);
+    //                     console.dir(userInfo);
+    //                     profileService.getGenres(user)
+    //                         .then((userGenres) => {
+    //                             this.setState({ userGenres });
+    //                             console.log('UserGenres: ' + userGenres);
+    //                             console.log(typeof userGenres);
+    //                             console.dir(userGenres);
+    //                             let uG = Object.values(userGenres);
+    //                             this.setState({ userG: uG });
+    //                             console.log('userG: ' + uG);
+    //                             profileService.getInstruments(user)
+    //                                 .then((userInstruments) => {
+    //                                     this.setState({ userInstruments });
+    //                                     console.log('UserInstruments: ' + userInstruments);
+    //                                     console.dir(userInstruments);
+    //                                     let uI = Object.values(userInstruments);
+    //                                     this.setState({ userI: uI });
+    //                                     console.log('userI: ' + uI);
+    //                                 }).catch(err => {
+    //                                     console.log('UserInstruments error');
+    //                                     console.log(err);
+    //                                 });
+    //                         }).catch(err => {
+    //                             console.log('UserGenres error');
+    //                             console.log(err);
+    //                         });
+    //                 }).catch(err => {
+    //                     console.log('getUserInfo error');
+    //                     console.log(err);
+    //                 });
+    //         }).catch(err => {
+    //             console.log('getUserId error');
+    //             console.log(err);
+    //         });
+    // }
 
     editProfile() {
         console.log('edit profile');
@@ -102,7 +135,7 @@ export default class UserProfile extends Component {
                 <View style={styles.infoContainer}>
                     <TouchableHighlight style={styles.container}>
                         <ImageBackground style={styles.image}
-                            source={require('/Users/walterlee/Documents/Test/GigPilot/gigfinderpilot/Images/gigfindersplash.png')}>
+                            source={{ uri: this.state.userInfo.uri }}>
                             <View style={{ flexDirection: 'row', flex: 1 }}>
                                 <Text style={styles.paragraph}>
                                     <Text style={{ fontSize: 20 }}>

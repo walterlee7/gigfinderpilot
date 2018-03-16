@@ -30,7 +30,7 @@ export default class SearchResult extends Component {
                         return (
                             <TouchableOpacity style={styles.container} onPress={() => this.handleSubmit(index)} key={index}>
                                 <ImageBackground style={styles.image}
-                                    source={require('/Users/walterlee/Documents/Test/GigPilot/gigfinderpilot/Images/gigfindersplash.png')}>
+                                    source={{ uri: artist.uri }}>
                                     <View style={{ flexDirection: 'row', flex: 1 }}>
                                         <Text style={styles.paragraph}>
                                             <Text style={{ fontSize: 20 }}>
@@ -40,10 +40,6 @@ export default class SearchResult extends Component {
                                             <Text style={{ fontSize: 12 }}>
                                                 Location: {artist.location}
                                             </Text>
-                                            {/* {"\n"}
-                                            <Text style={{ fontSize: 12 }}>
-                                                Instrument: {artist.artist_instrument}
-                                            </Text> */}
                                         </Text>
                                     </View>
                                 </ImageBackground>

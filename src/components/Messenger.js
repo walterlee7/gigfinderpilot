@@ -24,10 +24,8 @@ export default class Messenger extends Component {
             showButton: true,
             showFetchedMessages: false,
             timeStamp: 'Man, like, I don\'t know sometime?',
-            localuserid: 0,
-            localreceiverid: 0,
-            databaseUserid: 0,
-            databaseReceiverid: 0,
+            userid: 0,
+
         };
     }
 
@@ -76,7 +74,7 @@ export default class Messenger extends Component {
             "userid": this.state.userid,
             "receiverid": 2,
             "message": this.state.value,
-            "wherefrom": this.state.userid
+
         });
         this.setState({
             value: '',
@@ -103,7 +101,7 @@ export default class Messenger extends Component {
                 <View>
                     {this.state.fetchMessages.map((message, index) => {
                         return <FetchTextCard key={index} message={message}
-                            whereFrom={this.state.whereFrom} />;
+                            userid={this.state.userid} />;
                     })}
                 </View>
             );

@@ -36,7 +36,6 @@ export default class Contact extends Component {
     render() {
         return (
             <View style={styles.container}>
-
                 <View>
                     <TextInput style={styles.input}
                         autoCapitalize="none"

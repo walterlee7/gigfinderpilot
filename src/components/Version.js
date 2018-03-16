@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { KeyboardAvoidingView, Image, TextInput, View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import Video from "react-native-video";
+import VideoGround from '../../Videos/CIRCULAR_INTERFACE_HUD.mp4';
 
 export default class Version extends Component {
     constructor(props) {
@@ -10,15 +12,22 @@ export default class Version extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <Video
+                    repeat
+                    source={VideoGround}
+                    resizeMode="cover"
+                    style={StyleSheet.absoluteFill}
+                />
                 <View>
-                    <Text>
+                    <Text style={styles.text}>
                         GigFinder 2018
-                </Text>
+                        {"\n"}
+                    </Text>
                 </View>
                 <View>
-                    <Text>
+                    <Text style={styles.text}>
                         Version 1.0
-                </Text>
+                    </Text>
                 </View>
             </View>
         );
@@ -34,4 +43,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#2c3e50',
     },
+    text: {
+        fontWeight: 'bold'
+    }
 });
