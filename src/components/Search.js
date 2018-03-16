@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View, StyleSheet, TouchableOpacity, Alert, Text } from 'react-native';
+import { ScrollView, View, StyleSheet, TouchableOpacity, Alert, Text, ImageBackground } from 'react-native';
 import { Card } from 'react-native-elements';
 import { Picker } from 'react-native-picker-dropdown';
 
@@ -134,9 +134,10 @@ export default class Search extends Component {
 
     render() {
         return (
+            <ImageBackground source={{ uri: 'https://static.tumblr.com/e31f3012fa7c249095a8dddbfc58f0c4/rgmmpty/K3Tmpmf2h/tumblr_static_brick_wall_night_texture_by_kaf94-d373s49.jpg' }} style={styles.container}>
             <View style={styles.container}>
-                <View style={styles.textContainer}>
-                    <Text>Choose Location</Text>
+                <View>
+                    <Text style={{ color: 'lightgrey', fontSize: 17 }}>Choose Location</Text>
                 </View>
                 <Picker
                     selectedValue={this.state.location_name}
@@ -153,8 +154,8 @@ export default class Search extends Component {
                     })}
 
                 </Picker>
-                <View style={styles.textContainer}>
-                    <Text>Choose Instrument</Text>
+                <View>
+                    <Text style={{ color: 'lightgrey', fontSize: 17 }}>Choose Instrument</Text>
                 </View>
                 <Picker
                     selectedValue={this.state.instrument_name}
@@ -171,20 +172,22 @@ export default class Search extends Component {
                     })}
 
                 </Picker>
-
+                    <View style={{ flexDirection: 'row'}}>
                 <TouchableOpacity style={styles.buttonContainer}
                     onPress={(e) => this.handleSubmit(e)}
                 >
-                    <Text style={styles.buttonText}>SEARCH</Text>
+                    <Text style={styles.buttonText}>Search</Text>
                 </TouchableOpacity >
 
                 <TouchableOpacity style={styles.buttonContainer}
                     onPress={(e) => this.handleReset(e)}
                 >
-                    <Text style={styles.buttonText}>RESET</Text>
+                    <Text style={styles.buttonText}>Reset</Text>
                 </TouchableOpacity >
+                </View>
 
             </View>
+            </ImageBackground>
         );
     }
 }
@@ -192,37 +195,32 @@ export default class Search extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#161F52',
         alignItems: 'center',
         justifyContent: 'center',
     },
     picker: {
-        alignSelf: 'stretch',
-        backgroundColor: '#10498B',
-        paddingHorizontal: 20,
-        paddingVertical: 20,
+        alignSelf: 'center',
+        backgroundColor: '#f2f2f2',
         margin: 20,
         borderRadius: 10,
-    },
-    pickerText: {
-        color: 'white',
-        fontSize: 12,
+        width: 250,
+        height: 40
     },
     buttonContainer: {
-        backgroundColor: '#2980b6',
-        paddingVertical: 15,
-        paddingHorizontal: 100,
-        marginBottom: 15,
-        borderRadius: 50,
+        backgroundColor: '#15a3a3',
+        borderColor: '#21ffff',
+        borderWidth: 1,
+        borderRadius: 40,
+        height: 30,
+        width: 120,
+        margin: 5,
+        alignSelf: 'center',
+        borderBottomWidth: 0
     },
     buttonText: {
-        color: '#fff',
-        textAlign: 'center',
-        fontWeight: '700'
+        color: '#f2f2f2',
+        fontSize: 17,
+        alignSelf: 'center',
+        paddingTop: 3
     },
-    textContainer: {
-        backgroundColor: '#6F7B8B',
-        padding: 10,
-        borderRadius: 35,
-    }
 })

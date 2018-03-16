@@ -26,7 +26,7 @@ export default class ViewArtist extends Component {
                 <ScrollView style={styles.container}>
                     <TouchableHighlight style={styles.container}>
                         <ImageBackground style={styles.image}
-                            source={require('/Users/walterlee/Documents/Test/GigPilot/gigfinderpilot/Images/gigfindersplash.png')}>
+                            source={require('/Users/victoranaya/Desktop/walterpilot/gigfinderpilot/Images/gigfindersplash.png')}>
                             <View style={{ flexDirection: 'row', flex: 1 }}>
                                 <Text style={styles.paragraph}>
                                     <Text style={{ fontSize: 20 }}>

@@ -39,39 +39,37 @@ const generateDrawerHamburger = (currentNav) => {
         <Icon
             onPress={onPress}
             name="bars"
-            size={26}
+            size={30}
             type='font-awesome'
-            color='black'
-            style={{ alignSelf: 'end' }}
+            color='#007aff'
         />
     );
 };
 
 const getStackNavOption = (current) => ({
     headerStyle: {
-        backgroundColor: '#A0ADBD',
+        backgroundColor: '#f2f2f2',
         display: 'flex',
-        paddingRight: 10,
+        paddingRight: 10
+        
 
     },
-    headerTitle: <Text>GigFinder</Text>,
+    headerTitle: <Text style={{ marginTop: 10, fontSize: 17, color: '#888888' , alignSelf: 'center', paddingLeft: 10 }}>GigFinder</Text>,
     headerRight: generateDrawerHamburger(current),
 });
 
 const getStackNavOptionIOS = (current) => ({
     headerStyle: {
-        backgroundColor: 'lightgrey',
+        backgroundColor: '#f2f2f2',
         display: 'flex',
-        paddingRight: 10,
-        fontWeight: 'bold'
-
     },
-    headerTitle: <Text>iOS Camera Roll</Text>,
+
+    headerTitle: <Text style={{ marginTop: 10, fontSize: 17, color: '#888888' , alignSelf: 'center', paddingLeft: 10 }}>iOS Camera Roll</Text>,
     headerRight: generateDrawerHamburger(current),
 });
 const getStackNavOptionMessenger = (current) => ({
     headerStyle: {
-        backgroundColor: 'lightgrey',
+        backgroundColor: '#888888',
         display: 'flex',
         paddingRight: 10
     },
@@ -247,7 +245,9 @@ export default DrawerNavigator({
 
 }, {
         // contentComponent: SideMenu,
-        drawerWidth: 300,
-        drawerPosition: 'right'
+        drawerWidth: 220,
+        drawerPosition: 'right',
+        drawerBackgroundColor: '#ffb99b',
+        
     });
 

@@ -82,10 +82,12 @@ const styles = StyleSheet.create({
         flex: 1
     },
     navItemStyle: {
-        padding: 10
+        padding: 10,
+        color: '#15a3a3',
+        fontSize: 17
     },
     navSectionStyle: {
-        backgroundColor: 'lightgrey'
+        backgroundColor: '#888888'
     },
     sectionHeadingStyle: {
         paddingVertical: 10,
@@ -93,7 +95,7 @@ const styles = StyleSheet.create({
     },
     footerContainer: {
         padding: 20,
-        backgroundColor: 'lightgrey'
+        backgroundColor: '#333333'
     }
 })
 

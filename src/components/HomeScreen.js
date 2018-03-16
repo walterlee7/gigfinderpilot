@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { KeyboardAvoidingView, TouchableOpacity, TextInput, Image, View, Text, StyleSheet } from 'react-native';
-import Video from "react-native-video";
-
-import VideoGround from '../../Videos/CIRCULAR_INTERFACE_HUD.mp4';
+import { KeyboardAvoidingView, TouchableOpacity, TextInput, ImageBackground, Image, View, Text, StyleSheet } from 'react-native';
 
 import * as userService from '../services/user';
 
@@ -64,22 +61,11 @@ export default class HomeScreen extends Component {
 
     render() {
         return (
-            <KeyboardAvoidingView behavior='padding' style={styles.container}>
-                {/* <Video
-                    repeat
-                    source={VideoGround}
-                    resizeMode="cover"
-                    style={StyleSheet.absoluteFill}
-                /> */}
-                <View style={styles.loginContainer}>
+            <ImageBackground source={{ uri: 'https://static.tumblr.com/e31f3012fa7c249095a8dddbfc58f0c4/rgmmpty/K3Tmpmf2h/tumblr_static_brick_wall_night_texture_by_kaf94-d373s49.jpg' }} style={styles.container}>
+                <View>
                     <Image resizeMode="contain" style={styles.logo} source={require('../../Images/gigfindersplash.png')} />
                 </View>
-                <TouchableOpacity style={styles.buttonContainer}
-                    onPress={() => this.skip()}
-                >
-                    <Text style={styles.buttonText}>SKIP TO SEARCH</Text>
-                </TouchableOpacity >
-                <View style={styles.logContainer}>
+                <View>
                     <TextInput style={styles.input}
                         autoCapitalize="none"
                         onChangeText={(text) => this.handleEmailChange(text)}
@@ -87,82 +73,81 @@ export default class HomeScreen extends Component {
                         keyboardType='email-address'
                         returnKeyType="next"
                         placeholder='Email Address'
-                        placeholderTextColor='rgba(225,225,225,0.7)' />
+                        placeholderTextColor='darkgrey' />
 
                     <TextInput style={styles.input}
                         returnKeyType="go"
                         onChangeText={(text) => this.handlePasswordChange(text)}
                         placeholder='Password'
-                        placeholderTextColor='rgba(225,225,225,0.7)'
+                        placeholderTextColor='darkgrey'
                         secureTextEntry />
                 </View >
-                <TouchableOpacity style={styles.buttonLogContainer}
-                    onPress={(e) => this.login(e)}
-                >
-                    <Text style={styles.buttonText}>LOGIN</Text>
+                <View style={{ flexDirection: 'row', marginTop: 15 }}>
+                    <TouchableOpacity style={styles.buttonContainer}
+                        onPress={(e) => this.login(e)}
+                    >
+                        <Text style={styles.buttonText}>Login</Text>
+                    </TouchableOpacity >
+
+                    <TouchableOpacity style={styles.buttonContainer}
+                        onPress={() => this.signup()}>
+                        <Text style={styles.buttonText}>Sign Up</Text>
+                    </TouchableOpacity >
+                </View>
+                <TouchableOpacity style={{ flexDirection: 'row', marginTop: 25 }}
+                    onPress={() => this.skip()}>
+                    <Text style={{ marginBottom: 20, paddingTop: 40, color: 'white', fontSize: 18, alignSelf: 'center' }}>SKIP TO SEARCH  </Text>
+                    <Text style={{ alignSelf: 'center', paddingTop: 15, fontSize: 29, color: 'white' }} >❯</Text>
                 </TouchableOpacity >
 
-                <TouchableOpacity style={styles.buttonContainer}
-                    onPress={() => this.signup()}
-                >
-                    <Text style={styles.buttonText}>SIGN UP</Text>
-                </TouchableOpacity >
-
-            </KeyboardAvoidingView>
+            </ImageBackground>
         );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
-        backgroundColor: '#071525',
-    },
-    loginContainer: {
         alignItems: 'center',
-        flexGrow: 1,
-        justifyContent: 'center'
+        flex: 1,
+        height: null,
+        width: null
+
     },
     logo: {
-        position: 'absolute',
-        width: 375,
-        height: 375
+        position: 'relative',
+        width: 350,
+        height: 350
     },
     buttonContainer: {
-        backgroundColor: 'green',
-        paddingVertical: 15,
-        paddingHorizontal: 50,
-        margin: 20,
-        borderRadius: 20,
+        backgroundColor: '#15a3a3',
+        borderColor: '#21ffff',
+        borderWidth: 1,
+        borderRadius: 40,
+        height: 30,
+        width: 120,
+        margin: 5,
+        alignSelf: 'center',
+        borderBottomWidth: 0
     },
     buttonText: {
-        color: '#fff',
-        textAlign: 'center',
-        fontWeight: 'bold',
-        width: 20,
-    },
-    logContainer: {
-        padding: 10,
-        alignItems: 'center',
+        color: 'white',
+        fontSize: 17,
+        alignSelf: 'center',
+        paddingTop: 3
     },
     input: {
         height: 40,
-        width: 300,
-        backgroundColor: 'rgba(225,225,225,0.2)',
-        marginBottom: 10,
-        padding: 10,
-        color: '#fff'
-    },
-    buttonLogContainer: {
-        backgroundColor: '#2980b6',
-        paddingVertical: 15,
-        margin: 20,
-        borderRadius: 20,
-    },
-    buttonText: {
-        color: '#fff',
-        textAlign: 'center',
-        fontWeight: 'bold'
+        width: 250,
+        backgroundColor: '#f2f2f2',
+        marginBottom: 5,
+        padding: 5,
+        fontSize: 15,
+        color: 'black',
+        position: 'relative',
+        borderRadius: 5,
+        borderColor: '#555555',
+        borderWidth: 3,
+        borderBottomWidth: 0,
+        borderRightWidth: 0,
     }
 });
