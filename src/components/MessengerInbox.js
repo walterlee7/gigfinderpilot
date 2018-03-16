@@ -58,7 +58,10 @@ export default class MessengerInbox extends Component {
     }
 
     handlePress(event, index) {
-        let receiverid = this.state.fetchMessages[index].receiverid
+        console.log('fetchMessages: ' + this.state.fetchMessages);
+        console.dir(this.state.fetchMessages);
+        let receiverid = this.state.fetchMessages[index].userid;
+        console.log('receiverid: ' + receiverid);
         this.props.navigation.navigate('Messenger', { receiverid });
     }
 

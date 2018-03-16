@@ -22,10 +22,11 @@ export default class Messenger extends Component {
             fetchMessages: [],
             value: '',
             showButton: true,
+            user: 0,
             showFetchedMessages: false,
             userid: 0,
             firstMessage: '',
-            user: 0
+
         };
     }
 
@@ -33,36 +34,34 @@ export default class Messenger extends Component {
         if (this.state.value == '') {
             this.setState({ showButton: false });
         }
+        // this.getUserId();
         this.fetchMessages();
 
     }
 
-    async getUserId() {
-        try {
-            const user = await userService.checkUser();
-            console.log(user);
-            console.log('this.state.user: ' + user);
-
-            this.setState({ user });
-
-        } catch (e) {
-            console.log(e);
-        }
-    }
-
     fetchMessages() {
-        this.getUserId();
-        messageService.getUserConversation(this.state.user, this.props.navigation.state.params.userid)
-            .then((message) => {
-                console.log(message);
-                this.setState({
-                    fetchMessages: message,
-                    showFetchedMessages: true,
-                    firstMessage: message[0]
-                });
-            }).catch((err) => {
+        // this.getUserId();
+        userService.checkUser()
+            .then((user) => {
+                console.log(user);
+                messageService.getUserConversation(user, this.props.navigation.state.params.receiverid)
+                    .then((message) => {
+                        console.log(message);
+                        this.setState({
+                            fetchMessages: message,
+                            showFetchedMessages: true,
+                            firstMessage: message[0]
+                        });
+                    }).catch((err) => {
+                        console.log(err);
+                    });
+                this.setState({ user });
+                // console.log('this.state.user: ' + this.state.user);
+            }).catch(err => {
+                console.log('getUserId error');
                 console.log(err);
             });
+
     }
 
     postMessage(message) {
@@ -87,7 +86,7 @@ export default class Messenger extends Component {
     handlePress(event) {
         this.postMessage({
             "userid": this.state.user,
-            "receiverid": this.props.navigation.state.params.userid,
+            "receiverid": this.props.navigation.state.params.receiverid,
             "message": this.state.value,
         });
         this.setState({
@@ -110,10 +109,10 @@ export default class Messenger extends Component {
     }
 
     formatTimeStamp() {
+
         console.log(this.state.firstMessage);
         let timeStampStr = moment.utc(this.state.firstMessage._created).valueOf();
         let timeStamp = moment(timeStampStr).format("lll");
-
         return (
             <View style={styles.timeStamp}>
                 <Text style={styles.time}>{timeStamp}</Text>
@@ -123,7 +122,7 @@ export default class Messenger extends Component {
 
 
     renderFetchedMessages() {
-        console.log('first message', this.state.firstMessage);
+        // console.log('first message', this.state.firstMessage);
         if (this.state.showFetchedMessages) {
             return (
                 <View>
@@ -132,7 +131,7 @@ export default class Messenger extends Component {
                         {
                             this.state.fetchMessages.map((message, index) => {
                                 return <FetchTextCard key={index} message={message}
-                                    userid={this.state.userid} />;
+                                    userid={this.state.user} />;
                             })
                         }
                     </View>
@@ -144,6 +143,7 @@ export default class Messenger extends Component {
     render() {
         return (
             <KeyboardAvoidingView
+                behavior='padding'
                 style={styles.container}>
                 <AutoScroll>
                     <View style={styles.textContainer}>
