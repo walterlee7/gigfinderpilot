@@ -26,30 +26,35 @@ export default class UserProfile extends Component {
     async getUserId() {
         try {
             const user = await userService.checkUser();
-            // console.log(user);
-            // console.log('this.state.user: ' + user);
+            console.log(user);
+            console.log('this.state.user: ' + user);
             // Alert.alert('userid', String(user));
             if (user < 1) {
+                console.log('user not found');
                 return;
             }
 
             const userInfo = await profileService.one(user);
-            // console.log('userInfo: ' + userInfo);
+            console.log('userInfo');
+            console.log(JSON.stringify(userInfo, null, 2));
             // console.dir(userInfo);
+
+
+            this.setState({ user, userInfo });
 
             const userGenres = await profileService.getGenres(user);
 
-            // console.log('UserGenres: ' + userGenres);
-            // console.log(typeof userGenres);
+            console.log('UserGenres: ' + userGenres);
+            console.log(typeof userGenres);
             // console.dir(userGenres);
             let userG = Object.values(userGenres);
-            // console.log('userG: ' + userG);
+            console.log('userG: ' + userG);
             const userInstruments = await profileService.getInstruments(user);
-            // console.log('UserInstruments: ' + userInstruments);
+            console.log('UserInstruments: ' + userInstruments);
             // console.dir(userInstruments);
             let userI = Object.values(userInstruments);
-            // console.log('userI: ' + userI);
-            this.setState({ user, userInfo, userGenres, userG, userInstruments, userI });
+            console.log('userI: ' + userI);
+            this.setState({ userGenres, userG, userInstruments, userI });
         } catch (e) {
             console.log(e);
         }
