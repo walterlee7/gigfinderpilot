@@ -1,15 +1,65 @@
 import React, { Component } from 'react';
 import { Image, ScrollView, View, Text, StyleSheet, TouchableOpacity, TouchableHighlight, ImageBackground } from 'react-native';
 import * as userService from '../services/user';
+import * as profileService from '../services/profile';
 
 export default class ViewArtist extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            loggedOut: false,
+            user: 0,
+            userInfo: [],
+            userGenres: [],
+            userInstruments: [],
+            userG: [],
+            userI: [],
+        };
+    }
+
+    componentDidMount() {
+        this.getUserInfo();
+    }
+
+    async getUserInfo() {
+        try {
+            // const user = await userService.checkUser();
+            // // console.log(user);
+            // // console.log('this.state.user: ' + user);
+            // // Alert.alert('userid', String(user));
+            // if (user < 1) {
+            //     return;
+            // }
+
+            // const userInfo = await profileService.one(this.props.navigation.state.params.array.id);
+            // console.log('userInfo: ' + userInfo);
+            // console.dir(userInfo);
+
+            const userGenres = await profileService.getGenres(this.props.navigation.state.params.array.id);
+
+            // console.log('UserGenres: ' + userGenres);
+            // console.log(typeof userGenres);
+            // console.dir(userGenres);
+            let userG = Object.values(userGenres);
+            // console.log('userG: ' + userG);
+            const userInstruments = await profileService.getInstruments(this.props.navigation.state.params.array.id);
+            // console.log('UserInstruments: ' + userInstruments);
+            // console.dir(userInstruments);
+            let userI = Object.values(userInstruments);
+            // console.log('userI: ' + userI);
+            this.setState({ userGenres, userG, userInstruments, userI });
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     msgArtist(e) {
         console.log('Message');
 
         userService.checkLogin()
             .then((loggedIn) => {
-                alert(loggedIn);
+                // alert(loggedIn);
                 if (loggedIn === false) {
                     this.props.navigation.navigate('LoginMessage');
                 } else {
@@ -26,7 +76,7 @@ export default class ViewArtist extends Component {
                 <ScrollView style={styles.container}>
                     <TouchableHighlight style={styles.container}>
                         <ImageBackground style={styles.image}
-                            source={require('/Users/Chelsee/Documents/GigFinder/gigfinderpilot/Images/gigfindersplash.png')}>
+                            source={{ uri: this.props.navigation.state.params.array.uri }}>
                             <View style={{ flexDirection: 'row', flex: 1 }}>
                                 <Text style={styles.paragraph}>
                                     <Text style={{ fontSize: 20 }}>
@@ -46,7 +96,31 @@ export default class ViewArtist extends Component {
                         <Text style={styles.header}>About Me:</Text>
                         <Text style={{ color: 'white' }}> {this.props.navigation.state.params.array.aboutme}</Text>
                     </View>
+                    <View style={styles.infoContainer}>
+                        <Text>Genres</Text>
+                        {this.state.userG.map((genre, index) => {
+                            return (
+                                <View key={index}>
+                                    <Text>
+                                        {genre}
+                                    </Text>
+                                </View>
+                            );
+                        })}
+                    </View>
 
+                    <View style={styles.infoContainer}>
+                        <Text>Instruments</Text>
+                        {this.state.userI.map((instrument, index) => {
+                            return (
+                                <View key={index}>
+                                    <Text>
+                                        {instrument}
+                                    </Text>
+                                </View>
+                            );
+                        })}
+                    </View>
                     <View>
                         <TouchableOpacity style={styles.buttonContainer}
                             onPress={(e) => this.msgArtist(e)}>
@@ -117,5 +191,14 @@ const styles = StyleSheet.create({
     },
     paragraph2: {
         color: 'blue'
+    },
+    infoContainer: {
+        paddingLeft: 5,
+        paddingRight: 5,
+        borderColor: 'black',
+        borderStyle: 'dashed',
+        borderWidth: 5,
+        margin: 5,
+        flex: 1,
     }
 });

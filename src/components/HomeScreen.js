@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import { KeyboardAvoidingView, TouchableOpacity, TextInput, Image, View, Text, StyleSheet } from 'react-native';
-import Video from "react-native-video";
-
-import VideoGround from '../../Videos/CIRCULAR_INTERFACE_HUD.mp4';
-
 import * as userService from '../services/user';
 
 
@@ -23,13 +19,6 @@ export default class HomeScreen extends Component {
         userService.checkLogin()
             .then((loggedIn) => {
                 // alert(loggedIn);
-                // if (loggedIn) {
-                //     console.log('loggedIN happened');
-
-                //     this.setState({ redirectToReferrer: true, checkingLogin: false });
-                // } else {
-                //     this.setState({ checkingLogin: false });
-                // }
             });
     }
 
@@ -65,12 +54,6 @@ export default class HomeScreen extends Component {
     render() {
         return (
             <KeyboardAvoidingView behavior='padding' style={styles.container}>
-                {/* <Video
-                    repeat
-                    source={VideoGround}
-                    resizeMode="cover"
-                    style={StyleSheet.absoluteFill}
-                /> */}
                 <View style={styles.loginContainer}>
                     <Image resizeMode="contain" style={styles.logo} source={require('../../Images/gigfindersplash.png')} />
                 </View>

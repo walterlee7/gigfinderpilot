@@ -27,11 +27,12 @@ async function checkUser() {
         console.log('user: ' + user);
         console.dir(user);
         if (!user) {
-            return false;
+            return -1;
         }
+
         return user.id;
     } catch (e) {
-        return false;
+        return -1;
     }
 }
 

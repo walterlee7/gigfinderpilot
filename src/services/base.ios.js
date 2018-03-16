@@ -3,15 +3,15 @@ const AUTH_TOKEN_KEY = 'authtoken';
 const BASE_URL = 'http://localhost:3000';
 
 async function setAuthToken(token) {
-    return await AsyncStorage.setItem(AUTH_TOKEN_KEY, `Bearer ${token}`);
+    return AsyncStorage.setItem(AUTH_TOKEN_KEY, `Bearer ${token}`);
 }
 
 async function clearAuthToken() {
-    return await AsyncStorage.removeItem(AUTH_TOKEN_KEY);
+    return AsyncStorage.removeItem(AUTH_TOKEN_KEY);
 }
 
 async function getAuthToken() {
-    return await AsyncStorage.getItem(AUTH_TOKEN_KEY);
+    return AsyncStorage.getItem(AUTH_TOKEN_KEY);
 }
 
 async function makeFetch(url, info) {

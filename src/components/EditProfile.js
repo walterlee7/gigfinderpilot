@@ -183,20 +183,20 @@ export default class EditProfile extends Component {
         // console.dir(this.state.userInstruments);
         return (
             <ScrollView>
-                <TouchableOpacity style={styles.buttContainer}
+                {/* <TouchableOpacity style={styles.buttContainer}
                     onPress={(e) => this.handleSubmit(e)}
                 >
                     <Text style={styles.buttonText}>LOGOUT</Text>
-                </TouchableOpacity >
-                <Image
+                </TouchableOpacity > */}
+                {/* <Image
                     style={{ width: 350, height: 350, margin: 12, }}
                     source={{ uri: this.state.userInfo.uri }}
-                />
+                /> */}
 
                 <View style={styles.infoContainer}>
                     <TouchableHighlight style={styles.container}>
                         <ImageBackground style={styles.image}
-                            source={require('/Users/Chelsee/Documents/GigFinder/gigfinderpilot/Images/gigfindersplash.png')}>
+                            source={{ uri: this.state.userInfo.uri }}>
                             <View style={{ flexDirection: 'row', flex: 1 }}>
                                 <Text style={styles.paragraph}>
                                     <Text style={{ fontSize: 20 }}>
@@ -315,8 +315,8 @@ const styles = StyleSheet.create({
     image: {
         flexDirection: 'row',
         alignContent: 'flex-end',
-        height: 300,
-        width: '100%'
+        height: 350,
+        width: 325,
     },
     paragraph: {
         alignSelf: 'flex-end',

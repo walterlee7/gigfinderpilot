@@ -4,9 +4,13 @@ import { View, Text, StyleSheet } from 'react-native';
 
 export default class FetchTextCard extends Component {
     render() {
-        console.log('this.props.message.wherefrom: ' + this.props.message.wherefrom);
-        console.log('this.props.whereFrom: ' + this.props.whereFrom);
-        if (this.props.message.wherefrom !== this.props.whereFrom) {
+
+
+        let userid = this.props.message.userid;
+        let loggedInUserid = this.props.userid;
+        let message = this.props.message.message;
+
+        if (userid !== loggedInUserid) {
             return (
                 <View style={styles.containerLeft}>
                     <Text style={styles.text}>{this.props.message.message}</Text>

@@ -35,54 +35,54 @@ export default class Contact extends Component {
     }
     render() {
         return (
-        
+
             <KeyboardAvoidingView behavior='padding' style={styles.container}>
-            
+
                 <View style={styles.loginContainer}>
-                    <Image resizeMode="contain" style={styles.logo} source={require('../../Images/gigfindersplash.png')} 
+                    <Image resizeMode="contain" style={styles.logo} source={require('../../Images/gigfindersplash.png')}
                     />
                 </View>
-                <View style={{ marginBottom: 65}}>
-                <View>
-                    <TextInput style={styles.input}
-                        autoCapitalize="none"
-                        onChangeText={(text) => this.handleName(text)}
-                        autoCorrect={false}
-                        keyboardType='default'
-                        returnKeyType="next"
-                        placeholder='Name'
-                        placeholderTextColor='rgba(225,225,225,0.7)' />
+                <View style={{ marginBottom: 65 }}>
+                    <View>
+                        <TextInput style={styles.input}
+                            autoCapitalize="none"
+                            onChangeText={(text) => this.handleName(text)}
+                            autoCorrect={false}
+                            keyboardType='default'
+                            returnKeyType="next"
+                            placeholder='Name'
+                            placeholderTextColor='rgba(225,225,225,0.7)' />
+                    </View>
+                    <View>
+                        <TextInput style={styles.input}
+                            autoCapitalize="none"
+                            onChangeText={(text) => this.handleEmail(text)}
+                            autoCorrect={false}
+                            keyboardType='email-address'
+                            returnKeyType="next"
+                            placeholder='Email Address'
+                            placeholderTextColor='rgba(225,225,225,0.7)' />
+                    </View>
+                    <View>
+                        <TextInput style={styles.inputMsg}
+                            returnKeyType="go"
+                            onChangeText={(text) => this.handleMessage(text)}
+                            placeholder='Your Message'
+                            placeholderTextColor='rgba(225,225,225,0.7)'
+                            multiline={true}
+                        />
+                    </View>
+
+                    <View>
+                        <TouchableOpacity style={styles.buttonContainer}
+                            onPress={(e) => this.handleSubmit(e)}
+                        >
+                            <Text style={styles.buttonText}>Submit</Text>
+                        </TouchableOpacity >
+                    </View>
                 </View>
-                <View>
-                    <TextInput style={styles.input}
-                        autoCapitalize="none"
-                        onChangeText={(text) => this.handleEmail(text)}
-                        autoCorrect={false}
-                        keyboardType='email-address'
-                        returnKeyType="next"
-                        placeholder='Email Address'
-                        placeholderTextColor='rgba(225,225,225,0.7)' />
-                </View>
-                <View>
-                    <TextInput style={styles.inputMsg}
-                        returnKeyType="go"
-                        onChangeText={(text) => this.handleMessage(text)}
-                        placeholder='Your Message'
-                        placeholderTextColor='rgba(225,225,225,0.7)' 
-                        multiline= {true}
-                        />       
-                </View>
-                
-                <View>
-                    <TouchableOpacity style={styles.buttonContainer}
-                        onPress={(e) => this.handleSubmit(e)}
-                    >
-                        <Text style={styles.buttonText}>Submit</Text>
-                    </TouchableOpacity >
-                </View>
-                </View>
-        
-        </KeyboardAvoidingView>
+
+            </KeyboardAvoidingView>
         );
     }
 
