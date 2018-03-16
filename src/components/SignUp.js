@@ -156,32 +156,6 @@ export default class SignUp extends Component {
 }
 
 const styles = StyleSheet.create({
-<<<<<<< HEAD
-                container: {
-                alignItems: 'center',
-                flex: 1,
-                height: null,
-                width: null,
-                justifyContent: 'center'
-            },
-    logo: {
-                position: 'relative',
-                width: 350,
-                height: 350
-            },
-    buttonContainer: {
-                    backgroundColor: '#15a3a3',
-                borderColor: '#21ffff',
-                borderWidth: 1,
-                borderRadius: 40,
-                height: 30,
-                width: 120,
-                margin: 5,
-                alignSelf: 'center',
-                borderBottomWidth: 0,
-                marginTop: 20
-            },
-=======
     container: {
         alignItems: 'center',
         flex: 1,
@@ -209,7 +183,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         borderBottomWidth: 0
     },
->>>>>>> 18905457580bb73bcc003b8cd1e6b4440a0b0d2c
     buttonText: {
         color: 'white',
         fontSize: 17,
@@ -217,25 +190,6 @@ const styles = StyleSheet.create({
         paddingTop: 3
     },
     input: {
-<<<<<<< HEAD
-                height: 40,
-                width: 250,
-                backgroundColor: '#f2f2f2',
-                marginBottom: 10,
-                padding: 5,
-                fontSize: 15,
-                color: 'black',
-                position: 'relative',
-                borderRadius: 5,
-                borderColor: '#555555',
-                borderWidth: 3,
-                borderBottomWidth: 0,
-                borderRightWidth: 0,
-            }
-        });
-        
-        
-=======
         height: 40,
         width: 250,
         backgroundColor: '#f2f2f2',
@@ -253,7 +207,6 @@ const styles = StyleSheet.create({
 });
 
 
->>>>>>> 18905457580bb73bcc003b8cd1e6b4440a0b0d2c
     // const styles = StyleSheet.create({
     //     container: {
     //         padding: 20,
