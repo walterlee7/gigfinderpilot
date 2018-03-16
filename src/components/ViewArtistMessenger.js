@@ -6,7 +6,8 @@ import {
     ScrollView,
     View,
     StyleSheet,
-    KeyboardAvoidingView
+    KeyboardAvoidingView,
+    ImageBackground,
 } from 'react-native';
 import moment from 'moment';
 import AutoScroll from 'react-native-auto-scroll';
@@ -164,29 +165,31 @@ export default class Messenger extends Component {
 
     render() {
         return (
-            <KeyboardAvoidingView
-                behavior='padding'
-                style={styles.container}>
-                <AutoScroll>
-                    <View style={styles.textContainer}>
-                        {this.renderFetchedMessages()}
-                    </View>
-                </AutoScroll>
+            <ImageBackground source={{ uri: 'https://static.tumblr.com/e31f3012fa7c249095a8dddbfc58f0c4/rgmmpty/K3Tmpmf2h/tumblr_static_brick_wall_night_texture_by_kaf94-d373s49.jpg' }} style={styles.container}>
+                <KeyboardAvoidingView
+                    behavior='padding'
+                    style={styles.container}>
+                    <AutoScroll>
+                        <View style={styles.textContainer}>
+                            {this.renderFetchedMessages()}
+                        </View>
+                    </AutoScroll>
 
-                <View style={styles.inputToolbar}>
-                    <TextInput
-                        onChangeText={(text) => { this.handleTextChange(text); }}
-                        value={this.state.value}
-                        placeholder='Enter a message'
-                        autoCorrect={true}
-                        multiline={true}
-                        returnKeyType='send'
-                    />
-                    <View>
-                        {this.renderButton()}
+                    <View style={styles.inputToolbar}>
+                        <TextInput
+                            onChangeText={(text) => { this.handleTextChange(text); }}
+                            value={this.state.value}
+                            placeholder='Enter a message'
+                            autoCorrect={true}
+                            multiline={true}
+                            returnKeyType='send'
+                        />
+                        <View>
+                            {this.renderButton()}
+                        </View>
                     </View>
-                </View>
-            </KeyboardAvoidingView>
+                </KeyboardAvoidingView>
+            </ImageBackground>
         );
     }
 }
