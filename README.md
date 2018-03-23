@@ -15,8 +15,8 @@ Instructions to run the application:
 The Back End application for GigFinder is currently in this repository: https://github.com/walterlee7/blog_mysql_expressjs_reactjs.
 
 GigFinder 2018 Contributors:
-Victor Anaya
-Chelsee Arnold
-Dylan Commean
-Walter Lee
+Victor Anaya,
+Chelsee Arnold,
+Dylan Commean,
+Walter Lee.
 
