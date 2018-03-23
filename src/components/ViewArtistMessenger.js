@@ -1,14 +1,5 @@
 import React, { Component } from 'react';
-import {
-    Text,
-    TextInput,
-    Button,
-    ScrollView,
-    View,
-    StyleSheet,
-    KeyboardAvoidingView,
-    ImageBackground,
-} from 'react-native';
+import { Text, TextInput, Button, ScrollView, View, StyleSheet, KeyboardAvoidingView, ImageBackground } from 'react-native';
 import moment from 'moment';
 import AutoScroll from 'react-native-auto-scroll';
 import dismissKeyboard from 'react-native-dismiss-keyboard';
@@ -16,7 +7,7 @@ import * as messageService from '../services/message';
 import FetchTextCard from './FetchTextCard';
 import * as userService from '../services/user';
 
-export default class Messenger extends Component {
+export default class ViewArtistMessenger extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,7 +18,6 @@ export default class Messenger extends Component {
             showFetchedMessages: false,
             userid: 0,
             firstMessage: '',
-
         };
     }
 
@@ -35,25 +25,10 @@ export default class Messenger extends Component {
         if (this.state.value == '') {
             this.setState({ showButton: false });
         }
-        // this.getUserId();
         this.fetchMessages();
-
     }
 
-    // getUserId() {
-    //     userService.checkUser()
-    //         .then((user) => {
-    //             console.log(user);
-    //             this.setState({ user });
-    //             console.log('this.state.user: ' + this.state.user);
-    //         }).catch(err => {
-    //             console.log('getUserId error');
-    //             console.log(err);
-    //         });
-    // }
-
     fetchMessages() {
-        // this.getUserId();
         userService.checkUser()
             .then((user) => {
                 console.log(user);
@@ -74,17 +49,6 @@ export default class Messenger extends Component {
                 console.log('getUserId error');
                 console.log(err);
             });
-        // messageService.getUserConversation(this.state.user, this.props.navigation.state.params.userid)
-        //     .then((message) => {
-        //         console.log(message);
-        //         this.setState({
-        //             fetchMessages: message,
-        //             showFetchedMessages: true,
-        //             firstMessage: message[0]
-        //         });
-        //     }).catch((err) => {
-        //         console.log(err);
-        //     });
     }
 
     postMessage(message) {
@@ -131,25 +95,41 @@ export default class Messenger extends Component {
         }
     }
 
-    // formatTimeStamp() {
-    //     if (this.state.firstMesssage == undefined)
-    //         console.log(this.state.firstMessage);
-    //     let timeStampStr = moment.utc(this.state.firstMessage._created).valueOf();
-    //     let timeStamp = moment(timeStampStr).format("lll");
-    //     return (
-    //         <View style={styles.timeStamp}>
-    //             <Text style={styles.time}>{timeStamp}</Text>
-    //         </View>
-    //     )
-    // }
-
+    formatTimeStamp() {
+        console.log('firstMessage:');
+        console.log(this.state.firstMessage);
+        // console.log('_created:');
+        // console.log(this.state.firstMessage._created);
+        if (this.state.firstMessage === undefined) {
+            // let time = 100;
+            // let timeStampStr = moment.utc(time).valueOf();
+            // let timeStamp = moment(timeStampStr).format("lll");
+            return (
+                <View style={styles.timeStamp}>
+                    {/* <Text style={styles.time}>{timeStamp}</Text> */}
+                </View>
+            )
+        } else {
+            console.log('_created:');
+            console.log(this.state.fetchMessages._created);
+            let timeStampStr = moment.utc(this.state.fetchMessages._created).valueOf();
+            let timeStamp = moment(timeStampStr).format("lll");
+            console.log('timestamp: ');
+            console.log(timeStamp);
+            return (
+                <View style={styles.timeStamp}>
+                    <Text style={styles.time}>{timeStamp}</Text>
+                </View>
+            )
+        }
+    }
 
     renderFetchedMessages() {
         // console.log('first message', this.state.firstMessage);
         if (this.state.showFetchedMessages) {
             return (
                 <View>
-                    {/* {this.formatTimeStamp()} */}
+                    {this.formatTimeStamp()}
                     <View>
                         {
                             this.state.fetchMessages.map((message, index) => {
@@ -200,10 +180,10 @@ const styles = StyleSheet.create({
         flex: 1
     },
     time: {
-        color: 'black'
+        backgroundColor: 'lightgrey',
     },
     timeStamp: {
-        alignItems: 'center'
+        alignItems: 'center',
     },
     button: {
 

@@ -1,14 +1,5 @@
 import React, { Component } from 'react';
-import {
-    Text,
-    TextInput,
-    Button,
-    ScrollView,
-    View,
-    StyleSheet,
-    KeyboardAvoidingView,
-    ImageBackground,
-} from 'react-native';
+import { Text, TextInput, Button, ScrollView, View, StyleSheet, KeyboardAvoidingView, ImageBackground } from 'react-native';
 import moment from 'moment';
 import AutoScroll from 'react-native-auto-scroll';
 import dismissKeyboard from 'react-native-dismiss-keyboard';
@@ -35,13 +26,11 @@ export default class Messenger extends Component {
         if (this.state.value == '') {
             this.setState({ showButton: false });
         }
-        // this.getUserId();
         this.fetchMessages();
 
     }
 
     fetchMessages() {
-        // this.getUserId();
         userService.checkUser()
             .then((user) => {
                 console.log(user);
@@ -109,25 +98,36 @@ export default class Messenger extends Component {
         }
     }
 
-    // formatTimeStamp() {
-
-    //     console.log(this.state.firstMessage);
-    //     let timeStampStr = moment.utc(this.state.firstMessage._created).valueOf();
-    //     let timeStamp = moment(timeStampStr).format("lll");
-    //     return (
-    //         <View style={styles.timeStamp}>
-    //             <Text style={styles.time}>{timeStamp}</Text>
-    //         </View>
-    //     )
-    // }
-
+    formatTimeStamp() {
+        console.log(this.state.firstMessage);
+        if (this.state.firstMessage === undefined) {
+            // let time = 100;
+            // let timeStampStr = moment.utc(time).valueOf();
+            // let timeStamp = moment(timeStampStr).format("lll");
+            return (
+                <View style={styles.timeStamp}>
+                    {/* <Text style={styles.time}>{timeStamp}</Text> */}
+                </View>
+            )
+        } else {
+            console.log('_created:');
+            console.log(this.state.fetchMessages._created);
+            let timeStampStr = moment.utc(this.state.fetchMessages._created).valueOf();
+            let timeStamp = moment(timeStampStr).format("lll");
+            return (
+                <View style={styles.timeStamp}>
+                    <Text style={styles.time}>{timeStamp}</Text>
+                </View>
+            )
+        }
+    }
 
     renderFetchedMessages() {
         // console.log('first message', this.state.firstMessage);
         if (this.state.showFetchedMessages) {
             return (
                 <View>
-                    {/* {this.formatTimeStamp()} */}
+                    {this.formatTimeStamp()}
                     <View>
                         {
                             this.state.fetchMessages.map((message, index) => {
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     time: {
-        color: 'black'
+        backgroundColor: 'lightgrey',
     },
     timeStamp: {
         alignItems: 'center'
