@@ -109,17 +109,17 @@ export default class Messenger extends Component {
         }
     }
 
-    formatTimeStamp() {
+    // formatTimeStamp() {
 
-        console.log(this.state.firstMessage);
-        let timeStampStr = moment.utc(this.state.firstMessage._created).valueOf();
-        let timeStamp = moment(timeStampStr).format("lll");
-        return (
-            <View style={styles.timeStamp}>
-                <Text style={styles.time}>{timeStamp}</Text>
-            </View>
-        )
-    }
+    //     console.log(this.state.firstMessage);
+    //     let timeStampStr = moment.utc(this.state.firstMessage._created).valueOf();
+    //     let timeStamp = moment(timeStampStr).format("lll");
+    //     return (
+    //         <View style={styles.timeStamp}>
+    //             <Text style={styles.time}>{timeStamp}</Text>
+    //         </View>
+    //     )
+    // }
 
 
     renderFetchedMessages() {
@@ -127,7 +127,7 @@ export default class Messenger extends Component {
         if (this.state.showFetchedMessages) {
             return (
                 <View>
-                    {this.formatTimeStamp()}
+                    {/* {this.formatTimeStamp()} */}
                     <View>
                         {
                             this.state.fetchMessages.map((message, index) => {
@@ -144,30 +144,30 @@ export default class Messenger extends Component {
     render() {
         return (
             <ImageBackground source={{ uri: 'https://static.tumblr.com/e31f3012fa7c249095a8dddbfc58f0c4/rgmmpty/K3Tmpmf2h/tumblr_static_brick_wall_night_texture_by_kaf94-d373s49.jpg' }} style={styles.container}>
-            <KeyboardAvoidingView
-                behavior='padding'
-                style={styles.container}>
-                <AutoScroll>
-                    <View style={styles.textContainer}>
-                        {this.renderFetchedMessages()}
-                    </View>
-                </AutoScroll>
+                <KeyboardAvoidingView
+                    behavior='padding'
+                    style={styles.container}>
+                    <AutoScroll>
+                        <View style={styles.textContainer}>
+                            {this.renderFetchedMessages()}
+                        </View>
+                    </AutoScroll>
 
-                <View style={styles.inputToolbar}>
-                    <TextInput
-                        onChangeText={(text) => { this.handleTextChange(text); }}
-                        value={this.state.value}
-                        placeholder='Enter a message'
-                        autoCorrect={true}
-                        multiline={true}
-                        returnKeyType='send'
-                        height= {50}
-                    />
-                    <View>
-                        {this.renderButton()}
+                    <View style={styles.inputToolbar}>
+                        <TextInput
+                            onChangeText={(text) => { this.handleTextChange(text); }}
+                            value={this.state.value}
+                            placeholder='Enter a message'
+                            autoCorrect={true}
+                            multiline={true}
+                            returnKeyType='send'
+                            height={50}
+                        />
+                        <View>
+                            {this.renderButton()}
+                        </View>
                     </View>
-                </View>
-            </KeyboardAvoidingView>
+                </KeyboardAvoidingView>
             </ImageBackground>
         );
     }

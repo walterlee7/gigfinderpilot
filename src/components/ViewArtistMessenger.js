@@ -183,6 +183,7 @@ export default class Messenger extends Component {
                             autoCorrect={true}
                             multiline={true}
                             returnKeyType='send'
+                            height={50}
                         />
                         <View>
                             {this.renderButton()}
