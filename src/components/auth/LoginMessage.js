@@ -29,8 +29,7 @@ export default class LoginMessage extends Component {
         userService.login(this.state.email, this.state.password)
             .then(() => {
                 console.log('logged in');
-                // console.log('req.user: ' + req.user);
-                this.props.navigation.navigate('ViewArtistMessenger');
+                this.props.navigation.navigate('ViewArtistMessenger', { userid: this.props.navigation.state.params.userid });
             }).catch((err) => {
                 console.log(err);
                 console.log('login error');

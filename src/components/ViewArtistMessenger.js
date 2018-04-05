@@ -32,6 +32,8 @@ export default class ViewArtistMessenger extends Component {
         userService.checkUser()
             .then((user) => {
                 console.log(user);
+                console.log(this.props.navigation.state.params.userid);
+
                 messageService.getUserConversation(user, this.props.navigation.state.params.userid)
                     .then((message) => {
                         console.log(message);
@@ -44,7 +46,7 @@ export default class ViewArtistMessenger extends Component {
                         console.log(err);
                     });
                 this.setState({ user });
-                // console.log('this.state.user: ' + this.state.user);
+
             }).catch(err => {
                 console.log('getUserId error');
                 console.log(err);

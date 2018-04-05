@@ -24,30 +24,15 @@ export default class ViewArtist extends Component {
 
     async getUserInfo() {
         try {
-            // const user = await userService.checkUser();
-            // // console.log(user);
-            // // console.log('this.state.user: ' + user);
-            // // Alert.alert('userid', String(user));
-            // if (user < 1) {
-            //     return;
-            // }
-
-            // const userInfo = await profileService.one(this.props.navigation.state.params.array.id);
-            // console.log('userInfo: ' + userInfo);
-            // console.dir(userInfo);
 
             const userGenres = await profileService.getGenres(this.props.navigation.state.params.array.id);
 
-            // console.log('UserGenres: ' + userGenres);
-            // console.log(typeof userGenres);
-            // console.dir(userGenres);
             let userG = Object.values(userGenres);
-            // console.log('userG: ' + userG);
+
             const userInstruments = await profileService.getInstruments(this.props.navigation.state.params.array.id);
-            // console.log('UserInstruments: ' + userInstruments);
-            // console.dir(userInstruments);
+
             let userI = Object.values(userInstruments);
-            // console.log('userI: ' + userI);
+
             this.setState({ userGenres, userG, userInstruments, userI });
         } catch (e) {
             console.log(e);
@@ -61,7 +46,7 @@ export default class ViewArtist extends Component {
             .then((loggedIn) => {
                 // alert(loggedIn);
                 if (loggedIn === false) {
-                    this.props.navigation.navigate('LoginMessage');
+                    this.props.navigation.navigate('LoginMessage', { userid: this.props.navigation.state.params.array.id });
                 } else {
                     return this.props.navigation.navigate('ViewArtistMessenger', { userid: this.props.navigation.state.params.array.id });
                 }
@@ -73,67 +58,67 @@ export default class ViewArtist extends Component {
         console.log('VIEW ARTIST: ' + this.props.navigation.state.params.array.name);
         return (
             <ImageBackground source={{ uri: 'https://static.tumblr.com/e31f3012fa7c249095a8dddbfc58f0c4/rgmmpty/K3Tmpmf2h/tumblr_static_brick_wall_night_texture_by_kaf94-d373s49.jpg' }} style={styles.container}>
-            <View>
-                <ScrollView>
-                    <TouchableHighlight>
-                        <ImageBackground style={styles.image}
-                            source={{ uri: this.props.navigation.state.params.array.uri }}>
-                            <View style={{ flexDirection: 'row', flex: 1, padding: 10 }}>
-                                <Text style={styles.paragraph}>
-                                    <Text style={styles.text}>
-                                        {this.props.navigation.state.params.array.name}
+                <View>
+                    <ScrollView>
+                        <TouchableHighlight>
+                            <ImageBackground style={styles.image}
+                                source={{ uri: this.props.navigation.state.params.array.uri }}>
+                                <View style={{ flexDirection: 'row', flex: 1, padding: 10 }}>
+                                    <Text style={styles.paragraph}>
+                                        <Text style={styles.text}>
+                                            {this.props.navigation.state.params.array.name}
+                                        </Text>
+                                        {"\n"}
+                                        <Text style={styles.text2}>
+                                            {this.props.navigation.state.params.array.location}
+                                        </Text>
                                     </Text>
-                                    {"\n"}
-                                    <Text style={styles.text2}>
-                                        {this.props.navigation.state.params.array.location}
-                                    </Text>
-                                </Text>
+                                </View>
+                            </ImageBackground>
+                        </TouchableHighlight>
+                        <View>
+                            <View style={styles.container2}>
+                                <Text style={styles.text}>About Me:</Text>
+                                <Text style={styles.text2}> {this.props.navigation.state.params.array.aboutme}</Text>
                             </View>
-                        </ImageBackground>
-                    </TouchableHighlight>
-                    <View>
-                    <View style={styles.container2}>
-                        <Text style={styles.text}>About Me:</Text>
-                        <Text style={styles.text2}> {this.props.navigation.state.params.array.aboutme}</Text>
-                    </View>
-                    <View style={styles.container2}>
-                        <Text style={styles.text}>Genres</Text>
-                        {this.state.userG.map((genre, index) => {
-                            return (
-                                <View key={index}>
-                                    <Text style={styles.text2}>
-                                        {genre}
-                                    </Text>
-                                </View>
-                            );
-                        })}
-                    </View>
+                            <View style={styles.container2}>
+                                <Text style={styles.text}>Genres</Text>
+                                {this.state.userG.map((genre, index) => {
+                                    return (
+                                        <View key={index}>
+                                            <Text style={styles.text2}>
+                                                {genre}
+                                            </Text>
+                                        </View>
+                                    );
+                                })}
+                            </View>
 
-                    <View style={styles.container2}>
-                        <Text style={styles.text}>Instruments</Text>
-                        {this.state.userI.map((instrument, index) => {
-                            return (
-                                <View key={index}>
-                                    <Text style={styles.text2}>
-                                        {instrument}
-                                    </Text>
-                                </View>
-                            );
-                        })}
-                    </View>
-                    </View>
-                    <View>
-                        <TouchableOpacity style={styles.buttonContainer}
-                            onPress={(e) => this.msgArtist(e)}>
-                            <Text style={styles.buttonText}>Message Artist</Text>
-                        </TouchableOpacity >
+                            <View style={styles.container2}>
+                                <Text style={styles.text}>Instruments</Text>
+                                {this.state.userI.map((instrument, index) => {
+                                    return (
+                                        <View key={index}>
+                                            <Text style={styles.text2}>
+                                                {instrument}
+                                            </Text>
+                                        </View>
+                                    );
+                                })}
+                            </View>
+                        </View>
+                        <View>
+                            <TouchableOpacity style={styles.buttonContainer}
+                                onPress={(e) => this.msgArtist(e)}>
+                                <Text style={styles.buttonText}>Message Artist</Text>
+                            </TouchableOpacity >
 
-                    </View>
+                        </View>
 
-                </ScrollView>
+                    </ScrollView>
 
-            </View>
-        </ImageBackground>
+                </View>
+            </ImageBackground>
 
 
         )
