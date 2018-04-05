@@ -20,13 +20,6 @@ export default class HomeScreen extends Component {
         userService.checkLogin()
             .then((loggedIn) => {
                 // alert(loggedIn);
-                // if (loggedIn) {
-                //     console.log('loggedIN happened');
-
-                //     this.setState({ redirectToReferrer: true, checkingLogin: false });
-                // } else {
-                //     this.setState({ checkingLogin: false });
-                // }
             });
     }
 

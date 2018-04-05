@@ -14,17 +14,22 @@ export default class SentTextCard extends Component {
 
 const styles = StyleSheet.create({
     text: {
-        color: 'white',
+        color: 'black',
+        fontSize: 14,
     },
     container: {
         borderRadius: 15,
+        borderBottomColor: 'darkgrey',
+        borderBottomWidth: 2,
+        borderRadius: 8,
+        borderRightColor: 'darkgrey',
         backgroundColor: 'grey',
         marginLeft: 150,
         marginRight: 3,
         minHeight: 25,
         justifyContent: 'center',
         alignItems: 'flex-end',
-        padding: 3,
+        padding: 7,
         marginTop: 3,
         marginBottom: 3
     }

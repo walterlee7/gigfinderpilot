@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
-import {
-    Text,
-    TextInput,
-    Button,
-    ScrollView,
-    View,
-    StyleSheet,
-    KeyboardAvoidingView
-} from 'react-native';
+import { Text, TextInput, Button, ScrollView, View, StyleSheet, KeyboardAvoidingView, ImageBackground } from 'react-native';
+import moment from 'moment';
 import AutoScroll from 'react-native-auto-scroll';
 import dismissKeyboard from 'react-native-dismiss-keyboard';
 import * as messageService from '../services/message';
-import SentTextCard from './SentTextCard';
 import FetchTextCard from './FetchTextCard';
-
+import * as userService from '../services/user';
 
 export default class Messenger extends Component {
     constructor(props) {
@@ -22,10 +14,11 @@ export default class Messenger extends Component {
             fetchMessages: [],
             value: '',
             showButton: true,
+            user: 0,
             showFetchedMessages: false,
-            timeStamp: 'Man, like, I don\'t know sometime?',
-            userid: 1,
-            whereFrom: 1,
+            userid: 0,
+            firstMessage: '',
+
         };
     }
 
@@ -33,21 +26,32 @@ export default class Messenger extends Component {
         if (this.state.value == '') {
             this.setState({ showButton: false });
         }
-
         this.fetchMessages();
+
     }
 
     fetchMessages() {
-        messageService.get()
-            .then((message) => {
-                this.setState({
-                    fetchMessages: message,
-                    showFetchedMessages: true,
-                });
-                console.log(this.state.fetchMessages);
-            }).catch((err) => {
+        userService.checkUser()
+            .then((user) => {
+                console.log(user);
+                messageService.getUserConversation(user, this.props.navigation.state.params.receiverid)
+                    .then((message) => {
+                        console.log(message);
+                        this.setState({
+                            fetchMessages: message,
+                            showFetchedMessages: true,
+                            firstMessage: message[0]
+                        });
+                    }).catch((err) => {
+                        console.log(err);
+                    });
+                this.setState({ user });
+                // console.log('this.state.user: ' + this.state.user);
+            }).catch(err => {
+                console.log('getUserId error');
                 console.log(err);
             });
+
     }
 
     postMessage(message) {
@@ -71,10 +75,9 @@ export default class Messenger extends Component {
 
     handlePress(event) {
         this.postMessage({
-            "userid": this.state.userid,
-            "receiverid": 2,
+            "userid": this.state.user,
+            "receiverid": this.props.navigation.state.params.receiverid,
             "message": this.state.value,
-            "wherefrom": this.state.userid
         });
         this.setState({
             value: '',
@@ -95,14 +98,44 @@ export default class Messenger extends Component {
         }
     }
 
+    formatTimeStamp() {
+        console.log(this.state.firstMessage);
+        if (this.state.firstMessage === undefined) {
+            // let time = 100;
+            // let timeStampStr = moment.utc(time).valueOf();
+            // let timeStamp = moment(timeStampStr).format("lll");
+            return (
+                <View style={styles.timeStamp}>
+                    {/* <Text style={styles.time}>{timeStamp}</Text> */}
+                </View>
+            )
+        } else {
+            console.log('_created:');
+            console.log(this.state.fetchMessages._created);
+            let timeStampStr = moment.utc(this.state.fetchMessages._created).valueOf();
+            let timeStamp = moment(timeStampStr).format("lll");
+            return (
+                <View style={styles.timeStamp}>
+                    <Text style={styles.time}>{timeStamp}</Text>
+                </View>
+            )
+        }
+    }
+
     renderFetchedMessages() {
+        // console.log('first message', this.state.firstMessage);
         if (this.state.showFetchedMessages) {
             return (
                 <View>
-                    {this.state.fetchMessages.map((message, index) => {
-                        return <FetchTextCard key={index} message={message}
-                            whereFrom={this.state.whereFrom} />;
-                    })}
+                    {this.formatTimeStamp()}
+                    <View>
+                        {
+                            this.state.fetchMessages.map((message, index) => {
+                                return <FetchTextCard key={index} message={message}
+                                    userid={this.state.user} />;
+                            })
+                        }
+                    </View>
                 </View>
             );
         }
@@ -110,31 +143,32 @@ export default class Messenger extends Component {
 
     render() {
         return (
-            <KeyboardAvoidingView
-                style={styles.container}>
-                <AutoScroll>
-                    <View style={styles.time}>
-                        <Text>{this.state.timeStamp}</Text>
-                    </View>
-                    <View style={styles.textContainer}>
-                        {this.renderFetchedMessages()}
-                    </View>
-                </AutoScroll>
+            <ImageBackground source={{ uri: 'https://static.tumblr.com/e31f3012fa7c249095a8dddbfc58f0c4/rgmmpty/K3Tmpmf2h/tumblr_static_brick_wall_night_texture_by_kaf94-d373s49.jpg' }} style={styles.container}>
+                <KeyboardAvoidingView
+                    behavior='padding'
+                    style={styles.container}>
+                    <AutoScroll>
+                        <View style={styles.textContainer}>
+                            {this.renderFetchedMessages()}
+                        </View>
+                    </AutoScroll>
 
-                <View style={styles.inputToolbar}>
-                    <TextInput
-                        onChangeText={(text) => { this.handleTextChange(text); }}
-                        value={this.state.value}
-                        placeholder='Enter a message'
-                        autoCorrect={true}
-                        multiline={true}
-                        returnKeyType='send'
-                    />
-                    <View>
-                        {this.renderButton()}
+                    <View style={styles.inputToolbar}>
+                        <TextInput
+                            onChangeText={(text) => { this.handleTextChange(text); }}
+                            value={this.state.value}
+                            placeholder='Enter a message'
+                            autoCorrect={true}
+                            multiline={true}
+                            returnKeyType='send'
+                            height={50}
+                        />
+                        <View>
+                            {this.renderButton()}
+                        </View>
                     </View>
-                </View>
-            </KeyboardAvoidingView>
+                </KeyboardAvoidingView>
+            </ImageBackground>
         );
     }
 }
@@ -144,7 +178,10 @@ const styles = StyleSheet.create({
         flex: 1
     },
     time: {
-        alignItems: 'center',
+        backgroundColor: 'lightgrey',
+    },
+    timeStamp: {
+        alignItems: 'center'
     },
     button: {
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { KeyboardAvoidingView, TextInput, Image, View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { KeyboardAvoidingView, TextInput, Image, View, Text, TouchableOpacity, StyleSheet, Alert, ImageBackground } from 'react-native';
 import * as userService from '../../services/user';
 
 export default class LoginMessage extends Component {
@@ -29,8 +29,7 @@ export default class LoginMessage extends Component {
         userService.login(this.state.email, this.state.password)
             .then(() => {
                 console.log('logged in');
-                // console.log('req.user: ' + req.user);
-                this.props.navigation.navigate('ViewArtistMessenger');
+                this.props.navigation.navigate('ViewArtistMessenger', { userid: this.props.navigation.state.params.userid });
             }).catch((err) => {
                 console.log(err);
                 console.log('login error');
@@ -47,42 +46,44 @@ export default class LoginMessage extends Component {
 
     render() {
         return (
-            <KeyboardAvoidingView behavior='padding' style={styles.container}>
-                <View style={styles.loginContainer}>
-                    <Image resizeMode="contain" style={styles.logo} source={require('../../../Images/gigfindersplash.png')} />
-                </View>
-                <View style={styles.container}>
-                    <TextInput style={styles.input}
-                        autoCapitalize="none"
-                        onChangeText={(text) => this.handleEmailChange(text)}
-                        autoCorrect={false}
-                        keyboardType='email-address'
-                        returnKeyType="next"
-                        placeholder='Email Address'
-                        placeholderTextColor='rgba(225,225,225,0.7)' />
+            <ImageBackground source={{ uri: 'https://static.tumblr.com/e31f3012fa7c249095a8dddbfc58f0c4/rgmmpty/K3Tmpmf2h/tumblr_static_brick_wall_night_texture_by_kaf94-d373s49.jpg' }} style={styles.container}>
+                <KeyboardAvoidingView behavior='padding' style={styles.container}>
+                    <View style={styles.loginContainer}>
+                        <Image resizeMode="contain" style={styles.logo} source={require('../../../Images/gigfindersplash.png')} />
+                    </View>
+                    <View style={styles.container}>
+                        <TextInput style={styles.input}
+                            autoCapitalize="none"
+                            onChangeText={(text) => this.handleEmailChange(text)}
+                            autoCorrect={false}
+                            keyboardType='email-address'
+                            returnKeyType="next"
+                            placeholder='Email Address'
+                            placeholderTextColor='darkgrey' />
 
-                    <TextInput style={styles.input}
-                        returnKeyType="go"
-                        onChangeText={(text) => this.handlePasswordChange(text)}
-                        placeholder='Password'
-                        placeholderTextColor='rgba(225,225,225,0.7)'
-                        secureTextEntry />
+                        <TextInput style={styles.input}
+                            returnKeyType="go"
+                            onChangeText={(text) => this.handlePasswordChange(text)}
+                            placeholder='Password'
+                            placeholderTextColor='darkgrey'
+                            secureTextEntry />
 
-                    <TouchableOpacity style={styles.buttonContainer}
-                        onPress={(e) => this.login(e)}
-                    >
-                        <Text style={styles.buttonText}>LOGIN</Text>
-                    </TouchableOpacity >
-                </View >
-                <View style={styles.loginContainer}>
-                    <TouchableOpacity style={styles.forgot}
-                        onPress={() => Alert.alert('Will Add in Next Patch...')}>
-                        <Text>
-                            Forgot Password?
+                        <TouchableOpacity style={styles.buttonContainer}
+                            onPress={(e) => this.login(e)}
+                        >
+                            <Text style={styles.buttonText}>LOGIN</Text>
+                        </TouchableOpacity >
+                    </View >
+                    <View style={styles.loginContainer}>
+                        <TouchableOpacity style={styles.forgot}
+                            onPress={() => Alert.alert('Will Add in Next Patch...')}>
+                            <Text style={{ fontSize: 17, color: 'white' }}>
+                                Forgot Password?
                         </Text>
-                    </TouchableOpacity>
-                </View>
-            </KeyboardAvoidingView>
+                        </TouchableOpacity>
+                    </View>
+                </KeyboardAvoidingView>
+            </ImageBackground>
         );
     }
 }
@@ -92,42 +93,55 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
-        padding: 20,
+        // backgroundColor: '#2c3e50',
     },
     loginContainer: {
-        alignItems: 'center',
-        flexGrow: 1,
-        justifyContent: 'center'
+        flex: 1,
+        justifyContent: 'center',
+        paddingRight: 'auto'
     },
     logo: {
-        position: 'absolute',
-        width: 400,
-        height: 400
+        position: 'relative',
+        width: 350,
+        height: 350
     },
     forgot: {
-        backgroundColor: 'orange',
-        padding: 10,
-        borderRadius: 20,
+        height: 30,
+        width: 'auto',
+        borderBottomWidth: 0,
+        paddingTop: 3,
+        alignItems: 'center',
+        marginTop: 60
     },
     input: {
         height: 40,
-        width: 300,
-        backgroundColor: 'rgba(225,225,225,0.2)',
-        marginBottom: 10,
-        padding: 10,
-        color: '#fff'
-    },
-    buttonContainer: {
-        backgroundColor: '#2980b6',
-        paddingVertical: 15,
-        width: 125,
-        borderRadius: 15,
+        width: 250,
+        backgroundColor: '#f2f2f2',
+        marginBottom: 5,
+        padding: 5,
+        fontSize: 15,
+        color: 'black',
+        position: 'relative',
+        borderRadius: 5,
+        borderColor: '#555555',
+        borderWidth: 3,
+        borderBottomWidth: 0,
+        borderRightWidth: 0,
     },
     buttonText: {
         color: '#fff',
-        textAlign: 'center',
-        fontWeight: '700',
-        padding: 10,
-    }
+        fontSize: 17,
+        alignSelf: 'center',
+        paddingTop: 3,
+    },
+    buttonContainer: {
+        backgroundColor: '#15a3a3',
+        borderColor: '#21ffff',
+        borderWidth: 1,
+        borderRadius: 40,
+        height: 30,
+        width: 250,
+        alignSelf: 'center',
+        borderBottomWidth: 0
+    },
 });

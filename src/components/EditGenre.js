@@ -6,7 +6,7 @@ import SelectMultiple from 'react-native-select-multiple';
 import * as searchService from '../services/search';
 import * as testService from '../services/test';
 
-export default class Test extends Component {
+export default class EditGenre extends Component {
 
     static navigationOptions = {
         title: 'Genres'
