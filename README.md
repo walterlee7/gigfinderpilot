@@ -10,9 +10,8 @@ Prerequisites:
 Instructions to run the application:
 1. git clone the repository into a folder.
 2. type: npm install
-3. you will need x-code and/or android studio to run be able to run the mobile app simulation
-4. npm i -g react-native-cli
-5. type: react-native run-ios or react-native run-android
+3. type: npm i -g react-native-cli
+4. type: react-native run-ios or react-native run-android
 
 The Back End application for GigFinder is currently in this repository: https://github.com/walterlee7/blog_mysql_expressjs_reactjs.
 
