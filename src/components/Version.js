@@ -22,7 +22,7 @@ export default class Version extends Component {
                     <Text style={styles.text}>
                         GigFinder 2018
                     </Text>
-                    <Text style={{ fontSize: 17, fontWeight: 'bold', color: 'white'}}>
+                    <Text style={{ fontSize: 17, fontWeight: 'bold', color: 'white' }}>
                         Version 1.0
                     </Text>
                 </View>
