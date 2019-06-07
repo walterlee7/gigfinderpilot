@@ -1,4 +1,6 @@
-![GigFinder, landing page](/Images/landingPage.png)
+<!-- ![GigFinder, landing page](/Images/landingPage.png) -->
+
+<img src="/Images/landingPage.png" alt="landing page" width="200"/>
 
 # GigFinder 2018 Version 1.0
 
