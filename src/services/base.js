@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 const AUTH_TOKEN_KEY = 'authtoken';
 const BASE_URL = 'https://xklzuqbkpt.localtunnel.me';
 

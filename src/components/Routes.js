@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { Text } from 'react-native';
 import { DrawerNavigator, StackNavigator } from 'react-navigation';
-import { Icon, Button } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 
 import HomeScreen from './HomeScreen';
 import SignUp from './SignUp';
@@ -28,8 +28,8 @@ import EditGenre from './EditGenre';
 import EditInstrument from './EditInstrument';
 import EditPhoto from './EditPhoto';
 
-import SideMenu from './SideMenu';
-import loginSideMenu from './loginSideMenu';
+// import SideMenu from './SideMenu';
+// import loginSideMenu from './loginSideMenu';
 
 import Camera from './Camera';
 
@@ -54,19 +54,20 @@ const getStackNavOption = (current) => ({
         display: 'flex',
         paddingRight: 10
     },
-    headerTitle: <Text style={{ marginTop: 10, fontSize: 17, color: '#888888' , alignSelf: 'center', paddingLeft: 10 }}>GigFinder</Text>,
+    headerTitle: <Text style={{ marginTop: 10, fontSize: 17, color: '#888888', alignSelf: 'center', paddingLeft: 10 }}>GigFinder</Text>,
     headerRight: generateDrawerHamburger(current),
 });
 
-const getStackNavOptionIOS = (current) => ({
-    headerStyle: {
-        backgroundColor: '#f2f2f2',
-        display: 'flex',
-    },
+// const getStackNavOptionIOS = (current) => ({
+//     headerStyle: {
+//         backgroundColor: '#f2f2f2',
+//         display: 'flex',
+//     },
 
-    headerTitle: <Text style={{ marginTop: 10, fontSize: 17, color: '#888888' , alignSelf: 'center', paddingLeft: 10 }}>iOS Camera Roll</Text>,
-    headerRight: generateDrawerHamburger(current),
-});
+//     headerTitle: <Text style={{ marginTop: 10, fontSize: 17, color: '#888888', alignSelf: 'center', paddingLeft: 10 }}>iOS Camera Roll</Text>,
+//     headerRight: generateDrawerHamburger(current),
+// });
+
 const getStackNavOptionMessenger = (current) => ({
     headerStyle: {
         backgroundColor: '#888888',
@@ -257,6 +258,6 @@ export default DrawerNavigator({
         drawerWidth: 220,
         drawerPosition: 'right',
         drawerBackgroundColor: '#ffb99b',
-        
+
     });
 
