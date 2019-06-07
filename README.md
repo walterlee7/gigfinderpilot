@@ -1,3 +1,5 @@
+![GigFinder, landing page](/Images/landingPage.png)
+
 # GigFinder 2018 Version 1.0
 
 GigFinder is a mobile application for connecting bands and individual artists. Its primary function is to help users search for an artist that matches their ideal requirements for a bandmate. Use GigFinder to find a quick replacement for a bandmate who is unable to perform! Users can connect with one another via an instant messenger, manage their profile, search out various artists by Location, Instrument, and Genre.
